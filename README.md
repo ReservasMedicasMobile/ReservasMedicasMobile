@@ -1,7 +1,7 @@
-# ReservasMedicasMobile
-## Base de datos  
+# ReservasMedicasMobile 
 
 Integrantes:
+
 Scrum Master: 
 
 * Arias Jon
@@ -18,6 +18,7 @@ Developer Team:
 * Segall Daniel
 * Sorrentino Matias
 
+## Base de datos
 * URL: ispcserver1.ddns.net  
 * Usuario: desarrollo_web_2024  
 * Password: web_2024  
