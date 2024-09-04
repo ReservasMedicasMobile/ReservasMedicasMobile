@@ -1,0 +1,29 @@
+R_DEF: Internal format may change without notice
+local
+color colorAccent
+color colorPrimary
+color colorPrimaryDark
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable rounded_border
+id btnContact
+id btnSubmit
+id etEmail
+id etFirstName
+id etLastName
+id etMessage
+id etPhoneNumber
+id tvData
+layout activity_contact
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string btn_contact
+style AppTheme
+style Base.Theme.ReservasMedicasMobile
+style ButtonStyle
+style FormFieldStyle
+style Theme.ReservasMedicasMobile
+xml backup_rules
+xml data_extraction_rules

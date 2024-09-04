@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <string name="app_name">Reservas Medicas Mobile</string>
+    <string name="btn_contact">Ir a Contacto</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="Base.Theme.ReservasMedicasMobile" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="ButtonStyle">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:backgroundTint">#6200EE</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="FormFieldStyle">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/rounded_border</item>
+    </style>
+    <style name="Theme.ReservasMedicasMobile" parent="Base.Theme.ReservasMedicasMobile"/>
+</resources>
