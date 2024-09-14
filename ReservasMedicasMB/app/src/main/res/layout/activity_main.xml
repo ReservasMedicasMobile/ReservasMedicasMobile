@@ -27,11 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@drawable/rounded_corner"
-            android:hint="Nombre de Usuario"
+            android:hint="Ingrese DNI"
             android:inputType="text"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -43,8 +43,8 @@
             android:hint="Correo Electrónico"
             android:inputType="textEmailAddress"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -56,8 +56,8 @@
             android:hint="Crear Contraseña"
             android:inputType="textPassword"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -69,8 +69,8 @@
             android:hint="Repetir Contraseña"
             android:inputType="textPassword"
             android:padding="18dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="20sp" />
 
         <Button
