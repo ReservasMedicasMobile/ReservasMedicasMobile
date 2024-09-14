@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#05B2E3</color>
+    <color name="colorPrimary">#05B2E3</color>
+    <color name="colorPrimaryDark">#05B2E3</color>
+    <string name="app_name">Reservas Médicas Móviles</string>
+    <string name="btn_contact">Contacto</string>
+    <string name="contact_page_label">Página de Contacto</string>
+    <style name="Base.Theme.ReservasMedicasMobile" parent="Theme.Material3.DayNight.NoActionBar">
+
+    </style>
+    <style name="Theme.ReservasMedicasMobile" parent="Base.Theme.ReservasMedicasMobile">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>
