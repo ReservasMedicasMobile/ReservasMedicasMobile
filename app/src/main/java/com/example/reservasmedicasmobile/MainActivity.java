@@ -42,15 +42,31 @@ public class MainActivity extends AppCompatActivity {
         // Handle menu item clicks here.
         int id = item.getItemId();
 
-        // Example action for menu items
+        // analiza el evento del item presionado y redirecciona activity
         if (id == R.id.Inicio) {
             // Navigate to Inicio
             return true;
         } else if (id == R.id.Contacto) {
-            // Navigate to Contacto
+            // va a Contacto
+            return true;
+        } else if (id == R.id.Especialidad) {
+            // va a Especialidad
+            return true;
+        } else if (id == R.id.Registro) {
+            // va a Registro
+            return true;
+        } else if (id == R.id.Dashboard) {
+            // va a Dashboard
+            return true;
+        } else if (id == R.id.Iniciar_Sesion) {
+            // va a Iniciar Sesion
+            return true;
+        } else if (id == R.id.Cerrar_Sesion) {
+            // va a Cerrar_Sesion
             return true;
         }
-        // Add other menu items handling
+
+
 
         return super.onOptionsItemSelected(item);
     }
