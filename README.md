@@ -24,6 +24,7 @@ Developer Team:
 * Sorrentino Matias
 
 * Descripción del Proyecto
+* 
 La Aplicación de Reservas Médicas Mobile es una extensión del sistema de reserva médica previamente desarrollado en plataforma web. Esta aplicación móvil está diseñada para facilitar a los usuarios/pacientes la gestión de sus turnos médicos de manera más accesible a través de dispositivos móviles. El objetivo es ofrecer una experiencia fluida y conveniente para los pacientes al momento de reservar citas, consultar su historial, todo desde sus smartphones.
 El backend de esta aplicación seguirá siendo el mismo, desarrollado en Django y utilizando Python, mientras que el frontend será implementado en Android Studio (versión Koala, API Lollipop 5.1) con Java para mejorar la experiencia de los usuarios móviles.
 Objetivo
