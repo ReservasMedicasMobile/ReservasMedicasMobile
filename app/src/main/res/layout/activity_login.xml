@@ -17,12 +17,21 @@
         android:orientation="vertical"
         android:padding="40dp">
 
+        <ImageButton
+            android:id="@+id/volver_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:background="#151635"
+            android:contentDescription="@string/volver"
+            android:padding="10dp" />
+
         <TextView
             android:id="@+id/nombre1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Reservas"
+            android:layout_marginTop="10dp"
+            android:text="@string/reservas"
             android:textColor="#FFFFFF"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -33,7 +42,7 @@
             android:id="@+id/nombre2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Médicas"
+            android:text="@string/m_dicas"
             android:textColor="#FFFFFF"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -44,7 +53,7 @@
             android:id="@+id/nombre3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mobile"
+            android:text="@string/mobile"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             tools:layout_editor_absoluteX="29dp"
@@ -60,7 +69,7 @@
         app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="28dp"
     android:layout_marginBottom="-20dp"
-    >
+        tools:ignore="VisualLintBounds">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,7 +81,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bienvenido"
+                android:text="@string/bienvenido"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -81,41 +90,42 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp"/>
+                android:layout_height="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="Ingrese su información para iniciar sesión"
+                android:text="@string/ingrese_su_informaci_n_para_iniciar_sesi_n"
                 android:textColor="#212121" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:layout_height="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:textSize="16sp"
-                android:text="DNI"
+                android:text="@string/dni"
                 android:textColor="#212121" />
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Escriba su DNI"
+                android:hint="@string/escriba_su_dni"
                 android:inputType="number"
                 android:minHeight="48dp"
-                android:textColorHint="#A8A8A8"
                 android:textColor="#212121"
+                android:textColorHint="#A8A8A8"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteY="221dp" />
+                tools:layout_editor_absoluteY="221dp"
+                tools:ignore="Autofill" />
 
             <View
                 android:layout_width="match_parent"
@@ -124,25 +134,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:textSize="16sp"
-                android:text="Contraseña"
+                android:text="@string/contrase_a"
                 android:textColor="#212121" />
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Escriba su contraseña"
+                android:hint="@string/escriba_su_contrase_a"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:textColorHint="#A8A8A8"
                 android:textColor="#212121"
+                android:textColorHint="#A8A8A8"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteY="282dp" />
+                tools:layout_editor_absoluteY="282dp"
+                tools:ignore="Autofill" />
             <!--android:drawableEnd="@drawable/baseline_remove_red_eye_24"-->
 
             <View
@@ -159,7 +170,7 @@
                     android:layout_alignParentEnd="true"
                     android:alpha="0.7"
                     android:textSize="16sp"
-                    android:text="Olvidé mi contraseña"
+                    android:text="@string/olvid_mi_contrase_a"
                     android:textColor="#212121" />
             </RelativeLayout>
 
@@ -171,22 +182,21 @@
             <Button
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:text="@string/iniciar_sesi_n"
                 android:textColor="#FFFFFF"
-                android:backgroundTint="#151635"
-                android:text="Iniciar Sesión"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="394dp"
-                 />
+                tools:layout_editor_absoluteY="394dp" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="80dp"/>
+                android:layout_height="70dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -196,7 +206,7 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="¿Aún no tenés cuenta?"
+                    android:text="@string/a_n_no_ten_s_cuenta"
                     android:textSize="16sp"
                     android:textColor="#000000"
                     tools:layout_editor_absoluteX="46dp"
@@ -206,18 +216,18 @@
                     android:id="@+id/registro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Registrar usuario"
-                    android:textSize="16sp"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/registrar_usuario"
                     android:textColor="#151635"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="203dp"
-                    tools:layout_editor_absoluteY="489dp"
-                    android:layout_alignParentEnd="true"/>
+                    tools:layout_editor_absoluteY="489dp" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="60dp" />
         </LinearLayout>
 </androidx.cardview.widget.CardView>
 

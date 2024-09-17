@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -34,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         login_button = findViewById(R.id.login_button);
+
+        // Listener flecha volver
+        ImageButton btnVolver = findViewById(R.id.volver_button);
+        btnVolver.setOnClickListener(v -> finish());
 
         // Listener botón iniciar sesion
         login_button.setOnClickListener(new View.OnClickListener() {
