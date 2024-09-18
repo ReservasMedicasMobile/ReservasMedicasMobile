@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Inicio"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/Contacto"
+        android:title="Contacto" />
+    <item
+        android:id="@+id/Especialidad"
+        android:title="Especialidad" />
+    <item
+        android:id="@+id/Registro"
+        android:title="Registro" />
+    <item
+        android:id="@+id/Dashboard"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/Iniciar_Sesion"
+        android:title="Iniciar Sesion" />
+    <item
+        android:id="@+id/Cerrar_Sesion"
+        android:title="Cerrar Sesion" />
+</menu>
