@@ -198,7 +198,7 @@
                 android:background="#007bff"
                 android:backgroundTint="@null"
                 android:padding="16dp"
-                android:text="Reserva Aquí"
+                android:text="@string/reservar_turno"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -217,6 +217,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
