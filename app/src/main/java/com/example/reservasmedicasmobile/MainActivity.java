@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle menu item clicks here.
+        // Aca se maneja los clic clics del menu
         int id = item.getItemId();
 
         // analiza el evento del item presionado y redirecciona activity
