@@ -7,7 +7,7 @@
 
 Integrantes:
 
-Scrum Master: 
+Scrum Master:  
 
 * Arias Jon
 
