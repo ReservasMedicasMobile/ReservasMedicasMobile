@@ -20,7 +20,7 @@
             android:exported="false" />
         <activity
             android:name=".servicios"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".reservas"
             android:exported="false" />
