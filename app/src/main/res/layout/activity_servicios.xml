@@ -195,7 +195,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="#007bff"
+                android:background="@drawable/rounded_button"
                 android:backgroundTint="@null"
                 android:padding="16dp"
                 android:text="@string/reservar_turno"

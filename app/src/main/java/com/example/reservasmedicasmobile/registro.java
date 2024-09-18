@@ -27,7 +27,6 @@ public class registro extends AppCompatActivity {
         usernameInput = findViewById(R.id.username_input);
         emailInput = findViewById(R.id.email_input);
         confirmPasswordInput = findViewById(R.id.confirm_password_input);
-        passwordInput = findViewById(R.id.password_input);
         registerBtn = findViewById(R.id.register_btn);
 
         // Configurar el botón de registro
