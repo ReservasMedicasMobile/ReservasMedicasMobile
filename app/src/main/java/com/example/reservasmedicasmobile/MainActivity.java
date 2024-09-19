@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
             mostrarAlerta("Vas a Contacto");
             // va a Contacto
             return true;
-        } else if (id == R.id.Especialidad) {
-            mostrarAlerta("Vas a Especialidad");
+        } else if (id == R.id.Servicios) {
+            mostrarAlerta("Vas a Servicios");
             // va a Especialidad
             return true;
         } else if (id == R.id.Registro) {
