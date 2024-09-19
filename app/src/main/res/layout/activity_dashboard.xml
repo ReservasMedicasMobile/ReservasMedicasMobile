@@ -34,17 +34,26 @@
                 android:textSize="30sp"
                 android:layout_weight="1" />
 
+
+
+
             <!-- Iconos de Inicio y Cerrar sesión con bordes -->
-            <ImageView
-                android:id="@+id/iconInicio"
+
+            <ImageButton
+                android:id="@+id/inicio_volver"
                 android:layout_width="34dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/border_dashboard"
                 android:contentDescription="@string/dashboard_inicio"
                 android:scaleType="fitCenter"
+                android:onClick="volverInicio"
                 android:src="@drawable/ic_home_dashboard"
-                app:tint="@color/dashboard_text_white" />
+                app:tint="@color/dashboard_text_white"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            
+
 
             <ImageView
                 android:id="@+id/iconCerrarSesion"
@@ -55,6 +64,8 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_logout_dashboard"
                 app:tint="@color/dashboard_text_white" />
+
+
         </LinearLayout>
 
         <!-- Subtítulo bajo el Dashboard -->

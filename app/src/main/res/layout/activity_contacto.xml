@@ -7,7 +7,15 @@
     <EditText android:id="@+id/etMessage" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Mensaje" android:inputType="textMultiLine" android:minHeight="48dp" android:padding="12dp"/>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:layout_marginTop="16dp">
         <Button android:id="@+id/btnSubmit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Enviar" android:layout_marginBottom="16dp" android:minHeight="48dp" android:padding="12dp"/>
-        <Button android:id="@+id/btnBack" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Volver al inicio" android:minHeight="48dp" android:padding="12dp"/>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:onClick="volverInicio"
+            android:padding="12dp"
+            android:text="Volver al inicio" />
     </LinearLayout>
     
 </LinearLayout>

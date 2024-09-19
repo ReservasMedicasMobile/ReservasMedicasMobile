@@ -1,6 +1,8 @@
 package com.example.reservasmedicasmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,5 +35,11 @@ public class contacto extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
 
 
+    }
+
+    // boton volver incio
+    public void volverInicio(View view){
+        Intent volverInicio= new Intent(contacto.this, MainActivity.class);
+        startActivity(volverInicio);
     }
 }

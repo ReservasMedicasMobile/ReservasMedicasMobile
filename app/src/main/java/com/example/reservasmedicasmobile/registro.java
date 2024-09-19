@@ -1,5 +1,6 @@
 package com.example.reservasmedicasmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.InputFilter;
@@ -27,7 +28,7 @@ public class registro extends AppCompatActivity {
         usernameInput = findViewById(R.id.username_input);
         emailInput = findViewById(R.id.email_input);
         confirmPasswordInput = findViewById(R.id.confirm_password_input);
-        registerBtn = findViewById(R.id.register_btn);
+        registerBtn = findViewById(R.id.inicio_btn);
 
         // Configurar el botón de registro
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +41,11 @@ public class registro extends AppCompatActivity {
 
         // Establecer filtros de entrada para el DNI
         usernameInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
+    }
+
+    public void VolverInicio(View view){
+        Intent volverInicio= new Intent(registro.this, MainActivity.class);
+        startActivity(volverInicio);
     }
 
     private void registerUser() {
