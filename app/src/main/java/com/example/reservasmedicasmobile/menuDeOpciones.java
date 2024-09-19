@@ -32,6 +32,12 @@ public class menuDeOpciones extends AppCompatActivity {
         startActivity(contacto);
     }
 
+    // boton Servicios
+    public void Servicios(View view){
+        Intent servicios = new Intent(menuDeOpciones.this, servicios.class);
+        startActivity(servicios);
+    }
+
     // boton Especialidades
     public void Especialidades(View view){
         Intent especialidades = new Intent(menuDeOpciones.this, especialidades.class);

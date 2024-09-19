@@ -52,7 +52,7 @@
                 app:tint="@color/dashboard_text_white"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            
+
 
 
             <ImageView

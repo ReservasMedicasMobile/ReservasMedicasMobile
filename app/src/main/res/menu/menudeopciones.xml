@@ -10,9 +10,9 @@
         android:onClick="Contacto"
         android:title="Contacto" />
     <item
-        android:id="@+id/Especialidad"
-        android:onClick="Especialidades"
-        android:title="Especialidad" />
+        android:id="@+id/Servicios"
+        android:onClick="Servicios"
+        android:title="Servicios" />
     <item
         android:id="@+id/Registro"
         android:onClick="Registro"
