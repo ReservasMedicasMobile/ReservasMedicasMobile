@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -73,6 +74,11 @@ public class turnos extends AppCompatActivity {
         timeSlotButton.setOnClickListener(v -> {
             // Lógica para seleccionar el horario aquí
             Toast.makeText(this, "Selecciona un horario", Toast.LENGTH_SHORT).show();
+        });
+        // Inicializar y configurar el botón back dentro de onCreate
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> {
+            finish(); // Cierra la actividad actual y vuelve a la anterior
         });
     }
 }

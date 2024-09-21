@@ -36,9 +36,13 @@ public class login extends AppCompatActivity {
         password = findViewById(R.id.password);
         login_button = findViewById(R.id.login_button);
 
-        // Listener flecha volver
-        ImageButton btnVolver = findViewById(R.id.volver_button);
-        btnVolver.setOnClickListener(v -> finish());
+        // Boton volver
+        ImageButton backButton = findViewById(R.id.back_button);
+
+        backButton.setOnClickListener(v -> {
+
+            finish();
+        });
 
         // Listener botón iniciar sesion
         login_button.setOnClickListener(new View.OnClickListener() {
