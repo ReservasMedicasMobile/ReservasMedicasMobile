@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-</resources>
+    <color name="azul">#151635</color>
+    <color name="colorGray">#808080</color>
+    <color name="celeste">#007bff</color>
+    <style name="SpinnerTextStyle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="sppiner_estilo">
+        <item name="android:background">@drawable/spinner_background</item>
+        <item name="android:popupBackground">@drawable/spinner_dropdown_item</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    </resources>

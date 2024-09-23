@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azul"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".registro">
+
+    <LinearLayout
+        android:layout_width="384dp"
+        android:layout_height="715dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="166dp"
+            android:layout_height="141dp"
+            android:src="@drawable/icon_account_circle" />
+
+        <EditText
+            android:id="@+id/username_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/rounded_corner"
+            android:hint="DNI"
+            android:inputType="number"
+            android:maxLength="8"
+            android:padding="13dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/rounded_corner"
+            android:inputType="text"
+            android:padding="13dp"
+            android:text="Nombre"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="13dp"
+            android:text="Apellido"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/email_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/rounded_corner"
+            android:hint="Correo Electrónico"
+            android:inputType="textEmailAddress"
+            android:padding="13dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/confirm_password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/rounded_corner"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:padding="13dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/inicio_btn"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="#33BBFF"
+            android:padding="15dp"
+            android:text="Registrarse"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#151635"
+        android:onClick="VolverInicio"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/colorGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+
+</RelativeLayout>
