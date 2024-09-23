@@ -15,5 +15,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+.vscode
 .idea/deploymentTargetSelector.xml
-.idea/misc.xml
+
