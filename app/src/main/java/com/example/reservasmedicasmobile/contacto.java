@@ -1,45 +1,35 @@
 package com.example.reservasmedicasmobile;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class contacto extends AppCompatActivity {
 
-    private EditText etFirstName, etLastName, etEmail, etPhoneNumber, etMessage;
-    private Button btnSubmit, btnBack;
     private TextView tvData;
 
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_contacto);
 
-        etFirstName = findViewById(R.id.etFirstName);
-        etLastName = findViewById(R.id.etLastName);
-        etEmail = findViewById(R.id.etEmail);
-        etPhoneNumber = findViewById(R.id.etPhoneNumber);
-        etMessage = findViewById(R.id.etMessage);
-        btnSubmit = findViewById(R.id.btnSubmit);
-        btnBack = findViewById(R.id.btnBack);
+        // Inicializar los elementos de la UI
+        EditText etFirstName = findViewById(R.id.etFirstName);
+        EditText etLastName = findViewById(R.id.etLastName);
+        EditText etEmail = findViewById(R.id.etEmail);
+        EditText etPhoneNumber = findViewById(R.id.etPhoneNumber);
+        EditText etMessage = findViewById(R.id.etMessage);
+        Button btnSubmit = findViewById(R.id.btnSubmit);
+        Button btnBack = findViewById(R.id.btnBack);
 
-
-    }
-
-    // boton volver incio
-    public void volverInicio(View view){
-        Intent volverInicio= new Intent(contacto.this, MainActivity.class);
-        startActivity(volverInicio);
+        // Configuración del botón back
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish());
     }
 }

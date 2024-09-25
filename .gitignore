@@ -15,6 +15,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+/.idea/deploymentTargetSelector.xml
+*.log
+*.tmp
 .vscode
 .idea/deploymentTargetSelector.xml
 

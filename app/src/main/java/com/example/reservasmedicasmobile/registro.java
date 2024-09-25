@@ -1,5 +1,6 @@
 package com.example.reservasmedicasmobile;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +20,9 @@ public class registro extends AppCompatActivity {
     private EditText confirmPasswordInput;
     private EditText passwordInput;
     private Button registerBtn;
+    private ImageButton backButton; // Declaración de ImageButton
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,12 @@ public class registro extends AppCompatActivity {
         emailInput = findViewById(R.id.email_input);
         confirmPasswordInput = findViewById(R.id.confirm_password_input);
         registerBtn = findViewById(R.id.inicio_btn);
+        backButton = findViewById(R.id.back_button); // Inicializar el botón
+
+        // Configurar el botón de retroceso
+        backButton.setOnClickListener(v -> {
+            finish(); // Cierra la actividad y vuelve a la anterior
+        });
 
         // Configurar el botón de registro
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +54,7 @@ public class registro extends AppCompatActivity {
     }
 
     public void VolverInicio(View view){
-        Intent volverInicio= new Intent(registro.this, MainActivity.class);
+        Intent volverInicio = new Intent(registro.this, MainActivity.class);
         startActivity(volverInicio);
     }
 
@@ -107,3 +117,4 @@ public class registro extends AppCompatActivity {
     }
 
 }
+
