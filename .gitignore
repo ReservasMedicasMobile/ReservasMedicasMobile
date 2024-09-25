@@ -16,6 +16,5 @@
 .cxx
 local.properties
 /.idea/deploymentTargetSelector.xml
-
-
-
+*.log
+*.tmp
