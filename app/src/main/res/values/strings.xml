@@ -1,28 +1,10 @@
 <resources>
     <string name="app_name">ReservasMedicasMobile</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="reservas">Reservas</string>
-    <string name="m_dicas">Médicas</string>
-    <string name="mobile">Mobile</string>
-    <string name="bienvenido">Bienvenido</string>
-    <string name="ingrese_su_informaci_n_para_iniciar_sesi_n">Ingrese su información para iniciar sesión</string>
-    <string name="dni">DNI</string>
-    <string name="escriba_su_dni">Escriba su DNI</string>
-    <string name="contrase_a">Contraseña</string>
-    <string name="escriba_su_contrase_a">Escriba su contraseña</string>
-    <string name="olvid_mi_contrase_a">Olvidé mi contraseña</string>
-    <string name="iniciar_sesi_n">Iniciar Sesión</string>
-    <string name="a_n_no_ten_s_cuenta">¿Aún no tenés cuenta?</string>
-    <string name="registrar_usuario">Registrar usuario</string>
-    <string name="volver">Volver</string>
-    <string name="voolver">volver</string>
-    <string name="Volver">Volver</string>
+    <string name="agende">Agende su turno médico</string>
+    <string name="seleccionar_Fecha">Seleccionar Fecha</string>
+    <string name="seleccionar_Horario">Seleccionar Horario</string>
+    <string name="confirmar_reserva">Confirmar reserva</string>
+    <string name="especialidad_medica">Especialidad médica</string>
+    <string name="profesional">Profesional</string>
+    <string name="reservar_turno">Reservar Turno</string>
 </resources>
