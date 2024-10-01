@@ -16,65 +16,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8428566a-3b17-4f4d-9d73-9550f327a688" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/adbkey" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/adbkey.pub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/analytics.settings" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_029f9a26-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_02d73479-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_2193743a-addon2-3_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_3bb7c63e-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_485070ac-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_53ed092d-addon2-3_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_678e6ea3-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_6dd634b6-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_706db414-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_72847604-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_7577a689-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_8f4284d5-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_a37be9bd-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_b743781d-repository2-2_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_b7518f9e-repository2-3_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_bdaee495-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_d1e71dd8-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_d2c7e9a3-addons_list-6_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_d7ae54ad-addon2-3_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_da4252ec-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkbin-1_df1ec398-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_029f9a26-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_02d73479-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_2193743a-addon2-3_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_3bb7c63e-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_485070ac-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_53ed092d-addon2-3_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_678e6ea3-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_6dd634b6-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_706db414-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_72847604-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_7577a689-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_8f4284d5-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_a37be9bd-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_b743781d-repository2-2_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_b7518f9e-repository2-3_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_bdaee495-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_d1e71dd8-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_d2c7e9a3-addons_list-6_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_d7ae54ad-addon2-3_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_da4252ec-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/cache/sdkinf-1_df1ec398-sys-img2-4_xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/debug.keystore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/debug.keystore.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/devices.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/emu-last-feature-flags.protobuf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/emu-update-last-check.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/modem-nv-ram-5554" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/.android/studio/installer/firstrun.data" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/clinico_inicio.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/reservasmedicasmobile/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/reservasmedicasmobile/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-    </list>
+    <list default="true" id="dc787096-3825-4fbd-a5de-5dc144cf1923" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +25,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\usuario\.android\avd\Pixel_Fold_API_30.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -127,21 +69,28 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "MonicaAntich"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MonicaAntich&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ReservasMedicasMobile/ReservasMedicasMobile.git",
-    "accountId": "a3840165-91af-41e3-bd4b-04a17f4d5371"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ReservasMedicasMobile/ReservasMedicasMobile.git&quot;,
+    &quot;accountId&quot;: &quot;a3840165-91af-41e3-bd4b-04a17f4d5371&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/app/src/main/java/com/example/reservasmedicasmobile/MainActivity.java" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" root0="SKIP_HIGHLIGHTING" />
