@@ -1,11 +1,13 @@
 package com.example.reservasmedicasmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -39,17 +41,16 @@ public class login extends AppCompatActivity {
         // Boton volver
         ImageButton backButton = findViewById(R.id.back_button);
 
-        backButton.setOnClickListener(v -> {
-
-            finish();
-        });
+        backButton.setOnClickListener(v -> finish());
 
         // Listener botón iniciar sesion
-        login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validarFormulario();
-            }
+        login_button.setOnClickListener(v -> validarFormulario());
+
+        // Link a registro
+        TextView registro = findViewById(R.id.registro);
+        registro.setOnClickListener(v -> {
+            Intent intent = new Intent(login.this, registro.class);
+            startActivity(intent);
         });
     }
 
@@ -71,6 +72,11 @@ public class login extends AppCompatActivity {
 
         // Si los campos no están vacíos,  iniciar sesión
         iniciarSesion(dni, contrasenia);
+        new Handler().postDelayed(() -> {
+            Intent volverInicio = new Intent(login.this, MainActivity.class);
+            startActivity(volverInicio);
+        }, 2000);
+
     }
 
     private void iniciarSesion(String dni, String contrasenia) {
