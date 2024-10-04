@@ -32,3 +32,4 @@ local.properties
 .idea/other.xml
 .idea/vcs.xml
 /.idea
+.idea/workspace.xml
