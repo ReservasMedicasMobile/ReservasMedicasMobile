@@ -110,7 +110,7 @@ public class turnos extends AppCompatActivity {
                             try {
                                 JSONObject especialidad = response.getJSONObject(i);
                                 // Concatenar "especialidad" y "descripcion"
-                                String especialidadCompleta = especialidad.getString("especialidad") ;
+                                String especialidadCompleta = especialidad.getString("especialidad");
                                 especialidadesList.add(especialidadCompleta); // Agregar la especialidad completa a la lista
                                 Log.d("Turnos", "Especialidad cargada: " + especialidadCompleta); // Log para depuración
                             } catch (JSONException e) {
@@ -133,7 +133,6 @@ public class turnos extends AppCompatActivity {
 
         requestQueue.add(jsonArrayRequest);
     }
-
 
     private void cargarProfesionales() {
         String urlProfesionales = "http://10.0.2.2:8000/api/v1/profesionales/";
@@ -175,85 +174,38 @@ public class turnos extends AppCompatActivity {
 
         requestQueue.add(jsonArrayRequest);
     }
-    private Spinner patientSpinner; // Añade un Spinner para pacientes
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_turnos);
-
-        // ... (tu código existente)
-
-        patientSpinner = findViewById(R.id.spinner_patient); // Inicializa el Spinner de pacientes
-
-        cargarPacientes(); // Cargar pacientes al inicio
-    }
-
-    private void cargarPacientes() {
-        String urlPacientes = "http://10.0.2.2:8000/api/v1/pacientes/"; // Asegúrate de que esta sea la URL correcta
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                urlPacientes,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        ArrayList<String> pacientesList = new ArrayList<>();
-                        pacientesList.add("Seleccione un paciente");
-
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject paciente = response.getJSONObject(i);
-                                pacientesList.add(paciente.getString("nombre") + " " + paciente.getString("apellido"));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(turnos.this, android.R.layout.simple_spinner_item, pacientesList);
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        patientSpinner.setAdapter(adapter);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(turnos.this, "Error al cargar pacientes", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        requestQueue.add(jsonArrayRequest);
-    }
     private void crearTurno() {
         String urlCrearTurno = "http://10.0.2.2:8000/api/v1/turnos/";
+
+        // Aquí colocas los datos del paciente que proporcionaste
+        int pacienteId = 1; // ID del paciente (en este caso es 1, como en tu ejemplo)
 
         JSONObject turnoData = new JSONObject();
         try {
             String especialidadSeleccionada = specialtySpinner.getSelectedItem().toString();
             String profesionalSeleccionado = professionalSpinner.getSelectedItem().toString();
-            String pacienteSeleccionado = patientSpinner.getSelectedItem().toString(); // Obtener el paciente seleccionado
 
             // Asegúrate de validar la selección de todos los Spinners
             if ("Seleccione una especialidad".equals(especialidadSeleccionada) ||
-                    "Seleccione un profesional".equals(profesionalSeleccionado) ||
-                    "Seleccione un paciente".equals(pacienteSeleccionado)) {
+                    "Seleccione un profesional".equals(profesionalSeleccionado)) {
                 Toast.makeText(this, "Por favor, complete todos los campos.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Obtén el ID del paciente (deberías tener una manera de obtenerlo)
-            String pacienteId = obtenerIdDelPaciente(pacienteSeleccionado); // Implementa esta función para obtener el ID
-
+            // Coloca los datos en el JSON
             turnoData.put("especialidad", especialidadSeleccionada);
             turnoData.put("profesional", profesionalSeleccionado);
-            turnoData.put("paciente", pacienteId); // Usar el ID del paciente
-            turnoData.put("fecha", fechaSeleccionada);
-            turnoData.put("hora", horaSeleccionada);
+            turnoData.put("fecha", fechaSeleccionada); // Asegúrate de que esto tenga el formato correcto
+            turnoData.put("hora", horaSeleccionada); // Asegúrate de que esto tenga el formato correcto
+            turnoData.put("paciente_id", pacienteId); // Asegúrate de que este campo coincide con lo que espera el backend
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        // Agregar log para depuración
+        Log.d("Turnos", "Datos del turno: " + turnoData.toString());
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
@@ -268,15 +220,16 @@ public class turnos extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(turnos.this, "Error al crear turno: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        String errorMessage = "Error al crear turno: " + error.getMessage();
+                        if (error.networkResponse != null && error.networkResponse.data != null) {
+                            String errorBody = new String(error.networkResponse.data);
+                            errorMessage += "\nDetalles: " + errorBody; // Agregar detalles del error
+                        }
+                        Toast.makeText(turnos.this, errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
 
         requestQueue.add(jsonObjectRequest);
     }
-
-
-
-
 
 }
