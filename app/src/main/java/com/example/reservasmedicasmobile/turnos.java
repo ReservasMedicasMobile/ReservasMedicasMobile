@@ -2,6 +2,7 @@ package com.example.reservasmedicasmobile;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -19,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,7 +92,29 @@ public class turnos extends AppCompatActivity {
 
         // Botón para volver atrás
         ImageButton backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(v -> finish()); // Cierra la actividad actual y vuelve a la anterior
+        backButton.setOnClickListener(v -> finish());
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(turnos.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_turnos) {
+                // Navegar a TurnosActivity
+                Intent intent = new Intent(turnos.this, turnos.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_perfil) {
+                Intent intent = new Intent(turnos.this, dashboard.class);
+                startActivity(intent);
+                return true;
+            } else {
+                return false;
+            }
+        });
+
     }
 
     private void cargarEspecialidades() {
@@ -229,7 +253,9 @@ public class turnos extends AppCompatActivity {
                     }
                 });
 
+
         requestQueue.add(jsonObjectRequest);
     }
+
 
 }
