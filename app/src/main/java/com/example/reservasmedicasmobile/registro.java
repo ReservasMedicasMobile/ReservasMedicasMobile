@@ -1,6 +1,7 @@
 package com.example.reservasmedicasmobile;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.util.Log;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.toolbox.Volley;
+import android.util.Log;  // Importar la clase Log
 import java.util.HashMap;
 import java.util.Map;
 
@@ -158,29 +160,66 @@ public class registro extends AppCompatActivity {
         Log.d("JSON Request", jsonString);  // Imprime el JSON en los logs
 
     int timeoutMs = 10000;
-    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
-            response -> {
-                System.out.println("Respuesta recibida con éxito");
-                Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
-            },
-            error -> {
-                if (error.networkResponse != null && error.networkResponse.data != null) {
-                    String errorMessage = new String(error.networkResponse.data);
-                    System.out.println("Error del servidor: " + errorMessage);
-                    Toast.makeText(this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Error en la conexión", Toast.LENGTH_SHORT).show();
-                }
-            }) {
-        @Override
-        public Map<String, String> getHeaders() throws AuthFailureError {
-            Map<String, String> headers = new HashMap<>();
-            headers.put("Content-Type", "application/json; charset=UTF-8");
-            return headers;
-        }
-    };
 
-jsonObjectRequest.setRetryPolicy(new
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+                response -> {
+                    // Código 200 o 201 - Registro exitoso
+                    try {
+                        // Imprimir el JSON de respuesta en la consola
+                        Log.d("RegistroResponse", response.toString());
+
+                        // Extraer el token del JSON de respuesta
+                        String token = response.getString("token");
+
+                        // Guardar el token en SharedPreferences
+                        SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("auth_token", token);
+                        editor.apply();
+
+                        // Mostrar mensaje de éxito y limpiar el formulario
+                        Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
+                        clearForm();
+
+                        // Puedes decidir qué hacer después del registro (ej. ir al inicio)
+                        // Volver al inicio (MainActivity)
+                        Intent intent = new Intent(registro.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    } catch (JSONException e) {
+                        // Manejo del error de JSON
+                        e.printStackTrace();
+                        Toast.makeText(this, "Error procesando la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    // Manejar errores HTTP
+                    if (error.networkResponse != null) {
+                        int statusCode = error.networkResponse.statusCode;
+                        if (statusCode == 400) {
+                            // Usuario ya registrado
+                            Toast.makeText(this, "El usuario ya está registrado", Toast.LENGTH_SHORT).show();
+                        } else if (statusCode == 404) {
+                            // Sin conexión con el backend
+                            Toast.makeText(this, "Error de conexión: no se pudo contactar al servidor", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Error: " + statusCode, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, "Error de red", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json; charset=UTF-8");
+                return headers;
+            }
+        };
+
+
+        jsonObjectRequest.setRetryPolicy(new
     DefaultRetryPolicy(
             timeoutMs,
             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -190,6 +229,18 @@ jsonObjectRequest.setRetryPolicy(new
 VolleySingleton.getInstance(this).
     addToRequestQueue(jsonObjectRequest);
 }
+
+    // Limpiar el formulario después de un registro exitoso
+    private void clearForm() {
+        usernameInput.setText("");
+        first_nameInput.setText("");
+        last_nameInput.setText("");
+        emailInput.setText("");
+        passwordInput.setText("");
+        // confirmPasswordInput.setText(""); // si tienes un campo de confirmación de contraseña
+    }
+
+
         private boolean isPasswordValid(String password) {
         // La contraseña debe tener entre 8 y 16 caracteres, e incluir al menos un número, un símbolo y una letra mayúscula
         return password.length() >= 8 && password.length() <= 16
