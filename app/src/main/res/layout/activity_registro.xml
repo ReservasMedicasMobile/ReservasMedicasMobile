@@ -46,18 +46,18 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/etFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:background="@drawable/rounded_corner"
             android:inputType="text"
             android:padding="13dp"
-            android:text="Nombre"
+            android:hint="Nombre"
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/etLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
@@ -65,7 +65,7 @@
             android:ems="10"
             android:inputType="text"
             android:padding="13dp"
-            android:text="Apellido"
+            android:hint="Apellido"
             android:textSize="20sp" />
 
         <EditText
@@ -82,7 +82,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/confirm_password_input"
+            android:id="@+id/password_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
