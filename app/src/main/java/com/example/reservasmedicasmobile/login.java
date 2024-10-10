@@ -89,14 +89,14 @@ public class login extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject response) {
                 try {
-                    // Aquí puedes guardar el token JWT
+                    // Guarda el token JWT
                     String token = response.getString("token");
                     saveToken(token);
 
                     // Redirigir a MainActivity
                     Intent volverInicio = new Intent(login.this, MainActivity.class);
                     startActivity(volverInicio);
-                    finish(); // Opcional: cerrar esta actividad
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
@@ -108,12 +108,22 @@ public class login extends AppCompatActivity {
                 Toast.makeText(login.this, "Error de inicio de sesión: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show();
     }
 
     private void saveToken(String token) {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("jwt_token", token);
+        editor.putString("auth_token", token);
+        editor.putBoolean("is_logged_in", true); // Guarda que el usuario está logueado
+        editor.apply();
+    }
+
+    private void logout() {
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("auth_token");
+        editor.putBoolean("is_logged_in", false); // Actualiza el estado a no logueado
         editor.apply();
     }
 }
