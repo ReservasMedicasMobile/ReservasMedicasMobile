@@ -3,9 +3,8 @@ package com.example.reservasmedicasmobile;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,7 +25,6 @@ public class login extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
-    private Button login_button;
     private ApiRequest apiRequest;
 
     @Override
@@ -43,7 +41,7 @@ public class login extends AppCompatActivity {
         // Referencia a los elementos de la interfaz
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        login_button = findViewById(R.id.login_button);
+        Button login_button = findViewById(R.id.login_button);
 
         // Instanciar ApiRequest
         apiRequest = new ApiRequest(this);
@@ -69,15 +67,20 @@ public class login extends AppCompatActivity {
         String contrasenia = password.getText().toString().trim();
 
         // Verifica si los campos están vacíos
-        if (TextUtils.isEmpty(dni)) {
-            username.setError("El DNI no puede estar vacío");
+        if (TextUtils.isEmpty(dni) || TextUtils.isEmpty(contrasenia)) {
+            Toast.makeText(login.this, "Por favor completa todos los campos.", Toast.LENGTH_SHORT).show();
+
+            if (TextUtils.isEmpty(dni)) {
+                username.setError("El DNI no puede estar vacío. Escribir solo números.");
+            }
+
+            if (TextUtils.isEmpty(contrasenia)) {
+                password.setError("La contraseña no puede estar vacía");
+                return;
+            }
             return;
         }
 
-        if (TextUtils.isEmpty(contrasenia)) {
-            password.setError("La contraseña no puede estar vacía");
-            return;
-        }
 
         // Si los campos no están vacíos, iniciar sesión
         iniciarSesion(dni, contrasenia);
@@ -96,20 +99,24 @@ public class login extends AppCompatActivity {
                     // Redirigir a MainActivity
                     Intent volverInicio = new Intent(login.this, MainActivity.class);
                     startActivity(volverInicio);
+                    Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    // Reemplaza printStackTrace con logging robusto -modificado
+                    Log.e("Login", "Error al procesar la respuesta JSON", e);
                     Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onError(VolleyError error) {
-                Toast.makeText(login.this, "Error de inicio de sesión: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                String errorMessage = error.getMessage();
+                Toast.makeText(login.this, "Error de inicio de sesión: " + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
-        Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
     }
+
 
     private void saveToken(String token) {
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
@@ -119,11 +126,4 @@ public class login extends AppCompatActivity {
         editor.apply();
     }
 
-    private void logout() {
-        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("auth_token");
-        editor.putBoolean("is_logged_in", false); // Actualiza el estado a no logueado
-        editor.apply();
-    }
 }
