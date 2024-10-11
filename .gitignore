@@ -21,3 +21,9 @@ local.properties
 .vscode
 .idea/deploymentTargetSelector.xml
 
+.idea/misc.xml
+.idea/misc.xml
+.idea/other.xml
+.idea/workspace.xml
+app/build.gradle.kts
+gradle/libs.versions.toml
