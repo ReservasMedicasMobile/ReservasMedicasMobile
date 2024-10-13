@@ -1,7 +1,5 @@
 package com.example.reservasmedicasmobile;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,13 +26,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import kotlin.collections.UArraySortingKt;
-
-public class contacto extends AppCompatActivity  {
+public class contacto extends AppCompatActivity {
     private Spinner spinnerOpcion;
     private EditText etFirstName, etLastName, etEmail, etPhoneNumber, etMessage;
     private Button btnSubmit;
-    private String apiUrl = "http://TU_API_URL/api/v1/contacto/"; // Cambia esto por la URL de tu API
+    private String apiUrl = "http://TU_API_URL/api/v1/contacto/";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -51,6 +47,7 @@ public class contacto extends AppCompatActivity  {
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
         etEmail = findViewById(R.id.etEmail);
+        etPhoneNumber = findViewById(R.id.etPhoneNumber); 
         spinnerOpcion = findViewById(R.id.spinner);
         etMessage = findViewById(R.id.etMessage);
         btnSubmit = findViewById(R.id.btnSubmit);
@@ -61,8 +58,10 @@ public class contacto extends AppCompatActivity  {
             }
         });
 
-        String[] opcciones = {"TIPO DE CONSULTA" , "consulta","Sugerencia","Reclamo"};
-        ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(this,R.layout.activity_contacto);
+        // Cambiando el adaptador del spinner para que use una lista de opciones
+        String[] opciones = {"TIPO DE CONSULTA", "Consulta", "Sugerencia", "Reclamo"};
+        ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
+        opcionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOpcion.setAdapter(opcionAdapter);
     }
 
@@ -73,26 +72,31 @@ public class contacto extends AppCompatActivity  {
         String phoneNumber = etPhoneNumber.getText().toString().trim();
         String message = etMessage.getText().toString().trim();
 
+        // Validación del nombre
         if (TextUtils.isEmpty(firstName) || !firstName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
             etFirstName.setError("El nombre es obligatorio y no debe contener números");
             return false;
         }
 
+        // Validación del apellido
         if (TextUtils.isEmpty(lastName) || !lastName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
             etLastName.setError("El apellido es obligatorio y no debe contener números");
             return false;
         }
 
+        // Validación del correo electrónico
         if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError("Correo electrónico inválido");
             return false;
         }
 
+        // Validación del número de teléfono
         if (TextUtils.isEmpty(phoneNumber) || !phoneNumber.matches("[0-9]+") || phoneNumber.length() < 10) {
-            etPhoneNumber.setError("Número de teléfono inválido");
+            etPhoneNumber.setError("Número de teléfono inválido (mínimo 10 dígitos)");
             return false;
         }
 
+        // Validación del mensaje
         if (TextUtils.isEmpty(message)) {
             etMessage.setError("El mensaje es obligatorio");
             return false;
@@ -121,7 +125,7 @@ public class contacto extends AppCompatActivity  {
             postData.put("nombre", etFirstName.getText().toString().trim());
             postData.put("apellido", etLastName.getText().toString().trim());
             postData.put("correo", etEmail.getText().toString().trim());
-            postData.put("tipo_de_consulta", "Consulta"); // Puedes modificar esto según sea necesario
+            postData.put("tipo_de_consulta", spinnerOpcion.getSelectedItem().toString()); // Obtener la opción seleccionada del spinner
             postData.put("mensaje", etMessage.getText().toString().trim());
             postData.put("aviso", false); // Puedes modificar este campo según sea necesario
         } catch (JSONException e) {
