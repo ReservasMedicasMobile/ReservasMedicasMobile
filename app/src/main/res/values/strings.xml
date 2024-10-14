@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ReservasMedicasMobile</string>
+    <string name="agende">Agende su turno médico</string>
+    <string name="seleccionar_Fecha">Seleccionar Fecha</string>
+    <string name="seleccionar_Horario">Seleccionar Horario</string>
+    <string name="confirmar_reserva">Confirmar reserva</string>
+    <string name="especialidad_medica">Especialidad médica</string>
+    <string name="profesional">Profesional</string>
+    <string name="reservar_turno">Reservar Turno</string>
+</resources>

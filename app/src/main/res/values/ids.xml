@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="etFirstName" type="id" />
+    <item name="etLastName" type="id" />
+    <item name="etEmail" type="id" />
+    <item name="etPhoneNumber" type="id" />
+    <item name="etMessage" type="id" />
+    <item name="btnSubmit" type="id" />
+    <item name="btnBack" type="id" />
+</resources>
