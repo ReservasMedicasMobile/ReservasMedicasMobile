@@ -175,6 +175,7 @@ public class registro extends AppCompatActivity {
                         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString("auth_token", token);
+                        editor.putBoolean("is_logged_in", true); // alejo
                         editor.apply();
 
                         // Mostrar mensaje de éxito y limpiar el formulario
