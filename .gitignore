@@ -33,3 +33,6 @@ local.properties
 .idea/vcs.xml
 /.idea
 .idea/workspace.xml
+/.idea
+/.idea
+gradle/libs.versions.toml
