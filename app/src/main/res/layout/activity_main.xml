@@ -16,7 +16,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="Reservas Médicas Mobile"
         app:titleTextAppearance="@style/ToolbarTitleTextStyle"
-        app:titleTextColor="#FFFFFF" />
+        app:titleTextColor="#FFFFFF"
+        android:theme="@style/ToolbarStyle"/>
 
     <ImageView
         android:id="@+id/myImageView"

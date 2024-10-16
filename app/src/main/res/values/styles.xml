@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <!--<item name="android:titleTextColor">#FFFFFF</item>  Color del título
+        <item name="android:subtitleTextColor">#FFFFFF</item> Color del subtítulo -->
+        <item name="android:textColorSecondary">#FFFFFF</item> <!-- Color de los iconos -->
+    </style>
+
+</resources>
