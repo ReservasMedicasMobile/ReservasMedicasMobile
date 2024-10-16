@@ -19,16 +19,41 @@
         app:titleTextColor="#FFFFFF"
         android:theme="@style/ToolbarStyle"/>
 
-    <ImageView
-        android:id="@+id/myImageView"
+    <!-- FrameLayout para superponer el texto sobre la imagen -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/clinico_inicio"
-        android:scaleType="centerCrop"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#80000000"> <!-- Fondo negro semitransparente -->
 
-    <!-- Puedes mantener el resto del layout aquí -->
+        <!-- Imagen de fondo -->
+        <ImageView
+            android:id="@+id/myImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/clinico_inicio"
+            android:scaleType="centerCrop" />
+
+        <!-- LinearLayout para centrar el mensaje -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="50dp"> <!-- Ajusta el padding superior según sea necesario -->
+
+            <!-- Mensaje de bienvenida centrado -->
+            <TextView
+                android:id="@+id/welcomeMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Hola! Nos alegra verte en nuestra app móvil. Como usuario de nuestra plataforma web, estamos emocionados de que pruebes esta nueva experiencia. Aquí podrás gestionar tus reservas y consultar tus citas. ¡Gracias por confiar en nosotros una vez más! "
+                android:textColor="#000000"
+                android:textSize="16sp"  />
+        </LinearLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
