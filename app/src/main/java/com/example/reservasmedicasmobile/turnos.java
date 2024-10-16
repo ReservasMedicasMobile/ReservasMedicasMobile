@@ -75,7 +75,7 @@ public class turnos extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-         }
+            }
         });
 
         openTimePickerButton.setOnClickListener(v -> {
@@ -101,16 +101,21 @@ public class turnos extends AppCompatActivity {
         Map<String, List<String>> horariosCamila = new HashMap<>();
         horariosCamila.put("10/10/2024", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
         horariosCamila.put("11/10/2024", Arrays.asList("10:30", "13:00", "15:00"));
-        horariosPorEspecialistaYFecha.put("Camila Pérez Ruiz", horariosCamila);
+        horariosPorEspecialistaYFecha.put("Camila Medina", horariosCamila);
 
         Map<String, List<String>> horariosNicolas = new HashMap<>();
         horariosNicolas.put("10/10/2024", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
         horariosNicolas.put("11/10/2024", Arrays.asList("14:30", "15:00", "16:30"));
-        horariosPorEspecialistaYFecha.put("Nicolás Medina", horariosNicolas);
+        horariosPorEspecialistaYFecha.put("Nicolás Pérez Ruiz", horariosNicolas);
+
+        Map<String, List<String>> horariosLeandro = new HashMap<>();
+        horariosLeandro.put("10/10/2024", Arrays.asList("12:00", "13:30", "16:00", "16:30"));
+        horariosLeandro.put("11/10/2024", Arrays.asList("12:30", "15:00", "17:30"));
+        horariosPorEspecialistaYFecha.put("Leandro Martinez", horariosLeandro);
     }
 
     private void cargarEspecialidades() {
-        String urlEspecialidades = "http://10.0.2.2:8000/api/v1/especialidad/";
+        String urlEspecialidades = "https://reservasmedicas.ddns.net/api/v1/especialidad/";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -143,7 +148,7 @@ public class turnos extends AppCompatActivity {
     }
 
     private void cargarProfesionales() {
-        String urlProfesionales = "http://10.0.2.2:8000/api/v1/profesionales/";
+        String urlProfesionales = "https://reservasmedicas.ddns.net/api/v1/profesionales/";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -177,7 +182,7 @@ public class turnos extends AppCompatActivity {
     }
 
     private void crearTurno() {
-        String urlCrearTurno = "http://10.0.2.2:8000/api/v1/turnos/";
+        String urlCrearTurno = "https://reservasmedicas.ddns.net/api/v1/turnos/";
         int pacienteId = 1;
 
         JSONObject turnoData = new JSONObject();
