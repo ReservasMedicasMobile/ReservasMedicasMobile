@@ -12,10 +12,7 @@
         android:id="@+id/btn_registro"
         android:title="Registro" />
     <item
-        android:id="@+id/btn_dashboard"
-        android:title="Dashboard" />
-    <item
         android:id="@+id/btn_login"
-        android:title="Login" />
+        android:title="Iniciar Sesión" />
 
 </menu>
