@@ -27,10 +27,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class contacto extends AppCompatActivity {
+
     private Spinner spinnerOpcion;
     private EditText etFirstName, etLastName, etEmail, etPhoneNumber, etMessage;
     private Button btnSubmit;
-    private String apiUrl = "http://TU_API_URL/api/v1/contacto/";
+    private String apiUrl = "https://reservasmedicas.ddns.net/api/v1/contacto/";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -38,32 +39,37 @@ public class contacto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacto);
 
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         ImageButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> finish());
 
+
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
         etEmail = findViewById(R.id.etEmail);
-        etPhoneNumber = findViewById(R.id.etPhoneNumber); 
+        etPhoneNumber = findViewById(R.id.etPhoneNumber);
         spinnerOpcion = findViewById(R.id.spinner);
         etMessage = findViewById(R.id.etMessage);
         btnSubmit = findViewById(R.id.btnSubmit);
 
+        // Listener para el botón de envío
         btnSubmit.setOnClickListener(v -> {
             if (validateFields()) {
                 sendFormWithJWT();
             }
         });
 
-        // Cambiando el adaptador del spinner para que use una lista de opciones
+
         String[] opciones = {"TIPO DE CONSULTA", "Consulta", "Sugerencia", "Reclamo"};
         ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
         opcionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOpcion.setAdapter(opcionAdapter);
     }
+
 
     private boolean validateFields() {
         String firstName = etFirstName.getText().toString().trim();
@@ -72,31 +78,31 @@ public class contacto extends AppCompatActivity {
         String phoneNumber = etPhoneNumber.getText().toString().trim();
         String message = etMessage.getText().toString().trim();
 
-        // Validación del nombre
+
         if (TextUtils.isEmpty(firstName) || !firstName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
             etFirstName.setError("El nombre es obligatorio y no debe contener números");
             return false;
         }
 
-        // Validación del apellido
+
         if (TextUtils.isEmpty(lastName) || !lastName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
             etLastName.setError("El apellido es obligatorio y no debe contener números");
             return false;
         }
 
-        // Validación del correo electrónico
+
         if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError("Correo electrónico inválido");
             return false;
         }
 
-        // Validación del número de teléfono
+
         if (TextUtils.isEmpty(phoneNumber) || !phoneNumber.matches("[0-9]+") || phoneNumber.length() < 10) {
             etPhoneNumber.setError("Número de teléfono inválido (mínimo 10 dígitos)");
             return false;
         }
 
-        // Validación del mensaje
+
         if (TextUtils.isEmpty(message)) {
             etMessage.setError("El mensaje es obligatorio");
             return false;
@@ -104,6 +110,7 @@ public class contacto extends AppCompatActivity {
 
         return true;
     }
+
 
     private void sendFormWithJWT() {
         String jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"; // Token JWT simulado
@@ -115,24 +122,28 @@ public class contacto extends AppCompatActivity {
         }
     }
 
+
     private boolean validateJWT(String jwt) {
-        return jwt != null && !jwt.isEmpty(); // Simular validación del token JWT
+        return jwt != null && !jwt.isEmpty();
     }
 
+    // Método para realizar una solicitud POST con Volley
     private void sendPostRequest(String jwt) {
         JSONObject postData = new JSONObject();
         try {
             postData.put("nombre", etFirstName.getText().toString().trim());
             postData.put("apellido", etLastName.getText().toString().trim());
             postData.put("correo", etEmail.getText().toString().trim());
-            postData.put("tipo_de_consulta", spinnerOpcion.getSelectedItem().toString()); // Obtener la opción seleccionada del spinner
+            postData.put("telefono", etPhoneNumber.getText().toString().trim());
+            postData.put("tipo_de_consulta", spinnerOpcion.getSelectedItem().toString());
             postData.put("mensaje", etMessage.getText().toString().trim());
-            postData.put("aviso", false); // Puedes modificar este campo según sea necesario
+            postData.put("aviso", false);
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(contacto.this, "Error al crear los datos del formulario", Toast.LENGTH_SHORT).show();
             return; // Salir si hay un error
         }
+
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
@@ -140,7 +151,7 @@ public class contacto extends AppCompatActivity {
                 apiUrl,
                 postData,
                 response -> Toast.makeText(contacto.this, "Formulario enviado correctamente", Toast.LENGTH_LONG).show(),
-                error -> Toast.makeText(contacto.this, "Error al enviar el formulario", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(contacto.this, "Error al enviar el formulario: " + error.getMessage(), Toast.LENGTH_LONG).show()) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
@@ -149,6 +160,8 @@ public class contacto extends AppCompatActivity {
             }
         };
 
+
         requestQueue.add(jsonObjectRequest);
     }
 }
+
