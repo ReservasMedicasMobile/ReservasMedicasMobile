@@ -3,13 +3,13 @@ package com.example.reservasmedicasmobile.modelo;
 public class DataModel {
 
     private String id;
-    private String especiaslidad;
+    private String especialidad;
     private String descripcion;
 
 
-    public DataModel(String id) {
+    public DataModel(String id, String especialidad, String descripcion) {
         this.id = id;
-        this.especiaslidad = especiaslidad;
+        this.especialidad = especialidad;
         this.descripcion = descripcion;
     }
 
@@ -17,8 +17,8 @@ public class DataModel {
         return id;
     }
 
-    public String getEspeciaslidad() {
-        return especiaslidad;
+    public String getEspecialidad() {
+        return especialidad;
     }
 
     public String getDescripcion() {

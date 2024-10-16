@@ -36,3 +36,4 @@ local.properties
 /.idea
 /.idea
 gradle/libs.versions.toml
+.idea/workspace.xml

@@ -22,15 +22,16 @@ public class DataModelAdapter extends RecyclerView.Adapter<DataModelAdapter.Data
     @NonNull
     @Override
     public DataModelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.activity_list_item, parent, false);
         return new DataModelViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull DataModelAdapter.DataModelViewHolder holder, int position) {
         DataModel dataModel = especialidadList.get(position);
         holder.idTextView.setText(dataModel.getId());
-        holder.especialidadTextView.setText(dataModel.getEspeciaslidad());
+        holder.especialidadTextView.setText(dataModel.getEspecialidad());
         holder.descipcionTextView.setText(dataModel.getDescripcion());
     }
 
@@ -39,16 +40,17 @@ public class DataModelAdapter extends RecyclerView.Adapter<DataModelAdapter.Data
         return especialidadList.size();
     }
 
-    static class DataModelViewHolder extends RecyclerView.ViewHolder{
+    public static class DataModelViewHolder extends RecyclerView.ViewHolder{
         TextView idTextView;
         TextView especialidadTextView;
         TextView descipcionTextView;
 
-        DataModelViewHolder(View itemView){
+        public DataModelViewHolder(View itemView){
             super(itemView);
             idTextView = itemView.findViewById(android.R.id.text1);
             especialidadTextView = itemView.findViewById(android.R.id.text2);
 
         }
     }
+
 }

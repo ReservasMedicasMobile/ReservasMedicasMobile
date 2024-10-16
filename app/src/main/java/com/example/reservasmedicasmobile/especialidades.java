@@ -1,10 +1,10 @@
 package com.example.reservasmedicasmobile;
 
-import android.annotation.SuppressLint;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,7 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.reservasmedicasmobile.adapter.DataModelAdapter;
-import com.example.reservasmedicasmobile.interfaces.ApiService;
+
 import com.example.reservasmedicasmobile.modelo.DataModel;
 
 import org.json.JSONArray;
@@ -34,15 +35,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class especialidades extends AppCompatActivity {
 
 
-    private RecyclerView recyclerView;
-    private DataModelAdapter dataModelAdapter;
-    public List<DataModel> dataList;
+    private TextView textViewEspecialidades;
+    private RequestQueue rq;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,50 +56,46 @@ public class especialidades extends AppCompatActivity {
             return insets;
         });
 
-        recyclerView = findViewById(R.id.recycler_view_especialidad);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        dataList = new ArrayList<>();
+        textViewEspecialidades = findViewById(R.id.textViewEspecialidades);
+        rq = Volley.newRequestQueue(this);
 
-        fetchData();
-
-
-        
     }
 
-    private void fetchData() {
+    public void listar(View v){
+        textViewEspecialidades.setText("");
         String url = "https://reservasmedicas.ddns.net/api/v1/especialidad/";
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+        JsonArrayRequest requerimiento = new JsonArrayRequest(Request.Method.GET,
+                url,
+                null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        for (int i = 0; i < response.length(); i++) {
+                        for(int i=0; i <response.length(); i++)
+                        {
                             try {
-                                JSONObject jsonObject = response.getJSONObject(i);
-                                String id = jsonObject.getString("id");
-                                //String especialidad = jsonObject.getString("especialidad");
-                                //String descripcion = jsonObject.getString("descripcion");
-                                DataModel dataModel = new DataModel(id);
-                                //DataModel dataModel = new DataModel(id, especialidad, descripcion);
-                                dataList.add(dataModel);
+                                JSONObject objeto = new JSONObject(response.get(i).toString());
+                                textViewEspecialidades.append("Codigo" + objeto.getString("id") + "\n");
+                                textViewEspecialidades.append("Especialidad" + objeto.getString("especialidad")+ "\n");
+                                textViewEspecialidades.append("Descripcion" + objeto.getString("descripcion")+ "\n");
+                                textViewEspecialidades.append("_____________________\n");
+
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                throw new RuntimeException(e);
                             }
                         }
-                        dataModelAdapter = new DataModelAdapter(dataList);
-                        recyclerView.setAdapter(dataModelAdapter);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("Error", error.toString());
+                        Toast.makeText(especialidades.this, "", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
-        requestQueue.add(jsonArrayRequest);
+
+        rq.add(requerimiento);
     }
+
 
 
 }

@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_logo_rmm"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReservasMedicasMobile"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
 
