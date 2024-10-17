@@ -94,6 +94,8 @@ public class login extends AppCompatActivity {
                 try {
                     // Guarda el token JWT
                     String token = response.getString("token");
+                    Log.d("Login", "Token JWT: " + token); // verificar token guardado en logcat
+
                     saveToken(token);
 
                     // Redirigir a MainActivity
@@ -124,6 +126,7 @@ public class login extends AppCompatActivity {
         editor.putString("auth_token", token);
         editor.putBoolean("is_logged_in", true); // Guarda que el usuario está logueado
         editor.apply();
-    }
 
+        Log.d("Login", "Token guardado en SharedPreferences: " + token); // verificar token guardado
+    }
 }
