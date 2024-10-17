@@ -33,7 +33,6 @@ public class registro extends AppCompatActivity {
     private EditText last_nameInput;
     private EditText emailInput;
     private EditText passwordInput;
-    //private EditText confirmPasswordInput;
     private Button registerBtn;
     private ImageButton backButton; // Declaración de ImageButton
 
@@ -49,7 +48,6 @@ public class registro extends AppCompatActivity {
         last_nameInput = findViewById(R.id.etLastName);
         emailInput = findViewById(R.id.email_input);
         passwordInput = findViewById(R.id.password_input);
-        //confirmPasswordInput = findViewById(R.id.confirm_password_input);
         registerBtn = findViewById(R.id.inicio_btn);
         backButton = findViewById(R.id.back_button); // Inicializar el botón
 
@@ -85,7 +83,6 @@ public class registro extends AppCompatActivity {
         String last_name = last_nameInput.getText().toString().trim();
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
-        //String confirmPassword = confirmPasswordInput.getText().toString().trim();
 
         // Validar DNI (username)
         if (TextUtils.isEmpty(username)) {
@@ -133,14 +130,6 @@ public class registro extends AppCompatActivity {
             passwordInput.setError("La contraseña debe tener entre 8 y 16 caracteres, e incluir una mayuscula, números y símbolos");
             return;
         }
-/*
-        if (TextUtils.isEmpty(confirmPassword)) {
-            confirmPasswordInput.setError("La confirmación de contraseña es obligatoria");
-            return;
-        } else if (!password.equals(confirmPassword)) {
-            confirmPasswordInput.setError("Las contraseñas no coinciden");
-            return;
-        }*/
 
         System.out.println("pase la validacion ");
 
@@ -237,7 +226,6 @@ VolleySingleton.getInstance(this).
         last_nameInput.setText("");
         emailInput.setText("");
         passwordInput.setText("");
-        // confirmPasswordInput.setText(""); // si tienes un campo de confirmación de contraseña
     }
 
 
