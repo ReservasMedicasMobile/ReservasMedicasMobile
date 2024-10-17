@@ -179,12 +179,11 @@ public class registro extends AppCompatActivity {
                         editor.apply();
 
                         // Mostrar mensaje de éxito y limpiar el formulario
-                        Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Usuario registrado con éxito, ya puede iniciar sesión", Toast.LENGTH_SHORT).show();
                         clearForm();
 
-                        // Puedes decidir qué hacer después del registro (ej. ir al inicio)
                         // Volver al inicio (MainActivity)
-                        Intent intent = new Intent(registro.this, MainActivity.class);
+                        Intent intent = new Intent(registro.this, login.class);
                         startActivity(intent);
                         finish();
 
