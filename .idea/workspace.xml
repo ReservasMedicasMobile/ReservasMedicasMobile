@@ -31,12 +31,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d266ed9-3637-4cb4-bb4b-0480117b2b8f" name="Changes" comment="Registro">
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/reservasmedicasmobile/registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/reservasmedicasmobile/registro.java" afterDir="false" />
-    </list>
+    <list default="true" id="4d266ed9-3637-4cb4-bb4b-0480117b2b8f" name="Changes" comment="usuario ya registrado" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -307,7 +302,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728931489582</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="usuario ya registrado">
+      <option name="closed" value="true" />
+      <created>1729178744753</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729178744753</updated>
+    </task>
+    <task id="LOCAL-00004" summary="usuario ya registrado">
+      <option name="closed" value="true" />
+      <created>1729178789084</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729178789084</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -349,7 +360,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="actulizacion" />
     <MESSAGE value="Registro" />
-    <option name="LAST_COMMIT_MESSAGE" value="Registro" />
+    <MESSAGE value="usuario ya registrado" />
+    <option name="LAST_COMMIT_MESSAGE" value="usuario ya registrado" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
