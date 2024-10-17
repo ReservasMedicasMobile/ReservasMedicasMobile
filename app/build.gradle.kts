@@ -40,7 +40,7 @@ dependencies {
 
     implementation (libs.volley)
 
-    implementation(libs.recyclerview)
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation(libs.volley)
 
     testImplementation(libs.junit)
