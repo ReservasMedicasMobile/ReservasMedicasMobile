@@ -65,7 +65,7 @@ public class contacto extends AppCompatActivity {
         });
 
 
-                // Configuración de las opciones del Spinner con la opción "TIPO DE CONSULTA" y "2"
+                // Configuración de las opciones del Spinner con la opción "Seleccionar" y "2"
                 String[] opciones = { "Seleccionar", "Sugerencia", "Reclamo"};
                 ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
                 opcionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
