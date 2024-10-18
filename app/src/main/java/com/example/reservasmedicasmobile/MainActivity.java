@@ -2,16 +2,19 @@ package com.example.reservasmedicasmobile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView welcomeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +25,23 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //logueado o no
-        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
+        // Inicializar el TextView de bienvenida
+        welcomeTextView = findViewById(R.id.welcomeTextView);
 
+        // Obtener el nombre de usuario desde SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", null); // Valor por defecto
+
+        // Comprobar si está logueado
+        boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
+        if (isLoggedIn && username != null) {
+            // Configurar el texto de bienvenida y mostrarlo
+            welcomeTextView.setText("Bienvenido " + username);
+            welcomeTextView.setVisibility(View.VISIBLE);
+        } else {
+            // Ocultar el TextView si no está logueado
+            welcomeTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -41,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.menudeopciones_no_logueado, menu);
         }
         return true;
-        //getMenuInflater().inflate(R.menu.menudeopciones, menu);
-        //return true;
     }
 
     @Override
@@ -79,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("auth_token");
         editor.putBoolean("is_logged_in", false);
+        editor.remove("username"); // Eliminar el nombre de usuario
         editor.apply();
 
         // Redirigir a MainActivity

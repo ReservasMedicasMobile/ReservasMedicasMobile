@@ -81,7 +81,6 @@ public class login extends AppCompatActivity {
             return;
         }
 
-
         // Si los campos no están vacíos, iniciar sesión
         iniciarSesion(dni, contrasenia);
     }
@@ -104,7 +103,6 @@ public class login extends AppCompatActivity {
                     Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
-                    // Reemplaza printStackTrace con logging robusto -modificado
                     Log.e("Login", "Error al procesar la respuesta JSON", e);
                     Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
                 }
@@ -119,14 +117,15 @@ public class login extends AppCompatActivity {
         Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
     }
 
-
     private void saveToken(String token) {
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("auth_token", token);
         editor.putBoolean("is_logged_in", true); // Guarda que el usuario está logueado
+        editor.putString("username", username.getText().toString().trim()); // Guarda el username
         editor.apply();
 
-        Log.d("Login", "Token guardado en SharedPreferences: " + token); // verificar token guardado
+        Log.d("Login", "Nombre de usuario guardado: " + username.getText().toString().trim());
+        Log.d("Login", "Token guardado en SharedPreferences: " + token);
     }
 }
