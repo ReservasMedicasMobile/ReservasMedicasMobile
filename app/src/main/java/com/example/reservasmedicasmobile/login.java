@@ -90,15 +90,24 @@ public class login extends AppCompatActivity {
         apiRequest.login(dni, contrasenia, new ApiRequest.ApiCallback() {
             @Override
             public void onSuccess(JSONObject response) {
+                Log.d("Login", "Respuesta completa: " + response.toString());
                 try {
                     // Guarda el token JWT
                     String token = response.getString("token");
                     Log.d("Login", "Token JWT: " + token); // verificar token guardado en logcat
 
-                    saveToken(token);
+                    // Acceder al objeto user
+                    JSONObject user = response.getJSONObject("user");
+                    String firstName = user.getString("first_name");
+                    String lastName = user.getString("last_name");
+
+
+                    saveToken(token, firstName, lastName);
 
                     // Redirigir a MainActivity
                     Intent volverInicio = new Intent(login.this, MainActivity.class);
+                    volverInicio.putExtra("first_name", firstName);
+                    volverInicio.putExtra("last_name", lastName);
                     startActivity(volverInicio);
                     Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
 
@@ -117,15 +126,17 @@ public class login extends AppCompatActivity {
         Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
     }
 
-    private void saveToken(String token) {
+    private void saveToken(String token, String firstName, String lastName) {
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("auth_token", token);
         editor.putBoolean("is_logged_in", true); // Guarda que el usuario está logueado
         editor.putString("username", username.getText().toString().trim()); // Guarda el username
+        editor.putString("full_name", firstName + " " + lastName); // Guarda el nombre completo
         editor.apply();
 
         Log.d("Login", "Nombre de usuario guardado: " + username.getText().toString().trim());
+        Log.d("Login", "Nombre guardado: " + firstName + " " + lastName);
         Log.d("Login", "Token guardado en SharedPreferences: " + token);
     }
 }

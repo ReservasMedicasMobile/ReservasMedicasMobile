@@ -31,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
         // Obtener el nombre de usuario desde SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", null); // Valor por defecto
+        String fullName = sharedPreferences.getString("full_name", "Usuario"); // Cambia 'first_name' y 'last_name' por 'full_name'
 
         // Comprobar si está logueado
         boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
         if (isLoggedIn && username != null) {
             // Configurar el texto de bienvenida y mostrarlo
-            welcomeTextView.setText("Bienvenido " + username);
+            welcomeTextView.setText("Bienvenido " + fullName);
             welcomeTextView.setVisibility(View.VISIBLE);
         } else {
             // Ocultar el TextView si no está logueado
