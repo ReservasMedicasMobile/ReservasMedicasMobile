@@ -40,11 +40,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         DataModel2 data = dataList.get(position);
         holder.nameTextView.setText(data.getEspecialidad());
 
+
+
         holder.updateButton.setOnClickListener(v -> {
-            String newName = holder.inputEditText.getText().toString(); // Obtener nombre desde el input
-            if (!newName.isEmpty()) {
-                fragment.updateData(data.getId(), newName);
-                holder.inputEditText.setText(""); // Limpiar el campo después de la actualización
+            String newName = holder.inputEditText.getText().toString();
+            String newDescription = holder.inputEditTextDescipcion.getText().toString();
+
+            if (!newName.isEmpty() || !newDescription.isEmpty()) {
+                fragment.updateData(data.getId(), newName, newDescription);
+
+
+                holder.inputEditText.setText("");
+                holder.inputEditTextDescipcion.setText("");
+
             }
         });
 
@@ -58,17 +66,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
+        public Object descripcionTextView;
         TextView nameTextView;
+        TextView desdescripcionTextView;
         Button updateButton;
         Button deleteButton;
         EditText inputEditText;
+        EditText inputEditTextDescipcion;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
+            descripcionTextView = itemView.findViewById(R.id.descripcionTextView);
             updateButton = itemView.findViewById(R.id.updateButton);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             inputEditText = itemView.findViewById(R.id.inputEditText);
+            inputEditTextDescipcion = itemView.findViewById(R.id.inputEditTextDescipcion);
         }
     }
 

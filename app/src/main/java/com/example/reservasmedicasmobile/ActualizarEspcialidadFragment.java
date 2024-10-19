@@ -1,6 +1,5 @@
 package com.example.reservasmedicasmobile;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -77,18 +76,20 @@ public class ActualizarEspcialidadFragment extends Fragment {
         queue.add(jsonArrayRequest);
     }
 
-    public void updateData(int id, String especialidad) {
-        String url = "https://reservasmedicas.ddns.net/api/v1/especialidad/" + id;
+    public void updateData(int id, String especialidad, String descripcion) {
+        String url = "https://reservasmedicas.ddns.net/api/v1/especialidad/" + id + "/";
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("especialidad", especialidad);
+            jsonBody.put("descripcion", descripcion);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonBody,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PATCH, url, jsonBody,
                 response -> fetchData(),
                 error -> Log.e("Volley", "Error: " + error.getMessage())
         );
@@ -96,9 +97,10 @@ public class ActualizarEspcialidadFragment extends Fragment {
         queue.add(jsonObjectRequest);
     }
 
+
     public void deleteData(int id) {
 
-        String url = "http://127.0.0.1:8000/eliminarespecialidad/" + id + "/";
+        String url = "https://reservasmedicas.ddns.net/api/v1/especialidad/" + id + "/";
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, url, null,
@@ -107,6 +109,8 @@ public class ActualizarEspcialidadFragment extends Fragment {
         );
 
         queue.add(jsonObjectRequest);
+
+
     }
 
 }
