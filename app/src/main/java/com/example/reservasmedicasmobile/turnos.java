@@ -148,17 +148,14 @@ public class turnos extends AppCompatActivity {
 
 
     private void crearTurno() {
-        // Crear un objeto JSON para el turno
         JSONObject turnoData = new JSONObject();
         try {
             // Valores hardcodeados
             int pacienteId = 2; // ID del paciente
 
-            // Obtener el objeto seleccionado del Spinner y sus respectivos IDs
             Profesional profesionalSeleccionado = (Profesional) professionalSpinner.getSelectedItem();
             Especialidad especialidadSeleccionada = (Especialidad) specialtySpinner.getSelectedItem();
 
-            // Obtener el ID del profesional y la especialidad seleccionada
             int profesionalId = profesionalSeleccionado.getId();
             int especialidadId = especialidadSeleccionada.getId();
 
@@ -170,7 +167,6 @@ public class turnos extends AppCompatActivity {
                 Toast.makeText(turnos.this, "Error: profesional o especialidad no válida.", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             // Crear el objeto JSON para el turno
             turnoData.put("paciente", pacienteId);
             turnoData.put("profesional", profesionalId);
@@ -208,12 +204,10 @@ public class turnos extends AppCompatActivity {
             }
         };
 
-        // Establecer el tiempo de espera
         int socketTimeout = 30000; // 30 segundos
         DefaultRetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
 
-        // Agregar la solicitud a la cola
         requestQueue.add(jsonObjectRequest);
     }
 
@@ -336,22 +330,29 @@ public class turnos extends AppCompatActivity {
 
         // Definir horarios por especialista y fechas en formato "yyyy-MM-dd"
         Map<String, List<String>> horariosLeandro = new HashMap<>();
-        horariosLeandro.put("2024-10-10", Arrays.asList("09:00", "11:00", "12:30"));
-        horariosLeandro.put("2024-10-11", Arrays.asList("10:00", "12:00", "14:00"));
-        horariosLeandro.put("2024-10-14", Arrays.asList("11:00", "11:30", "13:00"));
-        horariosLeandro.put("2024-10-15", Arrays.asList("11:30", "12:00", "13:30"));
+        horariosLeandro.put("2024-10-26", Arrays.asList("09:00", "11:00", "12:30"));
+        horariosLeandro.put("2024-10-27", Arrays.asList("10:00", "12:00", "14:00"));
+        horariosLeandro.put("2024-10-28", Arrays.asList("11:00", "11:30", "13:00"));
+        horariosLeandro.put("2024-10-29", Arrays.asList("11:30", "12:00", "13:30"));
         horariosPorEspecialistaYFecha.put("Leandro Martinez", horariosLeandro);
 
         Map<String, List<String>> horariosCamila = new HashMap<>();
-        horariosCamila.put("2024-10-10", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
-        horariosCamila.put("2024-10-11", Arrays.asList("10:30", "13:00", "15:00"));
+        horariosCamila.put("2024-10-26", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
+        horariosCamila.put("2024-10-27", Arrays.asList("10:30", "13:00", "15:00"));
         horariosPorEspecialistaYFecha.put("Camila Medina", horariosCamila);
 
         Map<String, List<String>> horariosJuan = new HashMap<>();
-        horariosJuan.put("2024-10-10", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
-        horariosJuan.put("2024-10-11", Arrays.asList("14:30", "15:00", "16:30"));
+        horariosJuan.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
+        horariosJuan.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
         horariosPorEspecialistaYFecha.put("Juan Perez Garcia", horariosJuan);
+
+        Map<String, List<String>> horariosNicolas = new HashMap<>();
+        horariosNicolas.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
+        horariosNicolas.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
+        horariosPorEspecialistaYFecha.put("Nicolás Pérez Ruiz", horariosNicolas);
+
     }
+
 
     private void mostrarFechasDisponibles() {
         String especialistaSeleccionado = professionalSpinner.getSelectedItem().toString();
