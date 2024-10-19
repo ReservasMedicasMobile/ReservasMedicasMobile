@@ -95,12 +95,13 @@ public class registro extends AppCompatActivity {
             usernameInput.setError("El DNI debe tener exactamente 8 dígitos");
             return;
         }
+
         // Validar nombre
         if (TextUtils.isEmpty(first_name)) {
             first_nameInput.setError("El nombre es obligatorio");
             return;
-        } else if (!first_name.matches("[A-Za-z]+")) {
-            first_nameInput.setError("El nombre solo puede contener letras");
+        } else if (!first_name.matches("[A-Za-z ]+")) {  // Permitimos espacios
+            first_nameInput.setError("El nombre solo puede contener letras y espacios");
             return;
         }
 
@@ -108,11 +109,11 @@ public class registro extends AppCompatActivity {
         if (TextUtils.isEmpty(last_name)) {
             last_nameInput.setError("El apellido es obligatorio");
             return;
-        } else if (!last_name.matches("[A-Za-z]+")) {
-            last_nameInput.setError("El apellido solo puede contener letras");
+        } else if (!last_name.matches("[A-Za-z ]+")) {  // Permitimos espacios
+            last_nameInput.setError("El apellido solo puede contener letras y espacios");
             return;
         }
-
+        
         // Validar correo electrónico
         if (TextUtils.isEmpty(email)) {
             emailInput.setError("El correo electrónico es obligatorio");
