@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.btn_servicios) {
             startActivity(new Intent(this, servicios.class));
             return true;
+        }else if (id == R.id.btn_turnos) {
+                startActivity(new Intent(this, turnos.class));
+                return true;
+
         } else if (id == R.id.btn_registro) {
             startActivity(new Intent(this, registro.class));
             return true;
