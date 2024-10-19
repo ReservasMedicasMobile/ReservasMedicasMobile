@@ -1,30 +1,32 @@
 package com.example.reservasmedicasmobile.modelo;
 
-public class DataModel {
+public class DataModel2 {
 
-
-    private String id;
+    private int id;
     private String especialidad;
     private String descripcion;
 
-
-    public DataModel(String id, String especialidad, String descripcion) {
+    public DataModel2(int id, String especialidad, String descripcion) {
         this.id = id;
         this.especialidad = especialidad;
         this.descripcion = descripcion;
     }
 
-
-
-    public String getId() {
+    public int getId() {
         return id;
     }
+
+
 
     public String getEspecialidad() {
         return especialidad;
     }
 
+
+
     public String getDescripcion() {
         return descripcion;
     }
+
+
 }
