@@ -22,13 +22,6 @@ public class MainActivity extends AppCompatActivity {
         // Setup Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // Configuración del TextView para el mensaje de bienvenida
-        TextView welcomeMessage = findViewById(R.id.welcomeMessage);
-        // Cargar la animación
-        Animation slideInAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_in);
-        // Iniciar la animación
-        welcomeMessage.startAnimation(slideInAnimation);
     }
 
     @Override

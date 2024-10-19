@@ -43,14 +43,11 @@
             android:orientation="vertical"
             android:paddingTop="50dp"> <!-- Ajusta el padding superior según sea necesario -->
 
-            <!-- Mensaje de bienvenida centrado -->
+            <!-- Mensaje de bienvenida centrado
             <TextView
                 android:id="@+id/welcomeMessage"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¡Hola! Nos alegra verte en nuestra app móvil. Como usuario de nuestra plataforma web, estamos emocionados de que pruebes esta nueva experiencia. Aquí podrás gestionar tus reservas y consultar tus citas. ¡Gracias por confiar en nosotros una vez más! "
-                android:textColor="#000000"
-                android:textSize="16sp"  />
+                android:layout_height="wrap_content" />-->
         </LinearLayout>
     </FrameLayout>
 
