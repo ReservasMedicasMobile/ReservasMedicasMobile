@@ -19,12 +19,12 @@ public class ApiTestActivity extends AppCompatActivity {
         // Crear una instancia del servicio API
         ApiService apiService = new ApiService(this);
 
-        // Llamar al método para obtener los datos de la API
-        apiService.getDataFromApi(new ApiService.ApiResponseCallback() {
+        // Llamar al método para obtener los turnos de la API
+        apiService.getTurnosFromApi(new ApiService.ApiTurnosResponseCallback() {
             @Override
-            public void onSuccess(String nombre, String apellido, String dni) {
-                // Actualizar el TextView con los datos recibidos
-                apiTestText.setText("Nombre: " + nombre + " " + apellido + "\nDNI: " + dni);
+            public void onSuccess() {
+                // Actualizar el TextView con los turnos obtenidos
+                apiTestText.setText("Turnos obtenidos con éxito. Revisa el Log para más detalles.");
             }
 
             @Override

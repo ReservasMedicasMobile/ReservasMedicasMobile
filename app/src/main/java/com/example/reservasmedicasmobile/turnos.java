@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -35,7 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class turnos extends AppCompatActivity {
-    private ApiRequest apiRequest;
+
     private Spinner specialtySpinner;
     private Spinner professionalSpinner;
     private Button openDatePickerButton;
@@ -52,7 +53,7 @@ public class turnos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turnos);
-        apiRequest = new ApiRequest(this);
+
 
 
         specialtySpinner = findViewById(R.id.spinner_specialty);
@@ -69,17 +70,16 @@ public class turnos extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         String jwtToken = sharedPreferences.getString("auth_token", null);
-        if (jwtToken != null) {
-            cargarTurnos();
-        } else {
+        if (jwtToken == null) {
             redirectToLogin();
         }
+
 
         inicializarHorariosPorEspecialistaYFecha();
 
         cargarEspecialidades();
         cargarProfesionales();
-        cargarTurnos();
+
 
         openDatePickerButton.setOnClickListener(v -> mostrarFechasDisponibles());
 
@@ -144,118 +144,125 @@ public class turnos extends AppCompatActivity {
     }
 
 
-    private void cargarTurnos() {
-        // Obtener el token JWT desde SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        String jwtToken = sharedPreferences.getString("auth_token", null);
-
-        // Verificar si el token JWT está disponible
-        if (jwtToken != null) {
-            apiRequest.getTurnos(jwtToken, new ApiRequest.ApiCallback() {
-                @Override
-                public void onSuccess(JSONObject response) {
-                    // Procesar la respuesta y cargar los turnos
-                    // Aquí deberías agregar el código para mostrar los turnos en tu interfaz
-                    Toast.makeText(turnos.this, "Turnos cargados exitosamente", Toast.LENGTH_SHORT).show();
-                    // Agregar lógica para mostrar los turnos en la UI
-                }
-
-                @Override
-                public void onError(VolleyError error) {
-                    String errorMessage;
-
-                    if (error.networkResponse != null) {
-                        switch (error.networkResponse.statusCode) {
-                            case 404:
-                                errorMessage = "No se encontraron turnos para el usuario.";
-                                break;
-                            case 500:
-                                errorMessage = "Error del servidor. Intenta más tarde.";
-                                break;
-                            default:
-                                errorMessage = "Error desconocido.";
-                                break;
-                        }
-                    } else {
-                        errorMessage = "Error de conexión. Verifica tu red.";
-                    }
-
-                    Log.e("VolleyError", errorMessage); // Log para el error
-                    Toast.makeText(turnos.this, "Error al cargar los turnos: " + errorMessage, Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            // Si no hay usuario logueado
-            Toast.makeText(this, "No hay usuario logueado.", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 
 
     private void crearTurno() {
-        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        String jwtToken = sharedPreferences.getString("auth_token", null);
+        // Crear un objeto JSON para el turno
         JSONObject turnoData = new JSONObject();
-
         try {
-            String especialidadSeleccionada = specialtySpinner.getSelectedItem().toString();
-            String profesionalSeleccionado = professionalSpinner.getSelectedItem().toString();
+            // Valores hardcodeados
+            int pacienteId = 2; // ID del paciente
 
-            // Validación de campos
-            if ("ESPECIALIDADES MÉDICAS".equals(especialidadSeleccionada) ||
-                    "PROFESIONALES".equals(profesionalSeleccionado) ||
-                    horaSeleccionada.isEmpty() ||
-                    fechaSeleccionada.isEmpty()) {
-                Toast.makeText(turnos.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+            // Obtener el objeto seleccionado del Spinner y sus respectivos IDs
+            Profesional profesionalSeleccionado = (Profesional) professionalSpinner.getSelectedItem();
+            Especialidad especialidadSeleccionada = (Especialidad) specialtySpinner.getSelectedItem();
+
+            // Obtener el ID del profesional y la especialidad seleccionada
+            int profesionalId = profesionalSeleccionado.getId();
+            int especialidadId = especialidadSeleccionada.getId();
+
+            String horaSeleccionada = "10:00"; // Hora hardcodeada
+            String fechaSeleccionada = "2024-10-20"; // Fecha hardcodeada (ajusta según tu formato)
+
+            // Validar que los IDs no sean 0 (en caso de que hayas definido una opción por defecto con ID 0)
+            if (profesionalId == 0 || especialidadId == 0) {
+                Toast.makeText(turnos.this, "Error: profesional o especialidad no válida.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             // Crear el objeto JSON para el turno
-            turnoData.put("especialidad", especialidadSeleccionada);
-            turnoData.put("profesional", profesionalSeleccionado);
-            turnoData.put("fecha", fechaSeleccionada);
-            turnoData.put("hora", horaSeleccionada);
+            turnoData.put("paciente", pacienteId);
+            turnoData.put("profesional", profesionalId);
+            turnoData.put("hora_turno", horaSeleccionada);
+            turnoData.put("fecha_turno", fechaSeleccionada);
+            turnoData.put("especialidad", especialidadId);
 
-            apiRequest.crearTurno(jwtToken, turnoData, new ApiRequest.ApiCallback() {
-                @Override
-                public void onSuccess(JSONObject response) {
-                    // Manejo de respuesta exitosa
-                    Toast.makeText(turnos.this, "Turno creado exitosamente", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onError(VolleyError error) {
-                    String errorMessage;
-
-                    if (error.networkResponse != null) {
-                        switch (error.networkResponse.statusCode) {
-                            case 400:
-                                errorMessage = "Datos del turno son incorrectos.";
-                                break;
-                            case 404:
-                                errorMessage = "El servicio no existe.";
-                                break;
-                            case 500:
-                                errorMessage = "Error del servidor. Intenta más tarde.";
-                                break;
-                            default:
-                                errorMessage = "Error desconocido.";
-                                break;
-                        }
-                    } else {
-                        errorMessage = "Error de conexión. Verifica tu red.";
-                    }
-
-                    Log.e("VolleyError", errorMessage); // Log para el error
-                    Toast.makeText(turnos.this, "Error al crear el turno: " + errorMessage, Toast.LENGTH_SHORT).show();
-                }
-            });
         } catch (JSONException e) {
-            // Manejo de excepciones
-            e.printStackTrace();
-            Toast.makeText(turnos.this, "Error al crear el turno: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.e("CrearTurno", "Error al crear el JSON: ", e);
+            Toast.makeText(turnos.this, "Error al crear el turno.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Log.d("Turno", "Creando turno: " + turnoData.toString());
+
+        // Crear la solicitud JSON
+        String url = "https://reservasmedicas.ddns.net/api/v1/turnos/";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, turnoData,
+                response -> {
+                    Toast.makeText(turnos.this, "Turno creado exitosamente", Toast.LENGTH_SHORT).show();
+                },
+                error -> {
+                    String errorMessage = error.getMessage();
+                    if (error.networkResponse != null && error.networkResponse.data != null) {
+                        errorMessage = new String(error.networkResponse.data);
+                    }
+                    Toast.makeText(turnos.this, "Error al crear el turno: " + errorMessage, Toast.LENGTH_SHORT).show();
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json"); // Especifica el tipo de contenido
+                return headers;
+            }
+        };
+
+        // Establecer el tiempo de espera
+        int socketTimeout = 30000; // 30 segundos
+        DefaultRetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        jsonObjectRequest.setRetryPolicy(policy);
+
+        // Agregar la solicitud a la cola
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public class Especialidad {
+        private int id;
+        private String nombre;
+
+        public Especialidad(int id, String nombre) {
+            this.id = id;
+            this.nombre = nombre;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getNombre() {
+            return nombre;
+        }
+
+        @Override
+        public String toString() {
+            return nombre;  // Esto mostrará el nombre en el Spinner
         }
     }
+
+    public class Profesional {
+        private int id;
+        private String nombreCompleto;
+
+        public Profesional(int id, String nombreCompleto) {
+            this.id = id;
+            this.nombreCompleto = nombreCompleto;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getNombreCompleto() {
+            return nombreCompleto;
+        }
+
+        @Override
+        public String toString() {
+            return nombreCompleto;  // Esto mostrará el nombre en el Spinner
+        }
+    }
+
 
 
     private void cargarEspecialidades() {
@@ -265,19 +272,22 @@ public class turnos extends AppCompatActivity {
                 urlEspecialidades,
                 null,
                 response -> {
-                    ArrayList<String> especialidadesList = new ArrayList<>();
-                    especialidadesList.add("ESPECIALIDADES MÉDICAS");
+                    ArrayList<Especialidad> especialidadesList = new ArrayList<>();
+                    especialidadesList.add(new Especialidad(0, "ESPECIALIDADES MÉDICAS"));  // Opción por defecto
+
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject especialidad = response.getJSONObject(i);
-                            String especialidadCompleta = especialidad.getString("especialidad");
-                            especialidadesList.add(especialidadCompleta);
-                            Log.d("Turnos", "Especialidad cargada: " + especialidadCompleta);
+                            int id = especialidad.getInt("id");  // Suponiendo que el campo se llama "id"
+                            String nombre = especialidad.getString("especialidad");
+                            especialidadesList.add(new Especialidad(id, nombre));
+                            Log.d("Turnos", "Especialidad cargada: " + nombre + " (ID: " + id + ")");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(turnos.this, R.layout.spinner_item_turnos, especialidadesList);
+
+                    ArrayAdapter<Especialidad> adapter = new ArrayAdapter<>(turnos.this, R.layout.spinner_item_turnos, especialidadesList);
                     adapter.setDropDownViewResource(R.layout.spinner_item_turnos);
                     specialtySpinner.setAdapter(adapter);
                 },
@@ -287,6 +297,7 @@ public class turnos extends AppCompatActivity {
                 });
         requestQueue.add(jsonArrayRequest);
     }
+
     private void cargarProfesionales() {
         String urlProfesionales = "https://reservasmedicas.ddns.net/api/v1/profesionales/";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -294,19 +305,22 @@ public class turnos extends AppCompatActivity {
                 urlProfesionales,
                 null,
                 response -> {
-                    ArrayList<String> profesionalesList = new ArrayList<>();
-                    profesionalesList.add("PROFESIONALES");
+                    ArrayList<Profesional> profesionalesList = new ArrayList<>();
+                    profesionalesList.add(new Profesional(0, "PROFESIONALES"));  // Opción por defecto
+
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject profesional = response.getJSONObject(i);
+                            int id = profesional.getInt("id");  // Suponiendo que el campo se llama "id"
                             String nombreCompleto = profesional.getString("nombre") + " " + profesional.getString("apellido");
-                            profesionalesList.add(nombreCompleto);
-                            Log.d("Turnos", "Profesional cargado: " + nombreCompleto);
+                            profesionalesList.add(new Profesional(id, nombreCompleto));
+                            Log.d("Turnos", "Profesional cargado: " + nombreCompleto + " (ID: " + id + ")");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(turnos.this, R.layout.spinner_item_turnos, profesionalesList);
+
+                    ArrayAdapter<Profesional> adapter = new ArrayAdapter<>(turnos.this, R.layout.spinner_item_turnos, profesionalesList);
                     adapter.setDropDownViewResource(R.layout.spinner_item_turnos);
                     professionalSpinner.setAdapter(adapter);
                 },
@@ -320,24 +334,25 @@ public class turnos extends AppCompatActivity {
     private void inicializarHorariosPorEspecialistaYFecha() {
         horariosPorEspecialistaYFecha = new HashMap<>();
 
-        // Definir horarios por especialista y varias fechas
+        // Definir horarios por especialista y fechas en formato "yyyy-MM-dd"
         Map<String, List<String>> horariosLeandro = new HashMap<>();
-        horariosLeandro.put("10/10/2024", Arrays.asList("09:00", "11:00", "12:30"));
-        horariosLeandro.put("11/10/2024", Arrays.asList("10:00", "12:00", "14:00"));
-        horariosLeandro.put("14/10/2024", Arrays.asList("11:00", "11:30", "13:00"));
-        horariosLeandro.put("15/10/2024", Arrays.asList("11:30", "12:00", "13:30"));
+        horariosLeandro.put("2024-10-10", Arrays.asList("09:00", "11:00", "12:30"));
+        horariosLeandro.put("2024-10-11", Arrays.asList("10:00", "12:00", "14:00"));
+        horariosLeandro.put("2024-10-14", Arrays.asList("11:00", "11:30", "13:00"));
+        horariosLeandro.put("2024-10-15", Arrays.asList("11:30", "12:00", "13:30"));
         horariosPorEspecialistaYFecha.put("Leandro Martinez", horariosLeandro);
 
         Map<String, List<String>> horariosCamila = new HashMap<>();
-        horariosCamila.put("10/10/2024", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
-        horariosCamila.put("11/10/2024", Arrays.asList("10:30", "13:00", "15:00"));
-        horariosPorEspecialistaYFecha.put("Camila Pérez Ruiz", horariosCamila);
+        horariosCamila.put("2024-10-10", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
+        horariosCamila.put("2024-10-11", Arrays.asList("10:30", "13:00", "15:00"));
+        horariosPorEspecialistaYFecha.put("Camila Medina", horariosCamila);
 
-        Map<String, List<String>> horariosNicolas = new HashMap<>();
-        horariosNicolas.put("10/10/2024", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
-        horariosNicolas.put("11/10/2024", Arrays.asList("14:30", "15:00", "16:30"));
-        horariosPorEspecialistaYFecha.put("Nicolás Medina", horariosNicolas);
+        Map<String, List<String>> horariosJuan = new HashMap<>();
+        horariosJuan.put("2024-10-10", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
+        horariosJuan.put("2024-10-11", Arrays.asList("14:30", "15:00", "16:30"));
+        horariosPorEspecialistaYFecha.put("Juan Perez Garcia", horariosJuan);
     }
+
     private void mostrarFechasDisponibles() {
         String especialistaSeleccionado = professionalSpinner.getSelectedItem().toString();
         if (!horariosPorEspecialistaYFecha.containsKey(especialistaSeleccionado)) {
@@ -348,8 +363,10 @@ public class turnos extends AppCompatActivity {
         Map<String, List<String>> fechasHorarios = horariosPorEspecialistaYFecha.get(especialistaSeleccionado);
         List<String> fechasDisponibles = new ArrayList<>(fechasHorarios.keySet());
 
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        // Usamos el formato yyyy-MM-dd
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
+        // Convertir y ordenar las fechas
         List<Date> fechasConvertidas = new ArrayList<>();
         for (String fecha : fechasDisponibles) {
             try {
@@ -362,13 +379,14 @@ public class turnos extends AppCompatActivity {
 
         Collections.sort(fechasConvertidas);
 
+        // Volver a convertir a cadena después de ordenar
         fechasDisponibles.clear();
         for (Date fechaDate : fechasConvertidas) {
             fechasDisponibles.add(formatoFecha.format(fechaDate));
         }
 
+        // Mostrar las fechas disponibles en un diálogo
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         ListView listView = new ListView(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, fechasDisponibles);
         listView.setAdapter(adapter);
@@ -388,6 +406,7 @@ public class turnos extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
     private void mostrarHorariosDisponibles() {
         String especialistaSeleccionado = professionalSpinner.getSelectedItem().toString();
         if (!horariosPorEspecialistaYFecha.containsKey(especialistaSeleccionado)) {

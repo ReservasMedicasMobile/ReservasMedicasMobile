@@ -3,6 +3,7 @@ package com.example.reservasmedicasmobile;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -19,12 +20,10 @@ import java.util.Map;
 public class ApiRequest {
     private final RequestQueue requestQueue; // Campo final-modificado
     private static final String BASE_URL = "https://reservasmedicas.ddns.net/";
-    private static final String BASE_URL_TURNOS = "https://reservasmedicas.ddns.net/api/v1/turnos/";
-    private static final String BASE_URL_NUEVO_TURNO = "https://reservasmedicas.ddns.net/nuevo_turno/";
 
-
+    // Constructor que recibe el contexto
     public ApiRequest(Context context) {
-        requestQueue = Volley.newRequestQueue(context);
+        requestQueue = Volley.newRequestQueue(context); // Inicialización de la cola de solicitudes
     }
 
     // Método para login
@@ -40,7 +39,7 @@ public class ApiRequest {
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
-                callback::onSuccess, // Lambda-methos reference para onResponse-modificado
+                callback::onSuccess, // Lambda-method reference para onResponse
                 error -> {
                     String errorMessage;
 
@@ -50,7 +49,7 @@ public class ApiRequest {
                                 errorMessage = "Datos ingresados son incorrectos.";
                                 break;
                             case 404:
-                                errorMessage = "El usuario no existe. Registrese.";
+                                errorMessage = "El usuario no existe. Regístrese.";
                                 break;
                             case 500:
                                 errorMessage = "Error del servidor. Intenta más tarde.";
@@ -76,69 +75,29 @@ public class ApiRequest {
         requestQueue.add(jsonObjectRequest);
     }
 
-    // Método para obtener turnos
-    public void getTurnos(String jwtToken, final ApiCallback callback) {
-        String url = BASE_URL_TURNOS;
-
-        // Crear el encabezado de autorización
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + jwtToken);
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                callback::onSuccess, // Lambda-method reference para onResponse
-                error -> {
-                    String errorMessage;
-
-                    if (error.networkResponse != null) {
-                        switch (error.networkResponse.statusCode) {
-                            case 404:
-                                errorMessage = "No se encontraron turnos para el usuario.";
-                                break;
-                            case 500:
-                                errorMessage = "Error del servidor. Intenta más tarde.";
-                                break;
-                            default:
-                                errorMessage = "Error desconocido.";
-                                break;
-                        }
-                    } else {
-                        errorMessage = "Error de conexión. Verifica tu red.";
-                    }
-
-                    Log.e("VolleyError", errorMessage); // Muestra el error completo en Logcat
-                    callback.onError(new VolleyError(errorMessage));
-                }) {
-            @Override
-            public Map<String, String> getHeaders() {
-                return headers; // Agregar encabezados de autorización
-            }
-        };
-
-        // Establece el tiempo de espera
-        int socketTimeout = 30000; // 30 segundos
-        DefaultRetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        jsonObjectRequest.setRetryPolicy(policy);
-
-        // Agregar la solicitud a la cola
-        requestQueue.add(jsonObjectRequest);
-    }
-
-    public void crearTurno(String jwtToken, JSONObject turnoData, final ApiCallback callback) {
-        String url = BASE_URL_NUEVO_TURNO;
-
-        // Crear el encabezado de autorización
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + jwtToken);
+    // Método para crear un turno
+   /* // Método para crear un turno
+    public void crearTurno(JSONObject turnoData, final ApiCallback callback) {
+        String url = BASE_URL + "nuevo_turno/";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, turnoData,
-                callback::onSuccess, // Lambda-method reference para onResponse
+                callback::onSuccess, // Llamada a onSuccess del callback
                 error -> {
                     String errorMessage;
 
                     if (error.networkResponse != null) {
+                        Log.e("VolleyError", "Código de respuesta: " + error.networkResponse.statusCode);
+                        if (error.networkResponse.data != null) {
+                            String responseBody = new String(error.networkResponse.data);
+                            Log.e("VolleyError", "Cuerpo de la respuesta: " + responseBody); // Log del cuerpo de la respuesta
+                        }
+
                         switch (error.networkResponse.statusCode) {
                             case 400:
                                 errorMessage = "Datos del turno son incorrectos.";
+                                break;
+                            case 401:
+                                errorMessage = "No autorizado. El token puede ser inválido o ha expirado.";
                                 break;
                             case 404:
                                 errorMessage = "El servicio no existe.";
@@ -154,23 +113,26 @@ public class ApiRequest {
                         errorMessage = "Error de conexión. Verifica tu red.";
                     }
 
-                    Log.e("VolleyError", errorMessage); // Muestra el error completo en Logcat
+                    Log.e("VolleyError", errorMessage);
                     callback.onError(new VolleyError(errorMessage));
                 }) {
             @Override
-            public Map<String, String> getHeaders() {
-                return headers; // Agregar encabezados de autorización
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // No incluir el token JWT en los encabezados
+                headers.put("Content-Type", "application/json"); // Especifica el tipo de contenido
+                return headers;
             }
         };
 
-        // Establece el tiempo de espera
+        // Establecer el tiempo de espera
         int socketTimeout = 30000; // 30 segundos
         DefaultRetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
 
         // Agregar la solicitud a la cola
         requestQueue.add(jsonObjectRequest);
-    }
+    }*/
 
     // Interfaz para los callbacks
     public interface ApiCallback {
