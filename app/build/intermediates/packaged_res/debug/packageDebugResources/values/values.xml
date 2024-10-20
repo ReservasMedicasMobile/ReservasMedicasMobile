@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="azul">#151635</color>
+    <color name="black">#FF000000</color>
+    <color name="celeste">#007bff</color>
+    <color name="colorGray">#808080</color>
+    <color name="dashboard_blue">#007BFF</color>
+    <color name="dashboard_icon_bg">#E3F2FD</color>
+    <color name="dashboard_text_white">#FFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+    <item name="btnBack" type="id"/>
+    <item name="btnSubmit" type="id"/>
+    <item name="etEmail" type="id"/>
+    <item name="etFirstName" type="id"/>
+    <item name="etLastName" type="id"/>
+    <item name="etMessage" type="id"/>
+    <item name="etPhoneNumber" type="id"/>
+    <string name="agende">Agende su turno médico</string>
+    <string name="app_name">ReservasMedicasMobile</string>
+    <string name="confirmar_reserva">Confirmar reserva</string>
+    <string name="dashboard_app_name">Dashboard app</string>
+    <string name="dashboard_cerrar_sesion">Cerrar sesión</string>
+    <string name="dashboard_inicio">Inicio</string>
+    <string name="dashboard_title_dashboard">Dashboard</string>
+    <string name="dashboard_title_home">Home</string>
+    <string name="dashboard_title_notifications">Notifications</string>
+    <string name="especialidad_medica">Especialidad médica</string>
+    <string name="profesional">Profesional</string>
+    <string name="reservar_turno">Reservar Turno</string>
+    <string name="seleccionar_Fecha">Seleccionar Fecha</string>
+    <string name="seleccionar_Horario">Seleccionar Horario</string>
+    <style name="Base.Theme.ReservasMedicasMobile" parent="Theme.AppCompat.Light.NoActionBar">
+        
+        
+    </style>
+    <style name="SpinnerTextStyle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="Theme.ReservasMedicasMobile" parent="Base.Theme.ReservasMedicasMobile"/>
+    <style name="ToolbarTitleTextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item> 
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="sppiner_estilo">
+        <item name="android:background">@drawable/spinner_background</item>
+        <item name="android:popupBackground">@drawable/spinner_dropdown_item</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarEspecialidadFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar Especialidades"
+            android:layout_margin="16dp"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="157dp" />
+
+        <EditText
+            android:id="@+id/editTextEspcialidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:minHeight="48dp"
+            android:textColor="#212121"
+            android:textColorHint="#A8A8A8"
+            android:textSize="16sp"
+            android:hint="Nombre De Especialidad"
+            tools:ignore="Autofill"
+            tools:layout_editor_absoluteY="221dp"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/editTextDecripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:minHeight="48dp"
+            android:textColor="#212121"
+            android:textColorHint="#A8A8A8"
+            android:textSize="16sp"
+            android:hint="Descripción De Especialidad"
+            tools:ignore="Autofill"
+            tools:layout_editor_absoluteY="221dp"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/buttonEnviarEspecialidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_blue_light"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            android:text="Enviar" />
+    </LinearLayout>
+
+</FrameLayout>
