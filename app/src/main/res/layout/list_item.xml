@@ -8,7 +8,9 @@
         android:id="@+id/nameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:textColor="@color/azul"
+        android:textSize="26dp"/>
 
     <TextView
         android:id="@+id/descripcionTextView"
@@ -20,6 +22,8 @@
         android:id="@+id/inputEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:minHeight="48dp"
         android:hint="Nuevo nombre"
         android:textColor="#212121"
         android:textColorHint="#A8A8A8"
@@ -32,6 +36,8 @@
         android:id="@+id/inputEditTextDescipcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:minHeight="48dp"
         android:hint="Nuevo descripcion"
         android:textColor="#212121"
         android:textColorHint="#A8A8A8"

@@ -70,12 +70,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <TextView
-            android:id="@+id/textViewEspecialidades"
-            android:layout_width="160dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="640dp"
-            android:text="TextView" />
+
     </FrameLayout>
 
     <Button

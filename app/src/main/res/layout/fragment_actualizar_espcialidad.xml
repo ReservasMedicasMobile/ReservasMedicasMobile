@@ -6,6 +6,7 @@
     tools:context=".ActualizarEspcialidadFragment">
 
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecyclerView"
             android:layout_width="match_parent"
