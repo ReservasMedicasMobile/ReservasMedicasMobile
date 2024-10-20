@@ -45,8 +45,9 @@ public class turnos extends AppCompatActivity {
 
 
     private RequestQueue requestQueue;
-    private String fechaSeleccionada = "";
-    private String horaSeleccionada = "";
+    private String horaSeleccionada = ""; // Inicialmente vacío
+    private String fechaSeleccionada = ""; // Inicialmente vacío
+
     private Map<String, Map<String, List<String>>> horariosPorEspecialistaYFecha;
 
     @Override
@@ -217,14 +218,20 @@ public class turnos extends AppCompatActivity {
             int profesionalId = profesionalSeleccionado.getId();
             int especialidadId = especialidadSeleccionada.getId();
 
-            String horaSeleccionada = "10:00"; // Hora hardcodeada
-            String fechaSeleccionada = "2024-10-20"; // Fecha hardcodeada (ajusta según tu formato)
 
             // Validar que los IDs no sean 0 (en caso de que hayas definido una opción por defecto con ID 0)
             if (profesionalId == 0 || especialidadId == 0) {
                 Toast.makeText(turnos.this, "Error: profesional o especialidad no válida.", Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (fechaSeleccionada.isEmpty() || horaSeleccionada.isEmpty()) {
+                Toast.makeText(this, "Por favor selecciona una fecha y una hora", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Aquí puedes proceder a crear el turno con la fecha y hora seleccionadas
+            String mensajeTurno = "Turno creado para el " + fechaSeleccionada + " a las " + horaSeleccionada;
+            Toast.makeText(this, mensajeTurno, Toast.LENGTH_SHORT).show();
 
             // Crear el objeto JSON para el turno
             turnoData.put("paciente", pacienteId);
@@ -452,6 +459,7 @@ public class turnos extends AppCompatActivity {
             fechaSeleccionada = fechasDisponibles.get(position);
             openDatePickerButton.setText("Fecha: " + fechaSeleccionada);
         });
+
 
         builder.setNegativeButton("Cancelar", null);
         builder.setPositiveButton("Seleccionar", (dialog, which) -> {
