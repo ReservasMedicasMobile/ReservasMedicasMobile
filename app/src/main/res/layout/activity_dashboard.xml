@@ -8,6 +8,7 @@
     android:weightSum="7"
     tools:context=".MainActivity">
 
+
     <!-- Cabecera con fondo azul y texto -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,32 +40,6 @@
 
             <!-- Iconos de Inicio y Cerrar sesión con bordes -->
 
-            <ImageButton
-                android:id="@+id/inicio_volver"
-                android:layout_width="34dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/border_dashboard"
-                android:contentDescription="@string/dashboard_inicio"
-                android:scaleType="fitCenter"
-                android:onClick="volverInicio"
-                android:src="@drawable/ic_home_dashboard"
-                app:tint="@color/dashboard_text_white"
-                tools:ignore="TouchTargetSizeCheck" />
-
-
-
-
-            <ImageView
-                android:id="@+id/iconCerrarSesion"
-                android:layout_width="32dp"
-                android:layout_height="40dp"
-                android:background="@drawable/border_dashboard"
-                android:contentDescription="@string/dashboard_cerrar_sesion"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_logout_dashboard"
-                app:tint="@color/dashboard_text_white" />
-
 
         </LinearLayout>
 
@@ -75,6 +50,16 @@
             android:text="Tus Turnos Médicos"
             android:textColor="@color/dashboard_text_white"
             android:textSize="25sp" />
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Botón de retroceso"
+            android:src="@drawable/retroceso"
+            app:tint="@android:color/white" />
     </LinearLayout>
 
     <!-- Sección principal con tarjetas -->
@@ -100,7 +85,7 @@
                 android:layout_weight="1"
                 app:cardElevation="2dp"
                 app:cardCornerRadius="16dp"
-                android:background="@color/dashboard_blue">
+                android:background="#151635">
 
                 <LinearLayout
                     android:layout_width="match_parent"

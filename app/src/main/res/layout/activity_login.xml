@@ -9,54 +9,21 @@
 
 
     tools:context=".login">
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#151635"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Reservas Médicas Mobile"
+        app:titleTextAppearance="@style/ToolbarTitleTextStyle"
+        app:titleTextColor="#FFFFFF" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="40dp">
+        android:padding="20dp">
 
-        <ImageButton
-            android:id="@+id/volver_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/baseline_arrow_back_24"
-            android:background="#151635"
-            android:contentDescription="volver"
-            android:padding="10dp" />
-
-        <TextView
-            android:id="@+id/nombre1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Reservas"
-            android:textColor="#FFFFFF"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            tools:layout_editor_relativeX="29dp"
-            tools:layout_editor_relativeY="53dp" />
-
-        <TextView
-            android:id="@+id/nombre2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Médicas"
-            android:textColor="#FFFFFF"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="29dp"
-            tools:layout_editor_absoluteY="53dp" />
-
-        <TextView
-            android:id="@+id/nombre3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mobile"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="29dp"
-            tools:layout_editor_absoluteY="53dp" />
 
     </LinearLayout>
 
@@ -186,22 +153,22 @@
                 tools:layout_editor_absoluteY="394dp" />
 
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="¿Aún no tenés cuenta?"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="46dp"
+                tools:layout_editor_absoluteY="492dp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
 
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="¿Aún no tenés cuenta?"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    tools:layout_editor_absoluteX="46dp"
-                    tools:layout_editor_absoluteY="492dp" />
 
                 <TextView
                     android:id="@+id/registro"
@@ -220,6 +187,15 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="104dp"
+        android:layout_gravity="start"
+        android:background="?attr/selectableItemBackground"
+        android:contentDescription="Botón de retroceso"
+        android:src="@drawable/retroceso"
+        app:tint="@android:color/white" />
 
 
 </RelativeLayout>

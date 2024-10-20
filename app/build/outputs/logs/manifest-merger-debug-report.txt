@@ -1,0 +1,358 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:5:1-62:12
+INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:5:1-62:12
+INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:5:1-62:12
+INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:5:1-62:12
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\43fb5446b3f39a6e48ad2ae5b8564882\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\23e0b41f2e326792da9ced9fb4196caf\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3ede20b2bd7e007cadb509aef3ec0c66\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\88dcd1011158e952eaf8d46f905965d7\transformed\appcompat-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3f2bd3c408526321a5ae1e4b5d89b09c\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\69d4cef543721e24f8e603d07fbbb6a5\transformed\fragment-1.5.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.9.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\c3f18cadaca4bc64b99be180f4a53eb0\transformed\activity-1.9.2\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.volley:volley:1.2.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\456c6abe3b9106a91732e70de86e360f\transformed\volley-1.2.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d1f00dfe40e606bb12d6db069bf909c\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\80b24ac083d7ac64f289d79360bfedb8\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\6433c0489141027585edbd9b7093da83\transformed\transition-1.5.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3aa6f596a8859159a5275d26370b45c8\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\b9a81a0731b6b0bcb9a6732c3a602e54\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\e2429b19a71d95b91a14f44d427bfdcc\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\e1335fa3ed2da58799d757c80a03d1db\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\35efb3c9ee80c59ceb81050e4d7f564f\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\dbfa2aa713779dda038c821d01341baa\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\1add1d6c7db74f5467aee333f80eceb1\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\772c287c01dd828cd0c14109a31df120\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\ad538bced5f07d14bf5b30fe48f49bbc\transformed\core-ktx-1.13.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\c844b11ceb84610da67a374518099d71\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\dacdbba98d08169c25d83960be520c9f\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\bd2a5a1961bc896881bbaedf874be1f7\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\6279ac0bc722c94a044d0772ba5c7376\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\32073268200e26acaf088472be869bdc\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\a813dd2df2c773671d91473aa08d3663\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\555f6569fe538d177f912cc6b824c433\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\b077b51992315640bea96d0a00fac2e0\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\dab2ce3a485fbb28df6ec4e55840e018\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\82031ce04fa7675fd57df30905cc2f93\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\33b668f36ab2b46f49cfb4952fef15e0\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\715bfea6dfdc2bb1be02f4c940cf1fd4\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\660e7c183fced63bf565acfaa46d4145\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2a3797fc2161712bc4fc1716cf13b02a\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5fcc9f04d7ce2c69e7519a06a1e38f8c\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\076856449c6f4f85901e18dfc00e198c\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\30913f8b3a0da370831b5e59e6b176ec\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\d9d7520809a00938835421ee7b801afb\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
+	package
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:7:9-52
+		INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:6:9-55
+	android:versionCode
+		INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:5:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:10:9-71
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:10:26-68
+application
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:14:5-60:19
+INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:14:5-60:19
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\43fb5446b3f39a6e48ad2ae5b8564882\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\43fb5446b3f39a6e48ad2ae5b8564882\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\23e0b41f2e326792da9ced9fb4196caf\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\23e0b41f2e326792da9ced9fb4196caf\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\82031ce04fa7675fd57df30905cc2f93\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\82031ce04fa7675fd57df30905cc2f93\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\660e7c183fced63bf565acfaa46d4145\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\660e7c183fced63bf565acfaa46d4145\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:22:9-35
+	android:label
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:20:9-48
+	android:fullBackupContent
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:18:9-54
+	android:roundIcon
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:21:9-48
+	tools:targetApi
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:24:9-29
+	android:icon
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:19:9-43
+	android:allowBackup
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:16:9-35
+	android:theme
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:23:9-59
+	android:networkSecurityConfig
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:15:9-69
+	android:dataExtractionRules
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:17:9-65
+activity#com.example.reservasmedicasmobile.menudeopciones
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:25:9-27:39
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:27:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:26:13-43
+activity#com.example.reservasmedicasmobile.especialidades
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:28:9-30:39
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:30:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:29:13-43
+activity#com.example.reservasmedicasmobile.servicios
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:31:9-33:39
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:33:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:32:13-38
+activity#com.example.reservasmedicasmobile.reservas
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:34:9-36:39
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:36:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:35:13-37
+activity#com.example.reservasmedicasmobile.turnos
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:37:9-39:39
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:39:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:38:13-35
+activity#com.example.reservasmedicasmobile.contacto
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:40:9-42:39
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:42:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:41:13-37
+activity#com.example.reservasmedicasmobile.dashboard
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:43:9-45:39
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:45:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:44:13-38
+activity#com.example.reservasmedicasmobile.registro
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:46:9-48:39
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:48:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:47:13-37
+activity#com.example.reservasmedicasmobile.login
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:49:9-51:39
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:51:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:50:13-34
+activity#com.example.reservasmedicasmobile.MainActivity
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:52:9-59:20
+	android:exported
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:54:13-36
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:53:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:55:13-58:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:56:17-69
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:56:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:57:17-77
+	android:name
+		ADDED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:57:27-74
+uses-sdk
+INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\43fb5446b3f39a6e48ad2ae5b8564882\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\43fb5446b3f39a6e48ad2ae5b8564882\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\23e0b41f2e326792da9ced9fb4196caf\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\23e0b41f2e326792da9ced9fb4196caf\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3ede20b2bd7e007cadb509aef3ec0c66\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3ede20b2bd7e007cadb509aef3ec0c66\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\88dcd1011158e952eaf8d46f905965d7\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\88dcd1011158e952eaf8d46f905965d7\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3f2bd3c408526321a5ae1e4b5d89b09c\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3f2bd3c408526321a5ae1e4b5d89b09c\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\69d4cef543721e24f8e603d07fbbb6a5\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\69d4cef543721e24f8e603d07fbbb6a5\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.9.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\c3f18cadaca4bc64b99be180f4a53eb0\transformed\activity-1.9.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.9.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\c3f18cadaca4bc64b99be180f4a53eb0\transformed\activity-1.9.2\AndroidManifest.xml:20:5-44
+MERGED from [com.android.volley:volley:1.2.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\456c6abe3b9106a91732e70de86e360f\transformed\volley-1.2.1\AndroidManifest.xml:5:5-43
+MERGED from [com.android.volley:volley:1.2.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\456c6abe3b9106a91732e70de86e360f\transformed\volley-1.2.1\AndroidManifest.xml:5:5-43
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d1f00dfe40e606bb12d6db069bf909c\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d1f00dfe40e606bb12d6db069bf909c\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\80b24ac083d7ac64f289d79360bfedb8\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\80b24ac083d7ac64f289d79360bfedb8\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\6433c0489141027585edbd9b7093da83\transformed\transition-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\6433c0489141027585edbd9b7093da83\transformed\transition-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3aa6f596a8859159a5275d26370b45c8\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3aa6f596a8859159a5275d26370b45c8\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\b9a81a0731b6b0bcb9a6732c3a602e54\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\b9a81a0731b6b0bcb9a6732c3a602e54\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\e2429b19a71d95b91a14f44d427bfdcc\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\e2429b19a71d95b91a14f44d427bfdcc\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\e1335fa3ed2da58799d757c80a03d1db\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\e1335fa3ed2da58799d757c80a03d1db\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\35efb3c9ee80c59ceb81050e4d7f564f\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\35efb3c9ee80c59ceb81050e4d7f564f\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\dbfa2aa713779dda038c821d01341baa\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\dbfa2aa713779dda038c821d01341baa\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\1add1d6c7db74f5467aee333f80eceb1\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\1add1d6c7db74f5467aee333f80eceb1\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\772c287c01dd828cd0c14109a31df120\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\772c287c01dd828cd0c14109a31df120\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\ad538bced5f07d14bf5b30fe48f49bbc\transformed\core-ktx-1.13.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\ad538bced5f07d14bf5b30fe48f49bbc\transformed\core-ktx-1.13.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\c844b11ceb84610da67a374518099d71\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\c844b11ceb84610da67a374518099d71\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\dacdbba98d08169c25d83960be520c9f\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\dacdbba98d08169c25d83960be520c9f\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\bd2a5a1961bc896881bbaedf874be1f7\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\bd2a5a1961bc896881bbaedf874be1f7\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\6279ac0bc722c94a044d0772ba5c7376\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\6279ac0bc722c94a044d0772ba5c7376\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\32073268200e26acaf088472be869bdc\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\32073268200e26acaf088472be869bdc\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\a813dd2df2c773671d91473aa08d3663\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\a813dd2df2c773671d91473aa08d3663\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\555f6569fe538d177f912cc6b824c433\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\555f6569fe538d177f912cc6b824c433\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\b077b51992315640bea96d0a00fac2e0\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\b077b51992315640bea96d0a00fac2e0\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\dab2ce3a485fbb28df6ec4e55840e018\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\dab2ce3a485fbb28df6ec4e55840e018\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\82031ce04fa7675fd57df30905cc2f93\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\82031ce04fa7675fd57df30905cc2f93\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\33b668f36ab2b46f49cfb4952fef15e0\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\33b668f36ab2b46f49cfb4952fef15e0\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\715bfea6dfdc2bb1be02f4c940cf1fd4\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\715bfea6dfdc2bb1be02f4c940cf1fd4\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\660e7c183fced63bf565acfaa46d4145\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\660e7c183fced63bf565acfaa46d4145\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2a3797fc2161712bc4fc1716cf13b02a\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2a3797fc2161712bc4fc1716cf13b02a\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5fcc9f04d7ce2c69e7519a06a1e38f8c\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5fcc9f04d7ce2c69e7519a06a1e38f8c\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\076856449c6f4f85901e18dfc00e198c\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\076856449c6f4f85901e18dfc00e198c\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\30913f8b3a0da370831b5e59e6b176ec\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\30913f8b3a0da370831b5e59e6b176ec\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\d9d7520809a00938835421ee7b801afb\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\d9d7520809a00938835421ee7b801afb\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\82031ce04fa7675fd57df30905cc2f93\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\82031ce04fa7675fd57df30905cc2f93\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+permission#com.example.reservasmedicasmobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+uses-permission#com.example.reservasmedicasmobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92

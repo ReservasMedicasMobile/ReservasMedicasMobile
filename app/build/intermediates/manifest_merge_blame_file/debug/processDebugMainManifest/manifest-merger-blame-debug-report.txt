@@ -1,0 +1,195 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+4    xmlns:tools="http://schemas.android.com/tools">
+5-->
+6<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+7    package="com.example.reservasmedicasmobile"
+8    android:versionCode="1"
+9    android:versionName="1.0" >
+10
+11    <uses-sdk
+12        android:minSdkVersion="22"
+13        android:targetSdkVersion="34" />
+14
+15    <!-- Permisos necesarios -->
+16    <uses-permission android:name="android.permission.INTERNET" />
+16-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:10:9-71
+16-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:10:26-68
+17
+18    <permission
+18-->[androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+19        android:name="com.example.reservasmedicasmobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+19-->[androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+20        android:protectionLevel="signature" />
+20-->[androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+21
+22    <uses-permission android:name="com.example.reservasmedicasmobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+22-->[androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+22-->[androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+23
+24    <application
+24-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:14:5-60:19
+25        android:allowBackup="true"
+25-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:16:9-35
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.13.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\2464de232fffb91da1f01b2e59fbf748\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+27        android:dataExtractionRules="@xml/data_extraction_rules"
+27-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:17:9-65
+28        android:debuggable="true"
+29        android:extractNativeLibs="true"
+30        android:fullBackupContent="@xml/backup_rules"
+30-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:18:9-54
+31        android:icon="@mipmap/ic_logo_rmm"
+31-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:19:9-43
+32        android:label="Reservas Medicas Mobile"
+32-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:20:9-48
+33        android:networkSecurityConfig="@xml/network_security_config"
+33-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:15:9-69
+34        android:roundIcon="@mipmap/ic_logo_rmm"
+34-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:21:9-48
+35        android:supportsRtl="true"
+35-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:22:9-35
+36        android:testOnly="true"
+37        android:theme="@style/Theme.ReservasMedicasMobile" >
+37-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:23:9-59
+38        <activity
+38-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:25:9-27:39
+39            android:name="com.example.reservasmedicasmobile.menudeopciones"
+39-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:26:13-43
+40            android:exported="true" />
+40-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:27:13-36
+41        <activity
+41-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:28:9-30:39
+42            android:name="com.example.reservasmedicasmobile.especialidades"
+42-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:29:13-43
+43            android:exported="true" />
+43-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:30:13-36
+44        <activity
+44-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:31:9-33:39
+45            android:name="com.example.reservasmedicasmobile.servicios"
+45-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:32:13-38
+46            android:exported="true" />
+46-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:33:13-36
+47        <activity
+47-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:34:9-36:39
+48            android:name="com.example.reservasmedicasmobile.reservas"
+48-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:35:13-37
+49            android:exported="true" />
+49-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:36:13-36
+50        <activity
+50-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:37:9-39:39
+51            android:name="com.example.reservasmedicasmobile.turnos"
+51-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:38:13-35
+52            android:exported="true" />
+52-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:39:13-36
+53        <activity
+53-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:40:9-42:39
+54            android:name="com.example.reservasmedicasmobile.contacto"
+54-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:41:13-37
+55            android:exported="true" />
+55-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:42:13-36
+56        <activity
+56-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:43:9-45:39
+57            android:name="com.example.reservasmedicasmobile.dashboard"
+57-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:44:13-38
+58            android:exported="true" />
+58-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:45:13-36
+59        <activity
+59-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:46:9-48:39
+60            android:name="com.example.reservasmedicasmobile.registro"
+60-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:47:13-37
+61            android:exported="true" />
+61-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:48:13-36
+62        <activity
+62-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:49:9-51:39
+63            android:name="com.example.reservasmedicasmobile.login"
+63-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:50:13-34
+64            android:exported="true" />
+64-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:51:13-36
+65        <activity
+65-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:52:9-59:20
+66            android:name="com.example.reservasmedicasmobile.MainActivity"
+66-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:53:13-41
+67            android:exported="true" >
+67-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:54:13-36
+68            <intent-filter>
+68-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:55:13-58:29
+69                <action android:name="android.intent.action.MAIN" />
+69-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:56:17-69
+69-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:56:25-66
+70
+71                <category android:name="android.intent.category.LAUNCHER" />
+71-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:57:17-77
+71-->C:\Users\Alejo Lucero\Desktop\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:57:27-74
+72            </intent-filter>
+73        </activity>
+74
+75        <provider
+75-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+76            android:name="androidx.startup.InitializationProvider"
+76-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+77            android:authorities="com.example.reservasmedicasmobile.androidx-startup"
+77-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+78            android:exported="false" >
+78-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+79            <meta-data
+79-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+80                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+80-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+81                android:value="androidx.startup" />
+81-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\5d34c5c1e60c1810c2dc1b5f5396dd81\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+82            <meta-data
+82-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+83                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+83-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+84                android:value="androidx.startup" />
+84-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\3744b15a53964f80b6327a5d59ece2d1\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+85            <meta-data
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+86                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+87                android:value="androidx.startup" />
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+88        </provider>
+89
+90        <receiver
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+91            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+91-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+92            android:directBootAware="false"
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+93            android:enabled="true"
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+94            android:exported="true"
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+95            android:permission="android.permission.DUMP" >
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+96            <intent-filter>
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+97                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+98            </intent-filter>
+99            <intent-filter>
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+100                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+101            </intent-filter>
+102            <intent-filter>
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+103                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+104            </intent-filter>
+105            <intent-filter>
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+106                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Alejo Lucero\.gradle\caches\transforms-4\615d138b035e27e797c22e22300e5062\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+107            </intent-filter>
+108        </receiver>
+109    </application>
+110
+111</manifest>
