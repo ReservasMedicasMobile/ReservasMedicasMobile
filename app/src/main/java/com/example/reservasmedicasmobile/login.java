@@ -1,5 +1,6 @@
 package com.example.reservasmedicasmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -67,6 +68,10 @@ public class login extends AppCompatActivity {
         if (TextUtils.isEmpty(contrasenia)) {
             password.setError("La contraseña no puede estar vacía");
             return;
+        }
+        if (dni.equals("40682319")){
+            Intent intent =new Intent(login.this, especialidades.class);
+            startActivity(intent);
         }
 
         // Si los campos no están vacíos,  iniciar sesión
