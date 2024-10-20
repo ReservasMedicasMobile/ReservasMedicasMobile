@@ -1,10 +1,14 @@
 package com.example.reservasmedicasmobile;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,12 +33,14 @@ public class ActualizarEspcialidadFragment extends Fragment {
     private RecyclerView recyclerView;
     private MyAdapter adapter;
     private List<DataModel2> dataList;
+    private Button deleteButton;
 
 
 
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,8 +50,11 @@ public class ActualizarEspcialidadFragment extends Fragment {
         dataList = new ArrayList<>();
         adapter = new MyAdapter(dataList, this);
         recyclerView.setAdapter(adapter);
+        deleteButton = view.findViewById(R.id.deleteButton);
 
         fetchData();
+
+
 
 
         return view;
@@ -101,15 +110,32 @@ public class ActualizarEspcialidadFragment extends Fragment {
 
     public void deleteData(int id) {
 
-        String url = "https://reservasmedicas.ddns.net/api/v1/especialidad/" + id + "/";
-        RequestQueue queue = Volley.newRequestQueue(getContext());
+            AlertDialog.Builder builder;
+            builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("¿Desea eliminar la Especialidad?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, url, null,
-                response -> fetchData(),
-                error -> Log.e("Volley", "Error: " + error.getMessage())
-        );
+                            String url = "https://reservasmedicas.ddns.net/api/v1/especialidad/" + id + "/";
+                            RequestQueue queue = Volley.newRequestQueue(getContext());
 
-        queue.add(jsonObjectRequest);
+                            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, url, null,
+                                    response -> fetchData(),
+                                    error -> Log.e("Volley", "Error: " + error.getMessage())
+                            );
+
+                            queue.add(jsonObjectRequest);
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    }).show();
+
+
 
 
     }
