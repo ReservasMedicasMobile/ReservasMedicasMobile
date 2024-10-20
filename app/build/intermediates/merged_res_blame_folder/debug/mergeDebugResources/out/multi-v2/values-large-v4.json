@@ -4,7 +4,7 @@
             "outputFile": "com.example.reservasmedicasmobile.app-mergeDebugResources-29:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Alejo Lucero\\.gradle\\caches\\transforms-4\\43fb5446b3f39a6e48ad2ae5b8564882\\transformed\\material-1.12.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\leand\\.gradle\\caches\\transforms-4\\77678f53b29303e947f452589ac82a21\\transformed\\material-1.12.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Alejo Lucero\\.gradle\\caches\\transforms-4\\88dcd1011158e952eaf8d46f905965d7\\transformed\\appcompat-1.7.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\leand\\.gradle\\caches\\transforms-4\\3dabf4e68f4a2cb2defe9cd46d20b97c\\transformed\\appcompat-1.7.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
