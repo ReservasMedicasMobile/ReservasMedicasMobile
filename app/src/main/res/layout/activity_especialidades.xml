@@ -8,6 +8,7 @@
     tools:context=".especialidades">
 
     <androidx.appcompat.widget.Toolbar
+
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

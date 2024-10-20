@@ -54,6 +54,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 holder.inputEditTextDescipcion.setText("");
 
             }
+
         });
 
         holder.deleteButton.setOnClickListener(v -> {

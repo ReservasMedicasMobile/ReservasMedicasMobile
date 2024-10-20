@@ -18,6 +18,7 @@ public class DataModel2 {
 
 
 
+
     public String getEspecialidad() {
         return especialidad;
     }

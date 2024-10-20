@@ -61,6 +61,7 @@ public class AgregarEspecialidadFragment extends Fragment {
             return;
         }
 
+
         new android.app.AlertDialog.Builder(getActivity())
                 .setTitle("Confirmación")
                 .setMessage("¿Estás seguro de que quieres enviar los datos?")

@@ -95,6 +95,7 @@ public class ActualizarEspcialidadFragment extends Fragment {
         );
 
         queue.add(jsonObjectRequest);
+
     }
 
 
