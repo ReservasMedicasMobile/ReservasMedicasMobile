@@ -29,9 +29,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -40,17 +37,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.volley)
+
     implementation (libs.volley)
-    implementation("androidx.fragment:fragment:fragment_version")
-    implementation("com.google.android.gms:play-services-safetynet:18.1.0")
-    implementation(libs.recyclerview)
-    implementation(libs.recyclerview.selection)
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.material.v140)
-    implementation(libs.legacy.support.v4)
+
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation(libs.volley)
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+
 }

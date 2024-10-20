@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">-->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        package="com.example.reservasmedicasmobile">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.reservasmedicasmobile">
 
-        <!-- Permisos necesarios -->
-        <uses-permission android:name="android.permission.INTERNET" />
-
-
+    <!-- Permisos necesarios -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -25,6 +20,8 @@
         android:theme="@style/Theme.ReservasMedicasMobile"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <!-- Lista de actividades -->
         <activity
             android:name=".especialidades"
             android:exported="true" />
@@ -52,6 +49,14 @@
         <activity
             android:name=".login"
             android:exported="true" />
+        <activity
+            android:name=".ApiTestActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

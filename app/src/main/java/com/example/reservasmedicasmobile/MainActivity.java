@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.btn_contacto) {
             startActivity(new Intent(this, contacto.class));
             return true;
-        } else if (id == R.id.btn_servicios) {
-            startActivity(new Intent(this, servicios.class));
+        } else if (id == R.id.btn_turnos) {
+            startActivity(new Intent(this, turnos.class));
             return true;
         } else if (id == R.id.btn_registro) {
             startActivity(new Intent(this, registro.class));
@@ -57,5 +57,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-

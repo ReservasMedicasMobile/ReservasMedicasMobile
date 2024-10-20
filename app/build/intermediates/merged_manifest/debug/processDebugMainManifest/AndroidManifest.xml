@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
--->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.reservasmedicasmobile"
     android:versionCode="1"
@@ -13,6 +9,7 @@
         android:targetSdkVersion="34" />
 
     <!-- Permisos necesarios -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <permission
@@ -34,18 +31,21 @@
         android:roundIcon="@mipmap/ic_logo_rmm"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.ReservasMedicasMobile" >
-        <activity
-            android:name="com.example.reservasmedicasmobile.menudeopciones"
-            android:exported="true" />
+        android:theme="@style/Theme.ReservasMedicasMobile"
+        android:usesCleartextTraffic="true" >
+
+        <!-- Lista de actividades -->
         <activity
             android:name="com.example.reservasmedicasmobile.especialidades"
             android:exported="true" />
         <activity
-            android:name="com.example.reservasmedicasmobile.servicios"
+            android:name="com.example.reservasmedicasmobile.menudeopciones"
             android:exported="true" />
         <activity
-            android:name="com.example.reservasmedicasmobile.reservas"
+            android:name="com.example.reservasmedicasmobile.medicos"
+            android:exported="true" />
+        <activity
+            android:name="com.example.reservasmedicasmobile.servicios"
             android:exported="true" />
         <activity
             android:name="com.example.reservasmedicasmobile.turnos"
@@ -62,6 +62,15 @@
         <activity
             android:name="com.example.reservasmedicasmobile.login"
             android:exported="true" />
+        <activity
+            android:name="com.example.reservasmedicasmobile.ApiTestActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.example.reservasmedicasmobile.MainActivity"
             android:exported="true" >
