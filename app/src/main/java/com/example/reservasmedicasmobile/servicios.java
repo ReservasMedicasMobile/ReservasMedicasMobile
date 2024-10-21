@@ -51,12 +51,5 @@ public class servicios extends AppCompatActivity {
             }
         });
 
-        ImageButton backButton = findViewById(R.id.back_button);
-
-        backButton.setOnClickListener(v -> {
-
-            finish();
-        });
-
     }
 }
