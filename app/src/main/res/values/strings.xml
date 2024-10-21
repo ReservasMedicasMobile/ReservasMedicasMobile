@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ReservasMedicasMobile</string>
     <string name="agende">Agende su turno médico</string>
+    <string name="Paciente">Agregar Datos Personales</string>
     <string name="seleccionar_Fecha">Seleccionar Fecha</string>
     <string name="seleccionar_Horario">Seleccionar Horario</string>
     <string name="confirmar_reserva">Confirmar reserva</string>
