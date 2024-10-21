@@ -7,4 +7,7 @@
     <string name="especialidad_medica">Especialidad médica</string>
     <string name="profesional">Profesional</string>
     <string name="reservar_turno">Reservar Turno</string>
+    <string name="saludo">Hola, %s</string> <!-- Cadena con marcador de posición -->
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

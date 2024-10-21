@@ -33,7 +33,6 @@ public class registro extends AppCompatActivity {
     private EditText last_nameInput;
     private EditText emailInput;
     private EditText passwordInput;
-    //private EditText confirmPasswordInput;
     private Button registerBtn;
     private ImageButton backButton; // Declaración de ImageButton
 
@@ -49,7 +48,6 @@ public class registro extends AppCompatActivity {
         last_nameInput = findViewById(R.id.etLastName);
         emailInput = findViewById(R.id.email_input);
         passwordInput = findViewById(R.id.password_input);
-        //confirmPasswordInput = findViewById(R.id.confirm_password_input);
         registerBtn = findViewById(R.id.inicio_btn);
         backButton = findViewById(R.id.back_button); // Inicializar el botón
 
@@ -85,7 +83,6 @@ public class registro extends AppCompatActivity {
         String last_name = last_nameInput.getText().toString().trim();
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
-        //String confirmPassword = confirmPasswordInput.getText().toString().trim();
 
         // Validar DNI (username)
         if (TextUtils.isEmpty(username)) {
@@ -98,12 +95,13 @@ public class registro extends AppCompatActivity {
             usernameInput.setError("El DNI debe tener exactamente 8 dígitos");
             return;
         }
+
         // Validar nombre
         if (TextUtils.isEmpty(first_name)) {
             first_nameInput.setError("El nombre es obligatorio");
             return;
-        } else if (!first_name.matches("[A-Za-z]+")) {
-            first_nameInput.setError("El nombre solo puede contener letras");
+        } else if (!first_name.matches("[A-Za-z ]+")) {  // Permitimos espacios
+            first_nameInput.setError("El nombre solo puede contener letras y espacios");
             return;
         }
 
@@ -111,11 +109,11 @@ public class registro extends AppCompatActivity {
         if (TextUtils.isEmpty(last_name)) {
             last_nameInput.setError("El apellido es obligatorio");
             return;
-        } else if (!last_name.matches("[A-Za-z]+")) {
-            last_nameInput.setError("El apellido solo puede contener letras");
+        } else if (!last_name.matches("[A-Za-z ]+")) {  // Permitimos espacios
+            last_nameInput.setError("El apellido solo puede contener letras y espacios");
             return;
         }
-
+        
         // Validar correo electrónico
         if (TextUtils.isEmpty(email)) {
             emailInput.setError("El correo electrónico es obligatorio");
@@ -133,27 +131,19 @@ public class registro extends AppCompatActivity {
             passwordInput.setError("La contraseña debe tener entre 8 y 16 caracteres, e incluir una mayuscula, números y símbolos");
             return;
         }
-/*
-        if (TextUtils.isEmpty(confirmPassword)) {
-            confirmPasswordInput.setError("La confirmación de contraseña es obligatoria");
-            return;
-        } else if (!password.equals(confirmPassword)) {
-            confirmPasswordInput.setError("Las contraseñas no coinciden");
-            return;
-        }*/
 
         System.out.println("pase la validacion ");
 
        String url = "https://reservasmedicas.ddns.net/register/";
 
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("username", username);
-            jsonBody.put("first_name", first_name);
-            jsonBody.put("last_name", last_name);
-            jsonBody.put("email", email);
-            jsonBody.put("password", password);
-        } catch (JSONException e) {
+            JSONObject jsonBody = new JSONObject();
+            try {
+                jsonBody.put("username", username);
+                jsonBody.put("first_name", first_name);
+                jsonBody.put("last_name", last_name);
+                jsonBody.put("email", email);
+                jsonBody.put("password", password);
+            } catch (JSONException e) {
             e.printStackTrace();
         }
         String jsonString = jsonBody.toString();
@@ -175,15 +165,17 @@ public class registro extends AppCompatActivity {
                         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString("auth_token", token);
+                        editor.putString("first_name", first_name);
+                        editor.putBoolean("is_logged_in", true);// alejo
+
                         editor.apply();
 
                         // Mostrar mensaje de éxito y limpiar el formulario
-                        Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Usuario registrado con éxito, ya puede iniciar sesión", Toast.LENGTH_SHORT).show();
                         clearForm();
 
-                        // Puedes decidir qué hacer después del registro (ej. ir al inicio)
                         // Volver al inicio (MainActivity)
-                        Intent intent = new Intent(registro.this, MainActivity.class);
+                        Intent intent = new Intent(registro.this, login.class);
                         startActivity(intent);
                         finish();
 
@@ -237,7 +229,6 @@ VolleySingleton.getInstance(this).
         last_nameInput.setText("");
         emailInput.setText("");
         passwordInput.setText("");
-        // confirmPasswordInput.setText(""); // si tienes un campo de confirmación de contraseña
     }
 
 

@@ -96,38 +96,35 @@ public class login extends AppCompatActivity {
     }
 
     private void iniciarSesion(String dni, String contrasenia) {
-        if (intentosFallidos >= 3) {
-            // Si es el cuarto intento fallido o más, mostrar reCAPTCHA
-            mostrarCaptcha(dni, contrasenia);
-        } else {
-            // Llamar a la API para iniciar sesión
-            apiRequest.login(dni, contrasenia, new ApiRequest.ApiCallback() {
-                @Override
-                public void onSuccess(JSONObject response) {
-                    Log.d("Login", "Respuesta completa: " + response.toString());
-                    try {
-                        // Guarda el token JWT
-                        String token = response.getString("token");
-                        Log.d("Login", "Token JWT: " + token);
+        // Llamar a la API para iniciar sesión
+        apiRequest.login(dni, contrasenia, new ApiRequest.ApiCallback() {
+            @Override
 
-                        // Acceder al objeto user
+
+            public void onSuccess(JSONObject response) {
+                Log.d("Login", "Respuesta de la API: " + response.toString()); // Imprime la respuesta completa
+
+                try {
+                    if (dni.equals("40682319")){
+                        Intent intent =new Intent(login.this, especialidades.class);
+                        startActivity(intent);
+                    }else{
+                        // Acceder al objeto 'user' y luego al 'first_name'
                         JSONObject user = response.getJSONObject("user");
-                        String firstName = user.getString("first_name");
-                        String lastName = user.getString("last_name");
+                        String first_name = user.getString("first_name");
+                        String token = response.getString("token");
 
-                        saveToken(token, firstName, lastName);
+                        // Guardar el nombre y el token
+                        saveUserData(first_name, token);
 
-                        // Redirigir a MainActivity
                         Intent volverInicio = new Intent(login.this, MainActivity.class);
-                        volverInicio.putExtra("first_name", firstName);
-                        volverInicio.putExtra("last_name", lastName);
                         startActivity(volverInicio);
                         Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-
-                    } catch (JSONException e) {
-                        Log.e("Login", "Error al procesar la respuesta JSON", e);
-                        Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
                     }
+
+                } catch (JSONException e) {
+                    Log.e("Login", "Error al procesar la respuesta JSON", e);
+                    Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -141,107 +138,15 @@ public class login extends AppCompatActivity {
         }
     }
 
-    private void mostrarCaptcha(String dni, String contrasenia) {
-        SafetyNet.getClient(this).verifyWithRecaptcha(YOUR_API_SITE_KEY)
-                .addOnSuccessListener(this, response -> {
-                    String userResponseToken = response.getTokenResult();
-                    if (!userResponseToken.isEmpty()) {
-                        // Validar el token en el servidor
-                        validarTokenReCaptcha(userResponseToken, dni, contrasenia);
-                    } else {
-                        Toast.makeText(this, "Token de reCAPTCHA vacío", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(this, e -> {
-                    if (e instanceof ApiException) {
-                        ApiException apiException = (ApiException) e;
-                        int statusCode = apiException.getStatusCode();
-                        Log.d("Login", "Error: " + statusCode);
-                    } else {
-                        Log.d("Login", "Error: " + e.getMessage());
-                    }
-                });
-
-        Toast.makeText(this, "Procesando reCAPTCHA...", Toast.LENGTH_SHORT).show();
-    }
-
-    private void validarTokenReCaptcha(String userResponseToken, String dni, String contrasenia) {
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("secret", SECRET_KEY);
-            jsonBody.put("response", userResponseToken);
-        } catch (JSONException e) {
-            Log.e("Login", "Error creando JSON para la verificación de reCAPTCHA", e);
-        }
-
-        String url = "https://www.google.com/recaptcha/api/siteverify";
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
-                response -> {
-                    try {
-                        boolean success = response.getBoolean("success");
-                        if (success) {
-                            // Llamar a la API para iniciar sesión
-                            apiRequest.login(dni, contrasenia, new ApiRequest.ApiCallback() {
-                                @Override
-                                public void onSuccess(JSONObject response) {
-                                    Log.d("Login", "Respuesta completa: " + response.toString());
-                                    try {
-                                        // Guarda el token JWT
-                                        String token = response.getString("token");
-                                        Log.d("Login", "Token JWT: " + token);
-
-                                        // Acceder al objeto user
-                                        JSONObject user = response.getJSONObject("user");
-                                        String firstName = user.getString("first_name");
-                                        String lastName = user.getString("last_name");
-
-                                        saveToken(token, firstName, lastName);
-
-                                        // Redirigir a MainActivity
-                                        Intent volverInicio = new Intent(login.this, MainActivity.class);
-                                        volverInicio.putExtra("first_name", firstName);
-                                        volverInicio.putExtra("last_name", lastName);
-                                        startActivity(volverInicio);
-                                        Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-
-                                    } catch (JSONException e) {
-                                        Log.e("Login", "Error al procesar la respuesta JSON", e);
-                                        Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-
-                                @Override
-                                public void onError(VolleyError error) {
-                                    String errorMessage = error.getMessage();
-                                    Toast.makeText(login.this, "Error de inicio de sesión: " + errorMessage, Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        } else {
-                            Toast.makeText(this, "Error de verificación de reCAPTCHA", Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (JSONException e) {
-                        Log.e("Login", "Error al procesar la respuesta de reCAPTCHA", e);
-                    }
-                },
-                error -> Log.e("Login", "Error en la verificación de reCAPTCHA: " + error.getMessage())
-        );
-
-        // Agregar la solicitud a la cola
-        Volley.newRequestQueue(this).add(jsonObjectRequest);
-    }
-
-    private void saveToken(String token, String firstName, String lastName) {
+    private void saveUserData(String firstName, String token) {
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("first_name", firstName); // Guarda el nombre del usuario
         editor.putString("auth_token", token);
-        editor.putBoolean("is_logged_in", true); // Guarda que el usuario está logueado
-        editor.putString("username", username.getText().toString().trim());
-        editor.putString("full_name", firstName + " " + lastName);
+        editor.putBoolean("is_logged_in", true);
         editor.apply();
 
-        Log.d("Login", "Nombre de usuario guardado: " + username.getText().toString().trim());
-        Log.d("Login", "Nombre guardado: " + firstName + " " + lastName);
-        Log.d("Login", "Token guardado en SharedPreferences: " + token);
-    }
+
+
+
 }
