@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnContacto, btnServicios, btnTurnos, btnRegistro, btnPerfil, btnLogin, btnLogout;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -38,14 +39,17 @@ public class MainActivity extends AppCompatActivity {
         // Comprobar si el usuario está logueado
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
-        String username = sharedPreferences.getString("username", "Usuario"); //
+        String first_name = sharedPreferences.getString("first_name", "Usuario");
 
         // Mostrar u ocultar botones según el estado de logueo
         if (isLoggedIn) {
             btnServicios.setVisibility(View.GONE); // Solo para usuarios no logueados
             btnRegistro.setVisibility(View.GONE);  // Solo para usuarios no logueados
             btnLogin.setVisibility(View.GONE);     // Solo para usuarios no logueados
-            mensajeSaludo.setText("Hola, " + username); // Configurar el mensaje de saludo
+
+            // Usar el string resource para el mensaje de saludo
+            String saludo = getString(R.string.saludo, first_name);
+            mensajeSaludo.setText(saludo); // Configurar el mensaje de saludo
         } else {
             btnTurnos.setVisibility(View.GONE);    // Solo para usuarios logueados
             btnPerfil.setVisibility(View.GONE);    // Solo para usuarios logueados
@@ -68,4 +72,5 @@ public class MainActivity extends AppCompatActivity {
             recreate(); // Refresca la actividad para aplicar los cambios
         });
     }
+
 }

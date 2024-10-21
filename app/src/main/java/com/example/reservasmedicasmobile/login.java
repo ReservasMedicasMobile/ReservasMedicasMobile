@@ -90,19 +90,24 @@ public class login extends AppCompatActivity {
         // Llamar a la API para iniciar sesión
         apiRequest.login(dni, contrasenia, new ApiRequest.ApiCallback() {
             @Override
-            public void onSuccess(JSONObject response) {
-                try {
-                    // Guarda el token JWT
-                    String token = response.getString("token");
-                    saveToken(token);
 
-                    // Redirigir a MainActivity
+
+            public void onSuccess(JSONObject response) {
+                Log.d("Login", "Respuesta de la API: " + response.toString()); // Imprime la respuesta completa
+
+                try {
+                    // Acceder al objeto 'user' y luego al 'first_name'
+                    JSONObject user = response.getJSONObject("user");
+                    String first_name = user.getString("first_name");
+                    String token = response.getString("token");
+
+                    // Guardar el nombre y el token
+                    saveUserData(first_name, token);
+
                     Intent volverInicio = new Intent(login.this, MainActivity.class);
                     startActivity(volverInicio);
                     Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-
                 } catch (JSONException e) {
-                    // Reemplaza printStackTrace con logging robusto -modificado
                     Log.e("Login", "Error al procesar la respuesta JSON", e);
                     Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
                 }
@@ -117,13 +122,16 @@ public class login extends AppCompatActivity {
         Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
     }
 
-
-    private void saveToken(String token) {
+    private void saveUserData(String firstName, String token) {
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("first_name", firstName); // Guarda el nombre del usuario
         editor.putString("auth_token", token);
-        editor.putBoolean("is_logged_in", true); // Guarda que el usuario está logueado
+        editor.putBoolean("is_logged_in", true);
         editor.apply();
     }
+
+
+
 
 }

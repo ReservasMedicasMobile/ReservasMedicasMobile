@@ -136,14 +136,14 @@ public class registro extends AppCompatActivity {
 
        String url = "https://reservasmedicas.ddns.net/register/";
 
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("username", username);
-            jsonBody.put("first_name", first_name);
-            jsonBody.put("last_name", last_name);
-            jsonBody.put("email", email);
-            jsonBody.put("password", password);
-        } catch (JSONException e) {
+            JSONObject jsonBody = new JSONObject();
+            try {
+                jsonBody.put("username", username);
+                jsonBody.put("first_name", first_name);
+                jsonBody.put("last_name", last_name);
+                jsonBody.put("email", email);
+                jsonBody.put("password", password);
+            } catch (JSONException e) {
             e.printStackTrace();
         }
         String jsonString = jsonBody.toString();
@@ -165,7 +165,9 @@ public class registro extends AppCompatActivity {
                         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString("auth_token", token);
-                        editor.putBoolean("is_logged_in", true); // alejo
+                        editor.putString("first_name", first_name);
+                        editor.putBoolean("is_logged_in", true);// alejo
+
                         editor.apply();
 
                         // Mostrar mensaje de éxito y limpiar el formulario
