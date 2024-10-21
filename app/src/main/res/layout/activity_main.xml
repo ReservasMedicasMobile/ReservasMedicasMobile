@@ -71,6 +71,18 @@
         app:layout_constraintVertical_bias="0.3">
 
         <Button
+            android:id="@+id/btn_datos_paciente"
+            android:layout_width="200dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/azul"
+            android:text="Cargar Datos Personales"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <Button
             android:id="@+id/btn_contacto"
             android:layout_width="200dp"
             android:layout_height="64dp"

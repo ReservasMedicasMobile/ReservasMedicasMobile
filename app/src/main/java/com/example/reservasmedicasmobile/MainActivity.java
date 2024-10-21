@@ -12,7 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnContacto, btnServicios, btnTurnos, btnRegistro, btnPerfil, btnLogin, btnLogout;
+    private Button btnDatosPaciente, btnContacto, btnServicios, btnTurnos, btnRegistro, btnPerfil, btnLogin, btnLogout;
 
     @Override
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         btnPerfil = findViewById(R.id.btn_dashboard);
         btnLogin = findViewById(R.id.btn_login);
         btnLogout = findViewById(R.id.btn_logout);
+        btnDatosPaciente = findViewById(R.id.btn_datos_paciente);
 
         // Inicializar el TextView para el mensaje de saludo
         TextView mensajeSaludo = findViewById(R.id.mensaje_saludo);
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             btnServicios.setVisibility(View.GONE); // Solo para usuarios no logueados
             btnRegistro.setVisibility(View.GONE);  // Solo para usuarios no logueados
             btnLogin.setVisibility(View.GONE);     // Solo para usuarios no logueados
+            btnDatosPaciente.setVisibility(View.VISIBLE);
 
             // Usar el string resource para el mensaje de saludo
             String saludo = getString(R.string.saludo, first_name);
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             btnPerfil.setVisibility(View.GONE);    // Solo para usuarios logueados
             btnLogout.setVisibility(View.GONE);    // Solo para usuarios logueados
             mensajeSaludo.setVisibility(View.GONE); // Ocultar mensaje si no está logueado
+            btnDatosPaciente.setVisibility(View.GONE);
         }
 
         // Asignar eventos a los botones
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         btnRegistro.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, registro.class)));
         btnPerfil.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, dashboard.class)));
         btnLogin.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, login.class)));
+        //btnDatosPaciente.setOnClickListener(v -> startActivity((new Intent(MainActivity.this, paciente.class))));
 
         btnLogout.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedPreferences.edit();
