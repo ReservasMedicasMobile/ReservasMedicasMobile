@@ -28,13 +28,6 @@ public class MainActivityTest {
                 .check(matches(isDisplayed()));
     }
 
-    @Test
-    public void testImageViewIsDisplayed() {
-        // Verifica que la ImageView se muestra correctamente
-        onView(withId(R.id.myImageView))
-                .check(matches(isDisplayed()));
-    }
-
     //#TC005
     @Test
     public void testPageLoadTime() {

@@ -158,9 +158,9 @@ public class contacto extends AppCompatActivity {
             if (tipoDeConsulta.equals("Sugerencia")) {
                 postData.put("tipo_de_consulta", 2); // Aquí se manda el código '2' en lugar del texto
             } else if (tipoDeConsulta.equals("Reclamo")) {
-                postData.put("tipo_de_consulta", 3); // Código '3' para reclamo
+                postData.put("tipo_de_consulta", 1); // Código '3' para reclamo
             } else if (tipoDeConsulta.equals("Seleccionar")) {
-                postData.put("tipo_de_consulta", 1); // Código por defecto si es necesario
+                postData.put("tipo_de_consulta", 3); // Código por defecto si es necesario
             }
 
             postData.put("mensaje", etMessage.getText().toString().trim());
