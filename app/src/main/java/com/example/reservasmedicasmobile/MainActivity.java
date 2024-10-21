@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         btnRegistro.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, registro.class)));
         btnPerfil.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, dashboard.class)));
         btnLogin.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, login.class)));
-        //btnDatosPaciente.setOnClickListener(v -> startActivity((new Intent(MainActivity.this, paciente.class))));
+        btnDatosPaciente.setOnClickListener(v -> startActivity((new Intent(MainActivity.this, pacientes.class))));
 
         btnLogout.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -26,22 +26,39 @@
 
 
 
-    <ImageView
-        android:id="@+id/imageperfil"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_perfil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titulo" />
 
+
+    <ScrollView
+        android:id="@+id/sroll"
+        android:layout_width="359dp"
+        android:layout_height="519dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageperfil"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_perfil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                 />
 
             <EditText
                 android:id="@+id/etNombreCompleto"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
@@ -53,7 +70,7 @@
 
             <EditText
                 android:id="@+id/etApellido"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
@@ -65,7 +82,7 @@
 
             <EditText
                 android:id="@+id/etDni"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
@@ -91,9 +108,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etDni" />
 
+
             <EditText
                 android:id="@+id/etCorreo"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
@@ -106,21 +124,21 @@
 
             <EditText
                 android:id="@+id/etTelefono"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
-                android:hint="DNI"
+                android:hint="Telefono"
                 android:phoneNumber="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etCorreo" />
 
             <Spinner
-                android:id="@+id/spinner_obraSocila"
-                android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:id="@+id/spinner_obraSocial"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
                 android:layout_marginTop="18dp"
                 android:padding="8dp"
                 style="@style/sppiner_estilo"
@@ -132,6 +150,42 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etTelefono" />
+
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_gravity="center"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/rounded_button"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:contentDescription="Enviar Datos"
+                android:text="Enviar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etTelefono" />
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/rounded_button"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:contentDescription="Enviar Datos"
+                android:text="Enviar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnSubmi" />
+
+
+        </LinearLayout>
+    </ScrollView>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -153,7 +207,7 @@
         app:backgroundTint="@color/azul"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/colorGray"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewHorarios"
+        app:layout_constraintBottom_toBottomOf="@id/sroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
