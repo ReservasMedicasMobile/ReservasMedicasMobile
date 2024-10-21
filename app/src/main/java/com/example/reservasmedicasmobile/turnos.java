@@ -54,6 +54,21 @@ public class turnos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turnos);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
+
+        if (!isLoggedIn) {
+            // Redirigir a la pantalla de login si no está logueado
+            Intent intent = new Intent(turnos.this, login.class);
+            startActivity(intent);
+            finish(); // Cierra esta actividad para que no quede en el historial
+        } else {
+            // El usuario está logueado, continuar cargando la actividad
+            setContentView(R.layout.activity_turnos);
+            // Tu código para inicializar los elementos de la actividad...
+        }
+
+
 
 
         specialtySpinner = findViewById(R.id.spinner_specialty);
@@ -68,11 +83,7 @@ public class turnos extends AppCompatActivity {
 
 
         requestQueue = Volley.newRequestQueue(this);
-        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        String jwtToken = sharedPreferences.getString("auth_token", null);
-        if (jwtToken == null) {
-            redirectToLogin();
-        }
+
 
 
         inicializarHorariosPorEspecialistaYFecha();
