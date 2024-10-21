@@ -127,7 +127,7 @@
         app:layout_constraintTop_toBottomOf="@id/button_open_time_picker"
         app:layout_constraintVertical_bias="0.0" />
 
- //// Boton navegacion ///
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
