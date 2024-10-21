@@ -89,7 +89,7 @@ public class turnos extends AppCompatActivity {
         inicializarHorariosPorEspecialistaYFecha();
 
         cargarEspecialidades();
-        cargarProfesionales();
+
 
 
         openDatePickerButton.setOnClickListener(v -> mostrarFechasDisponibles());
@@ -146,7 +146,23 @@ public class turnos extends AppCompatActivity {
             }
         });
 
+        specialtySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                Especialidad especialidadSeleccionada = (Especialidad) parentView.getItemAtPosition(position);
+                int especialidadId = especialidadSeleccionada.getId();
 
+                // Cargar los profesionales que pertenecen a la especialidad seleccionada
+                if (especialidadId != 0) {  // Asegurarse de no filtrar si es la opción por defecto
+                    cargarProfesionales(especialidadId);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // No hacer nada si no se selecciona ninguna especialidad
+            }
+        });
 
     }
 
@@ -248,10 +264,12 @@ public class turnos extends AppCompatActivity {
     public class Profesional {
         private int id;
         private String nombreCompleto;
+        private int especialidadId;
 
-        public Profesional(int id, String nombreCompleto) {
+        public Profesional(int id, String nombreCompleto, int especialidadId) {
             this.id = id;
             this.nombreCompleto = nombreCompleto;
+            this.especialidadId = especialidadId;
         }
 
         public int getId() {
@@ -260,6 +278,10 @@ public class turnos extends AppCompatActivity {
 
         public String getNombreCompleto() {
             return nombreCompleto;
+        }
+
+        public int getEspecialidadId() {
+            return especialidadId;
         }
 
         @Override
@@ -272,6 +294,7 @@ public class turnos extends AppCompatActivity {
 
     private void cargarEspecialidades() {
         String urlEspecialidades = "https://reservasmedicas.ddns.net/api/v1/especialidad/";
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 urlEspecialidades,
@@ -283,7 +306,7 @@ public class turnos extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject especialidad = response.getJSONObject(i);
-                            int id = especialidad.getInt("id");  // Suponiendo que el campo se llama "id"
+                            int id = especialidad.getInt("id");
                             String nombre = especialidad.getString("especialidad");
                             especialidadesList.add(new Especialidad(id, nombre));
                             Log.d("Turnos", "Especialidad cargada: " + nombre + " (ID: " + id + ")");
@@ -300,25 +323,33 @@ public class turnos extends AppCompatActivity {
                     Toast.makeText(turnos.this, "Error al cargar especialidades", Toast.LENGTH_SHORT).show();
                     Log.e("Turnos", "Error: " + error.getMessage());
                 });
+
         requestQueue.add(jsonArrayRequest);
     }
 
-    private void cargarProfesionales() {
+    private void cargarProfesionales(int especialidadId) {
         String urlProfesionales = "https://reservasmedicas.ddns.net/api/v1/profesionales/";
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 urlProfesionales,
                 null,
                 response -> {
                     ArrayList<Profesional> profesionalesList = new ArrayList<>();
-                    profesionalesList.add(new Profesional(0, "PROFESIONALES"));  // Opción por defecto
+                    profesionalesList.add(new Profesional(0, "PROFESIONALES", 0));  // Opción por defecto
 
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject profesional = response.getJSONObject(i);
-                            int id = profesional.getInt("id");  // Suponiendo que el campo se llama "id"
+                            int id = profesional.getInt("id");
                             String nombreCompleto = profesional.getString("nombre") + " " + profesional.getString("apellido");
-                            profesionalesList.add(new Profesional(id, nombreCompleto));
+                            int especialidad = profesional.getInt("especialidad");
+
+                            // Filtrar por especialidad
+                            if (especialidad == especialidadId) {
+                                profesionalesList.add(new Profesional(id, nombreCompleto, especialidad));
+                            }
+
                             Log.d("Turnos", "Profesional cargado: " + nombreCompleto + " (ID: " + id + ")");
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -333,8 +364,10 @@ public class turnos extends AppCompatActivity {
                     Toast.makeText(turnos.this, "Error al cargar profesionales", Toast.LENGTH_SHORT).show();
                     Log.e("Turnos", "Error: " + error.getMessage());
                 });
+
         requestQueue.add(jsonArrayRequest);
     }
+
 
     private void inicializarHorariosPorEspecialistaYFecha() {
         horariosPorEspecialistaYFecha = new HashMap<>();
