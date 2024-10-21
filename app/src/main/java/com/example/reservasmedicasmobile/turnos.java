@@ -89,7 +89,7 @@ public class turnos extends AppCompatActivity {
         inicializarHorariosPorEspecialistaYFecha();
 
         cargarEspecialidades();
-        cargarProfesionales();
+
 
 
         openDatePickerButton.setOnClickListener(v -> mostrarFechasDisponibles());
@@ -146,7 +146,23 @@ public class turnos extends AppCompatActivity {
             }
         });
 
+        specialtySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                Especialidad especialidadSeleccionada = (Especialidad) parentView.getItemAtPosition(position);
+                int especialidadId = especialidadSeleccionada.getId();
 
+                // Cargar los profesionales que pertenecen a la especialidad seleccionada
+                if (especialidadId != 0) {  // Asegurarse de no filtrar si es la opción por defecto
+                    cargarProfesionales(especialidadId);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // No hacer nada si no se selecciona ninguna especialidad
+            }
+        });
 
     }
 
@@ -248,10 +264,12 @@ public class turnos extends AppCompatActivity {
     public class Profesional {
         private int id;
         private String nombreCompleto;
+        private int especialidadId;
 
-        public Profesional(int id, String nombreCompleto) {
+        public Profesional(int id, String nombreCompleto, int especialidadId) {
             this.id = id;
             this.nombreCompleto = nombreCompleto;
+            this.especialidadId = especialidadId;
         }
 
         public int getId() {
@@ -260,6 +278,10 @@ public class turnos extends AppCompatActivity {
 
         public String getNombreCompleto() {
             return nombreCompleto;
+        }
+
+        public int getEspecialidadId() {
+            return especialidadId;
         }
 
         @Override
@@ -272,6 +294,7 @@ public class turnos extends AppCompatActivity {
 
     private void cargarEspecialidades() {
         String urlEspecialidades = "https://reservasmedicas.ddns.net/api/v1/especialidad/";
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 urlEspecialidades,
@@ -283,7 +306,7 @@ public class turnos extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject especialidad = response.getJSONObject(i);
-                            int id = especialidad.getInt("id");  // Suponiendo que el campo se llama "id"
+                            int id = especialidad.getInt("id");
                             String nombre = especialidad.getString("especialidad");
                             especialidadesList.add(new Especialidad(id, nombre));
                             Log.d("Turnos", "Especialidad cargada: " + nombre + " (ID: " + id + ")");
@@ -300,25 +323,33 @@ public class turnos extends AppCompatActivity {
                     Toast.makeText(turnos.this, "Error al cargar especialidades", Toast.LENGTH_SHORT).show();
                     Log.e("Turnos", "Error: " + error.getMessage());
                 });
+
         requestQueue.add(jsonArrayRequest);
     }
 
-    private void cargarProfesionales() {
+    private void cargarProfesionales(int especialidadId) {
         String urlProfesionales = "https://reservasmedicas.ddns.net/api/v1/profesionales/";
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 urlProfesionales,
                 null,
                 response -> {
                     ArrayList<Profesional> profesionalesList = new ArrayList<>();
-                    profesionalesList.add(new Profesional(0, "PROFESIONALES"));  // Opción por defecto
+                    profesionalesList.add(new Profesional(0, "PROFESIONALES", 0));  // Opción por defecto
 
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject profesional = response.getJSONObject(i);
-                            int id = profesional.getInt("id");  // Suponiendo que el campo se llama "id"
+                            int id = profesional.getInt("id");
                             String nombreCompleto = profesional.getString("nombre") + " " + profesional.getString("apellido");
-                            profesionalesList.add(new Profesional(id, nombreCompleto));
+                            int especialidad = profesional.getInt("especialidad");
+
+                            // Filtrar por especialidad
+                            if (especialidad == especialidadId) {
+                                profesionalesList.add(new Profesional(id, nombreCompleto, especialidad));
+                            }
+
                             Log.d("Turnos", "Profesional cargado: " + nombreCompleto + " (ID: " + id + ")");
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -333,13 +364,17 @@ public class turnos extends AppCompatActivity {
                     Toast.makeText(turnos.this, "Error al cargar profesionales", Toast.LENGTH_SHORT).show();
                     Log.e("Turnos", "Error: " + error.getMessage());
                 });
+
         requestQueue.add(jsonArrayRequest);
     }
+
 
     private void inicializarHorariosPorEspecialistaYFecha() {
         horariosPorEspecialistaYFecha = new HashMap<>();
 
         // Definir horarios por especialista y fechas en formato "yyyy-MM-dd"
+
+        // Horarios para Leandro Martinez
         Map<String, List<String>> horariosLeandro = new HashMap<>();
         horariosLeandro.put("2024-10-26", Arrays.asList("09:00", "11:00", "12:30"));
         horariosLeandro.put("2024-10-27", Arrays.asList("10:00", "12:00", "14:00"));
@@ -347,21 +382,53 @@ public class turnos extends AppCompatActivity {
         horariosLeandro.put("2024-10-29", Arrays.asList("11:30", "12:00", "13:30"));
         horariosPorEspecialistaYFecha.put("Leandro Martinez", horariosLeandro);
 
+        // Horarios para Camila Medina
         Map<String, List<String>> horariosCamila = new HashMap<>();
         horariosCamila.put("2024-10-26", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
         horariosCamila.put("2024-10-27", Arrays.asList("10:30", "13:00", "15:00"));
         horariosPorEspecialistaYFecha.put("Camila Medina", horariosCamila);
 
+        // Horarios para Juan Pedro García
         Map<String, List<String>> horariosJuan = new HashMap<>();
         horariosJuan.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
         horariosJuan.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
-        horariosPorEspecialistaYFecha.put("Juan Perez Garcia", horariosJuan);
+        horariosPorEspecialistaYFecha.put("Juan Pedro García", horariosJuan);
 
+        // Horarios para Nicolás Pérez Ruiz
         Map<String, List<String>> horariosNicolas = new HashMap<>();
         horariosNicolas.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
         horariosNicolas.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
         horariosPorEspecialistaYFecha.put("Nicolás Pérez Ruiz", horariosNicolas);
 
+        // Horarios para Claudia Allende
+        Map<String, List<String>> horariosClaudia = new HashMap<>();
+        horariosClaudia.put("2024-10-26", Arrays.asList("09:00", "10:30", "12:00"));
+        horariosClaudia.put("2024-10-27", Arrays.asList("09:30", "11:00", "13:00"));
+        horariosPorEspecialistaYFecha.put("Claudia Allende", horariosClaudia);
+
+        // Horarios para Martin Gomez
+        Map<String, List<String>> horariosMartin = new HashMap<>();
+        horariosMartin.put("2024-10-26", Arrays.asList("08:30", "10:00", "11:30"));
+        horariosMartin.put("2024-10-27", Arrays.asList("09:00", "10:30", "12:00"));
+        horariosPorEspecialistaYFecha.put("Martin Gomez", horariosMartin);
+
+        // Horarios para Raul Casas
+        Map<String, List<String>> horariosRaul = new HashMap<>();
+        horariosRaul.put("2024-10-26", Arrays.asList("08:00", "09:30", "11:00"));
+        horariosRaul.put("2024-10-27", Arrays.asList("09:00", "10:30", "12:00"));
+        horariosPorEspecialistaYFecha.put("Raul Casas", horariosRaul);
+
+        // Horarios para Rodrigo Cordoba
+        Map<String, List<String>> horariosRodrigo = new HashMap<>();
+        horariosRodrigo.put("2024-10-26", Arrays.asList("09:00", "10:30", "12:00"));
+        horariosRodrigo.put("2024-10-27", Arrays.asList("10:00", "11:30", "13:00"));
+        horariosPorEspecialistaYFecha.put("Rodrigo Cordoba", horariosRodrigo);
+
+        // Horarios para Mateo Lujan
+        Map<String, List<String>> horariosMateo = new HashMap<>();
+        horariosMateo.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
+        horariosMateo.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
+        horariosPorEspecialistaYFecha.put("Mateo Lujan", horariosMateo);
     }
 
 
