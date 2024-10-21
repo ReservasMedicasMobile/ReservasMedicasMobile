@@ -373,6 +373,8 @@ public class turnos extends AppCompatActivity {
         horariosPorEspecialistaYFecha = new HashMap<>();
 
         // Definir horarios por especialista y fechas en formato "yyyy-MM-dd"
+
+        // Horarios para Leandro Martinez
         Map<String, List<String>> horariosLeandro = new HashMap<>();
         horariosLeandro.put("2024-10-26", Arrays.asList("09:00", "11:00", "12:30"));
         horariosLeandro.put("2024-10-27", Arrays.asList("10:00", "12:00", "14:00"));
@@ -380,21 +382,53 @@ public class turnos extends AppCompatActivity {
         horariosLeandro.put("2024-10-29", Arrays.asList("11:30", "12:00", "13:30"));
         horariosPorEspecialistaYFecha.put("Leandro Martinez", horariosLeandro);
 
+        // Horarios para Camila Medina
         Map<String, List<String>> horariosCamila = new HashMap<>();
         horariosCamila.put("2024-10-26", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
         horariosCamila.put("2024-10-27", Arrays.asList("10:30", "13:00", "15:00"));
         horariosPorEspecialistaYFecha.put("Camila Medina", horariosCamila);
 
+        // Horarios para Juan Pedro García
         Map<String, List<String>> horariosJuan = new HashMap<>();
         horariosJuan.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
         horariosJuan.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
-        horariosPorEspecialistaYFecha.put("Juan Perez Garcia", horariosJuan);
+        horariosPorEspecialistaYFecha.put("Juan Pedro García", horariosJuan);
 
+        // Horarios para Nicolás Pérez Ruiz
         Map<String, List<String>> horariosNicolas = new HashMap<>();
         horariosNicolas.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
         horariosNicolas.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
         horariosPorEspecialistaYFecha.put("Nicolás Pérez Ruiz", horariosNicolas);
 
+        // Horarios para Claudia Allende
+        Map<String, List<String>> horariosClaudia = new HashMap<>();
+        horariosClaudia.put("2024-10-26", Arrays.asList("09:00", "10:30", "12:00"));
+        horariosClaudia.put("2024-10-27", Arrays.asList("09:30", "11:00", "13:00"));
+        horariosPorEspecialistaYFecha.put("Claudia Allende", horariosClaudia);
+
+        // Horarios para Martin Gomez
+        Map<String, List<String>> horariosMartin = new HashMap<>();
+        horariosMartin.put("2024-10-26", Arrays.asList("08:30", "10:00", "11:30"));
+        horariosMartin.put("2024-10-27", Arrays.asList("09:00", "10:30", "12:00"));
+        horariosPorEspecialistaYFecha.put("Martin Gomez", horariosMartin);
+
+        // Horarios para Raul Casas
+        Map<String, List<String>> horariosRaul = new HashMap<>();
+        horariosRaul.put("2024-10-26", Arrays.asList("08:00", "09:30", "11:00"));
+        horariosRaul.put("2024-10-27", Arrays.asList("09:00", "10:30", "12:00"));
+        horariosPorEspecialistaYFecha.put("Raul Casas", horariosRaul);
+
+        // Horarios para Rodrigo Cordoba
+        Map<String, List<String>> horariosRodrigo = new HashMap<>();
+        horariosRodrigo.put("2024-10-26", Arrays.asList("09:00", "10:30", "12:00"));
+        horariosRodrigo.put("2024-10-27", Arrays.asList("10:00", "11:30", "13:00"));
+        horariosPorEspecialistaYFecha.put("Rodrigo Cordoba", horariosRodrigo);
+
+        // Horarios para Mateo Lujan
+        Map<String, List<String>> horariosMateo = new HashMap<>();
+        horariosMateo.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
+        horariosMateo.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
+        horariosPorEspecialistaYFecha.put("Mateo Lujan", horariosMateo);
     }
 
 
