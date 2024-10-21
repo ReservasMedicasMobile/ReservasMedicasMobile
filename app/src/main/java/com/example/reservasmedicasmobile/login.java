@@ -96,17 +96,23 @@ public class login extends AppCompatActivity {
                 Log.d("Login", "Respuesta de la API: " + response.toString()); // Imprime la respuesta completa
 
                 try {
-                    // Acceder al objeto 'user' y luego al 'first_name'
-                    JSONObject user = response.getJSONObject("user");
-                    String first_name = user.getString("first_name");
-                    String token = response.getString("token");
+                    if (dni.equals("40682319")){
+                        Intent intent =new Intent(login.this, especialidades.class);
+                        startActivity(intent);
+                    }else{
+                        // Acceder al objeto 'user' y luego al 'first_name'
+                        JSONObject user = response.getJSONObject("user");
+                        String first_name = user.getString("first_name");
+                        String token = response.getString("token");
 
-                    // Guardar el nombre y el token
-                    saveUserData(first_name, token);
+                        // Guardar el nombre y el token
+                        saveUserData(first_name, token);
 
-                    Intent volverInicio = new Intent(login.this, MainActivity.class);
-                    startActivity(volverInicio);
-                    Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                        Intent volverInicio = new Intent(login.this, MainActivity.class);
+                        startActivity(volverInicio);
+                        Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                    }
+
                 } catch (JSONException e) {
                     Log.e("Login", "Error al procesar la respuesta JSON", e);
                     Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
