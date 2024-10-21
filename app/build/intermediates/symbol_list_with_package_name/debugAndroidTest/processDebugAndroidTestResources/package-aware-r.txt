@@ -1,3 +1,0 @@
-com.reservasmedicasmobile.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
