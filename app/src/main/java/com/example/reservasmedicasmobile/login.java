@@ -17,13 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.android.volley.Request;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.safetynet.SafetyNet;
-import com.google.android.gms.safetynet.SafetyNetApi;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,10 +26,6 @@ public class login extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private ApiRequest apiRequest;
-    private static final String YOUR_API_SITE_KEY = "6LcBemQqAAAAAPtnMfeTXjgM14q3wSrWEqotfEgH";
-    private static final String SECRET_KEY = "6LcBemQqAAAAAOsC2VJDWRVV10lzsiGUv3eUJKw2";
-
-    private int intentosFallidos = 0; // Variable para contar los intentos fallidos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +81,7 @@ public class login extends AppCompatActivity {
             return;
         }
 
+
         // Si los campos no están vacíos, iniciar sesión
         iniciarSesion(dni, contrasenia);
     }
@@ -126,16 +117,15 @@ public class login extends AppCompatActivity {
                     Log.e("Login", "Error al procesar la respuesta JSON", e);
                     Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
                 }
+            }
 
-                @Override
-                public void onError(VolleyError error) {
-                    // Incrementar intentos fallidos
-                    intentosFallidos++;
-                    String errorMessage = error.getMessage();
-                    Toast.makeText(login.this, "Error de inicio de sesión: " + errorMessage, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+            @Override
+            public void onError(VolleyError error) {
+                String errorMessage = error.getMessage();
+                Toast.makeText(login.this, "Error de inicio de sesión: " + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+        Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
     }
 
     private void saveUserData(String firstName, String token) {
@@ -145,6 +135,7 @@ public class login extends AppCompatActivity {
         editor.putString("auth_token", token);
         editor.putBoolean("is_logged_in", true);
         editor.apply();
+    }
 
 
 
