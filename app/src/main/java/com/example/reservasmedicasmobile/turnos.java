@@ -45,9 +45,8 @@ public class turnos extends AppCompatActivity {
 
 
     private RequestQueue requestQueue;
-    private String horaSeleccionada = ""; // Inicialmente vacío
-    private String fechaSeleccionada = ""; // Inicialmente vacío
-
+    private String fechaSeleccionada = "";
+    private String horaSeleccionada = "";
     private Map<String, Map<String, List<String>>> horariosPorEspecialistaYFecha;
 
     @Override
@@ -80,7 +79,7 @@ public class turnos extends AppCompatActivity {
 
         cargarEspecialidades();
         cargarProfesionales();
-        obtenerPacientes();
+
 
         openDatePickerButton.setOnClickListener(v -> mostrarFechasDisponibles());
 
@@ -145,94 +144,29 @@ public class turnos extends AppCompatActivity {
     }
 
 
-    public class Paciente {
-        private int id;
-        private String nombre;
-
-        public Paciente(int id, String nombre) {
-            this.id = id;
-            this.nombre = nombre;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public String getNombre() {
-            return nombre;
-        }
-    }
 
 
-
-    private List<Paciente> listaPacientes = new ArrayList<>(); // Lista para almacenar pacientes
-
-    private void obtenerPacientes() {
-        String url = "https://reservasmedicas.ddns.net/api/v1/paciente/"; // URL de la API para obtener pacientes
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                response -> {
-                    try {
-                        // Limpiar la lista antes de agregar nuevos pacientes
-                        listaPacientes.clear();
-
-                        // Recorrer la respuesta JSON y agregar pacientes a la lista
-                        for (int i = 0; i < response.length(); i++) {
-                            JSONObject pacienteJson = response.getJSONObject(i);
-                            int id = pacienteJson.getInt("id");
-                            String nombre = pacienteJson.getString("nombre");
-                            // Crea un objeto Paciente y añádelo a la lista
-                            listaPacientes.add(new Paciente(id, nombre));
-                        }
-                    } catch (JSONException e) {
-                        Log.e("ObtenerPacientes", "Error al parsear la respuesta: ", e);
-                    }
-                },
-                error -> {
-                    Toast.makeText(turnos.this, "Error al obtener pacientes: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-
-        // Agregar la solicitud a la cola
-        requestQueue.add(jsonArrayRequest);
-    }
 
     private void crearTurno() {
-        // Crear un objeto JSON para el turno
         JSONObject turnoData = new JSONObject();
         try {
-            // Obtener un paciente aleatorio de la lista
-            if (listaPacientes.isEmpty()) {
-                Toast.makeText(turnos.this, "No hay pacientes disponibles.", Toast.LENGTH_SHORT).show();
-                return;
-            }
+            // Valores hardcodeados
+            int pacienteId = 2; // ID del paciente
 
-            // Seleccionar un paciente aleatorio
-            Paciente pacienteAleatorio = listaPacientes.get(new Random().nextInt(listaPacientes.size()));
-            int pacienteId = pacienteAleatorio.getId(); // ID del paciente aleatorio
-
-            // Obtener el objeto seleccionado del Spinner y sus respectivos IDs
             Profesional profesionalSeleccionado = (Profesional) professionalSpinner.getSelectedItem();
             Especialidad especialidadSeleccionada = (Especialidad) specialtySpinner.getSelectedItem();
 
-            // Obtener el ID del profesional y la especialidad seleccionada
             int profesionalId = profesionalSeleccionado.getId();
             int especialidadId = especialidadSeleccionada.getId();
 
+            String horaSeleccionada = "10:00"; // Hora hardcodeada
+            String fechaSeleccionada = "2024-10-20"; // Fecha hardcodeada (ajusta según tu formato)
 
             // Validar que los IDs no sean 0 (en caso de que hayas definido una opción por defecto con ID 0)
             if (profesionalId == 0 || especialidadId == 0) {
                 Toast.makeText(turnos.this, "Error: profesional o especialidad no válida.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (fechaSeleccionada.isEmpty() || horaSeleccionada.isEmpty()) {
-                Toast.makeText(this, "Por favor selecciona una fecha y una hora", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Aquí puedes proceder a crear el turno con la fecha y hora seleccionadas
-            String mensajeTurno = "Turno creado para el " + fechaSeleccionada + " a las " + horaSeleccionada;
-            Toast.makeText(this, mensajeTurno, Toast.LENGTH_SHORT).show();
-
             // Crear el objeto JSON para el turno
             turnoData.put("paciente", pacienteId);
             turnoData.put("profesional", profesionalId);
@@ -247,6 +181,7 @@ public class turnos extends AppCompatActivity {
         }
 
         Log.d("Turno", "Creando turno: " + turnoData.toString());
+
         // Crear la solicitud JSON
         String url = "https://reservasmedicas.ddns.net/api/v1/turnos/";
 
@@ -269,12 +204,10 @@ public class turnos extends AppCompatActivity {
             }
         };
 
-        // Establecer el tiempo de espera
         int socketTimeout = 30000; // 30 segundos
         DefaultRetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
 
-        // Agregar la solicitud a la cola
         requestQueue.add(jsonObjectRequest);
     }
 
@@ -397,23 +330,29 @@ public class turnos extends AppCompatActivity {
 
         // Definir horarios por especialista y fechas en formato "yyyy-MM-dd"
         Map<String, List<String>> horariosLeandro = new HashMap<>();
-        horariosLeandro.put("2024-10-23", Arrays.asList("09:00", "11:00", "12:30"));
-        horariosLeandro.put("2024-10-24", Arrays.asList("10:00", "12:00", "14:00"));
-        horariosLeandro.put("2024-10-26", Arrays.asList("11:00", "11:30", "13:00"));
-        horariosLeandro.put("2024-11-02", Arrays.asList("11:30", "12:00", "13:30"));
+        horariosLeandro.put("2024-10-26", Arrays.asList("09:00", "11:00", "12:30"));
+        horariosLeandro.put("2024-10-27", Arrays.asList("10:00", "12:00", "14:00"));
+        horariosLeandro.put("2024-10-28", Arrays.asList("11:00", "11:30", "13:00"));
+        horariosLeandro.put("2024-10-29", Arrays.asList("11:30", "12:00", "13:30"));
         horariosPorEspecialistaYFecha.put("Leandro Martinez", horariosLeandro);
 
         Map<String, List<String>> horariosCamila = new HashMap<>();
-        horariosCamila.put("2024-11-11", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
-        horariosCamila.put("2024-11-01", Arrays.asList("10:30", "13:00", "15:00"));
-        horariosCamila.put("2024-11-22", Arrays.asList("10:30", "13:00", "15:00"));
+        horariosCamila.put("2024-10-26", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
+        horariosCamila.put("2024-10-27", Arrays.asList("10:30", "13:00", "15:00"));
         horariosPorEspecialistaYFecha.put("Camila Medina", horariosCamila);
 
         Map<String, List<String>> horariosJuan = new HashMap<>();
-        horariosJuan.put("2024-10-10", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
-        horariosJuan.put("2024-10-11", Arrays.asList("14:30", "15:00", "16:30"));
+        horariosJuan.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
+        horariosJuan.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
         horariosPorEspecialistaYFecha.put("Juan Perez Garcia", horariosJuan);
+
+        Map<String, List<String>> horariosNicolas = new HashMap<>();
+        horariosNicolas.put("2024-10-25", Arrays.asList("14:00", "15:30", "16:00", "17:30"));
+        horariosNicolas.put("2024-10-26", Arrays.asList("14:30", "15:00", "16:30"));
+        horariosPorEspecialistaYFecha.put("Nicolás Pérez Ruiz", horariosNicolas);
+
     }
+
 
     private void mostrarFechasDisponibles() {
         String especialistaSeleccionado = professionalSpinner.getSelectedItem().toString();
@@ -459,7 +398,6 @@ public class turnos extends AppCompatActivity {
             fechaSeleccionada = fechasDisponibles.get(position);
             openDatePickerButton.setText("Fecha: " + fechaSeleccionada);
         });
-
 
         builder.setNegativeButton("Cancelar", null);
         builder.setPositiveButton("Seleccionar", (dialog, which) -> {

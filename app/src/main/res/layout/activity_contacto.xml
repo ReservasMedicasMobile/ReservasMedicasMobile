@@ -17,39 +17,34 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Botón personalizado de retroceso -->
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackground"
-            android:src="@drawable/retroceso"
-            android:contentDescription="Volver"
-            android:tint="@android:color/white" />
+    <!-- Título "Contacto" -->
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#151635"
+        android:gravity="center"
+        android:text="Contacto"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Contacto"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
-
-    <!-- Campos del formulario -->
     <EditText
         android:id="@+id/etFirstName"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:hint="Nombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/titulo" />
 
     <EditText
         android:id="@+id/etLastName"
@@ -88,7 +83,7 @@
         android:id="@+id/spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="20dp"
         app:layout_constraintTop_toBottomOf="@+id/etPhoneNumber"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -97,19 +92,26 @@
     <EditText
         android:id="@+id/etMessage"
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_margin="16dp"
+        android:layout_height="130dp"
+        android:layout_margin="25dp"
+        android:padding="10dp"
         android:hint="Mensaje"
+        android:background="@drawable/rectangle_background"
+        android:drawablePadding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Botón Enviar -->
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:contentDescription="Enviar formulario"
         android:text="Enviar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,4 +142,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
 
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:backgroundTint="@color/azul"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/colorGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
