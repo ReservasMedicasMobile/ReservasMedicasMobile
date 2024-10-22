@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
@@ -21,6 +22,8 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import android.util.Log;  // Importar la clase Log
 import java.util.HashMap;
 import java.util.Map;
@@ -51,10 +54,6 @@ public class registro extends AppCompatActivity {
         registerBtn = findViewById(R.id.inicio_btn);
         backButton = findViewById(R.id.back_button); // Inicializar el botón
 
-        // Configurar el botón de retroceso
-        backButton.setOnClickListener(v -> {
-            finish(); // Cierra la actividad y vuelve a la anterior
-        });
 
         // Configurar el botón de registro
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -67,8 +66,39 @@ public class registro extends AppCompatActivity {
             }
         });
 
+        // Configurar BottomNavigationView
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(registro.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_turnos) {
+                Intent intent = new Intent(registro.this, turnos.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_perfil) {
+                Intent intent = new Intent(registro.this, dashboard.class);
+                startActivity(intent);
+                return true;
+            } else {
+                return false;
+            }
+        });
+
         // Establecer filtros de entrada para el DNI
         usernameInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
+
+
+        // Link a registro
+        TextView login1 = findViewById(R.id.login1);
+        login1.setOnClickListener(v -> {
+            Intent intent = new Intent(registro.this, login.class);
+            startActivity(intent);
+        });
+
     }
 
     public void VolverInicio(View view) {
@@ -113,7 +143,7 @@ public class registro extends AppCompatActivity {
             last_nameInput.setError("El apellido solo puede contener letras y espacios");
             return;
         }
-        
+
         // Validar correo electrónico
         if (TextUtils.isEmpty(email)) {
             emailInput.setError("El correo electrónico es obligatorio");
@@ -134,22 +164,22 @@ public class registro extends AppCompatActivity {
 
         System.out.println("pase la validacion ");
 
-       String url = "https://reservasmedicas.ddns.net/register/";
+        String url = "https://reservasmedicas.ddns.net/register/";
 
-            JSONObject jsonBody = new JSONObject();
-            try {
-                jsonBody.put("username", username);
-                jsonBody.put("first_name", first_name);
-                jsonBody.put("last_name", last_name);
-                jsonBody.put("email", email);
-                jsonBody.put("password", password);
-            } catch (JSONException e) {
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("username", username);
+            jsonBody.put("first_name", first_name);
+            jsonBody.put("last_name", last_name);
+            jsonBody.put("email", email);
+            jsonBody.put("password", password);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         String jsonString = jsonBody.toString();
         Log.d("JSON Request", jsonString);  // Imprime el JSON en los logs
 
-    int timeoutMs = 10000;
+        int timeoutMs = 10000;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 response -> {
@@ -210,17 +240,16 @@ public class registro extends AppCompatActivity {
             }
         };
 
-
         jsonObjectRequest.setRetryPolicy(new
-    DefaultRetryPolicy(
-            timeoutMs,
-            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-    ));
+                DefaultRetryPolicy(
+                timeoutMs,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
 
-VolleySingleton.getInstance(this).
-    addToRequestQueue(jsonObjectRequest);
-}
+        VolleySingleton.getInstance(this).
+                addToRequestQueue(jsonObjectRequest);
+    }
 
     // Limpiar el formulario después de un registro exitoso
     private void clearForm() {
@@ -232,7 +261,7 @@ VolleySingleton.getInstance(this).
     }
 
 
-        private boolean isPasswordValid(String password) {
+    private boolean isPasswordValid(String password) {
         // La contraseña debe tener entre 8 y 16 caracteres, e incluir al menos un número, un símbolo y una letra mayúscula
         return password.length() >= 8 && password.length() <= 16
                 && password.matches(".*[0-9].*") // Al menos un número
