@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import java.util.Date;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +45,6 @@ public class turnos extends AppCompatActivity {
     private Button openTimePickerButton;
     private Button timeSlotButton;
 
-
     private RequestQueue requestQueue;
     private String fechaSeleccionada = "";
     private String horaSeleccionada = "";
@@ -62,17 +62,14 @@ public class turnos extends AppCompatActivity {
             // Redirigir a la pantalla de login si no está logueado
             Intent intent = new Intent(turnos.this, login.class);
             startActivity(intent);
-            finish(); // Cierra esta actividad para que no quede en el historial
+            finish();
         } else {
             // El usuario está logueado, continuar cargando la actividad
             setContentView(R.layout.activity_turnos);
-            // Tu código para inicializar los elementos de la actividad...
         }
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
-
 
         specialtySpinner = findViewById(R.id.spinner_specialty);
         professionalSpinner = findViewById(R.id.spinner_professional);
@@ -80,20 +77,14 @@ public class turnos extends AppCompatActivity {
         openTimePickerButton = findViewById(R.id.button_open_time_picker);
         timeSlotButton = findViewById(R.id.button_time_slot);
 
-
         // Inicializar Volley
         requestQueue = Volley.newRequestQueue(this);
 
-
         requestQueue = Volley.newRequestQueue(this);
-
-
 
         inicializarHorariosPorEspecialistaYFecha();
 
         cargarEspecialidades();
-
-
 
         openDatePickerButton.setOnClickListener(v -> mostrarFechasDisponibles());
 
@@ -172,10 +163,6 @@ public class turnos extends AppCompatActivity {
     private void redirectToLogin() {
         Toast.makeText(this, "No estás autenticado. Inicia sesión.", Toast.LENGTH_SHORT).show();
     }
-
-
-
-
 
     private void crearTurno() {
         JSONObject turnoData = new JSONObject();
@@ -293,8 +280,6 @@ public class turnos extends AppCompatActivity {
         }
     }
 
-
-
     private void cargarEspecialidades() {
         String urlEspecialidades = "https://reservasmedicas.ddns.net/api/v1/especialidad/";
 
@@ -370,7 +355,6 @@ public class turnos extends AppCompatActivity {
 
         requestQueue.add(jsonArrayRequest);
     }
-
 
     private void inicializarHorariosPorEspecialistaYFecha() {
         horariosPorEspecialistaYFecha = new HashMap<>();

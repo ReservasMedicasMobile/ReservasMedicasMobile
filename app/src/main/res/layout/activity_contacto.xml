@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".contacto">
 
-    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -40,6 +39,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:textSize="20sp"
         android:hint="Nombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
+        android:textSize="20sp"
         android:hint="Apellido"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,39 +61,40 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
+        android:textSize="20sp"
         android:hint="Correo electrónico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etLastName" />
 
-    <!-- Campo de Número de Teléfono -->
     <EditText
         android:id="@+id/etPhoneNumber"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
+        android:textSize="20sp"
         android:hint="Número de teléfono"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
-    <!-- Spinner -->
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/etPhoneNumber"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Campo de Mensaje -->
     <EditText
         android:id="@+id/etMessage"
         android:layout_width="0dp"
         android:layout_height="130dp"
         android:layout_margin="25dp"
+        android:textSize="20sp"
         android:padding="10dp"
         android:hint="Mensaje"
         android:background="@drawable/rectangle_background"
@@ -101,15 +103,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Botón Enviar -->
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="260dp"
-        android:layout_height="65dp"
+        android:layout_width="290dp"
+        android:layout_height="68dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:contentDescription="Enviar formulario"
         android:text="Enviar"
@@ -141,7 +142,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
 
-    <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

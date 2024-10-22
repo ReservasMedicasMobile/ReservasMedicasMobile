@@ -56,7 +56,7 @@ public class contacto extends AppCompatActivity {
 
         // Configuración de las opciones del Spinner
         String[] opciones = {"Tipo de consulta", "Sugerencia", "Reclamo"};
-        ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
+        ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(contacto.this, R.layout.spinner_item_contacto, opciones);
         opcionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOpcion.setAdapter(opcionAdapter);
 
@@ -211,7 +211,7 @@ public class contacto extends AppCompatActivity {
         spinnerOpcion.setSelection(0); // Volver a la primera opción del Spinner ("Seleccionar")
 
         // Cambiar el texto del botón
-        btnSubmit.setText("Pronto nos comunicaremos con usted");
+        btnSubmit.setText("Pronto nos comunicaremos");
         // Usar un Handler para restaurar el texto original después de 2 segundos
         new android.os.Handler().postDelayed(() -> {
             btnSubmit.setText("Enviar");
