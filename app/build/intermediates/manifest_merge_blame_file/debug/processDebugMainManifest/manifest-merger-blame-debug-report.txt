@@ -10,206 +10,215 @@
 10
 11    <!-- Permisos necesarios -->
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:7:5-67
-12-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:7:22-64
-13    <uses-permission android:name="android.permission.INTERNET" />
-13-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:7:5-67
-13-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:7:22-64
-14
-15    <permission
-15-->[androidx.core:core:1.13.0] C:\Users\leand\.gradle\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
-16        android:name="com.example.reservasmedicasmobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-16-->[androidx.core:core:1.13.0] C:\Users\leand\.gradle\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
-17        android:protectionLevel="signature" />
-17-->[androidx.core:core:1.13.0] C:\Users\leand\.gradle\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
-18
-19    <uses-permission android:name="com.example.reservasmedicasmobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-19-->[androidx.core:core:1.13.0] C:\Users\leand\.gradle\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
-19-->[androidx.core:core:1.13.0] C:\Users\leand\.gradle\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
-20
-21    <application
-21-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:11:5-69:19
-22        android:allowBackup="true"
-22-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:13:9-35
-23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-23-->[androidx.core:core:1.13.0] C:\Users\leand\.gradle\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
-24        android:dataExtractionRules="@xml/data_extraction_rules"
-24-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:14:9-65
-25        android:debuggable="true"
-26        android:extractNativeLibs="true"
-27        android:fullBackupContent="@xml/backup_rules"
-27-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:15:9-54
-28        android:icon="@mipmap/ic_logo_rmm"
-28-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:16:9-43
-29        android:label="Reservas Medicas Mobile"
-29-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:17:9-48
-30        android:networkSecurityConfig="@xml/network_security_config"
-30-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:12:9-69
-31        android:roundIcon="@mipmap/ic_logo_rmm"
-31-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:18:9-48
-32        android:supportsRtl="true"
-32-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:19:9-35
-33        android:testOnly="true"
-34        android:theme="@style/Theme.ReservasMedicasMobile"
-34-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:20:9-59
-35        android:usesCleartextTraffic="true" >
-35-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:21:9-44
-36
-37        <!-- Lista de actividades -->
+12-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:7:5-67
+12-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:7:22-64
+13
+14    <permission
+14-->[androidx.core:core:1.13.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+15        android:name="com.example.reservasmedicasmobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+15-->[androidx.core:core:1.13.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+16        android:protectionLevel="signature" />
+16-->[androidx.core:core:1.13.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+17
+18    <uses-permission android:name="com.example.reservasmedicasmobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+18-->[androidx.core:core:1.13.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+18-->[androidx.core:core:1.13.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+19
+20    <application
+20-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:9:5-76:19
+21        android:allowBackup="true"
+21-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:11:9-35
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.13.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\86d9038db12d1e39dee8fefb6f35daac\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+23        android:dataExtractionRules="@xml/data_extraction_rules"
+23-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:12:9-65
+24        android:debuggable="true"
+25        android:extractNativeLibs="true"
+26        android:fullBackupContent="@xml/backup_rules"
+26-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:13:9-54
+27        android:icon="@mipmap/ic_logo_rmm"
+27-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:14:9-43
+28        android:label="Reservas Medicas Mobile"
+28-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:15:9-48
+29        android:networkSecurityConfig="@xml/network_security_config"
+29-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:10:9-69
+30        android:roundIcon="@mipmap/ic_logo_rmm"
+30-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:16:9-48
+31        android:supportsRtl="true"
+31-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:17:9-35
+32        android:testOnly="true"
+33        android:theme="@style/Theme.ReservasMedicasMobile"
+33-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:18:9-59
+34        android:usesCleartextTraffic="true" >
+34-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:19:9-44
+35
+36        <!-- Lista de actividades -->
+37
 38        <activity
-38-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:25:9-27:39
+38-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:24:9-27:51
 39            android:name="com.example.reservasmedicasmobile.especialidades"
-39-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:26:13-43
-40            android:exported="true" />
-40-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:27:13-36
-41        <activity
-41-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:28:9-30:39
-42            android:name="com.example.reservasmedicasmobile.menudeopciones"
-42-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:29:13-43
-43            android:exported="true" />
-43-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:30:13-36
-44        <activity
-44-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:31:9-33:39
-45            android:name="com.example.reservasmedicasmobile.medicos"
-45-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:32:13-36
-46            android:exported="true" />
-46-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:33:13-36
-47        <activity
-47-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:34:9-36:39
-48            android:name="com.example.reservasmedicasmobile.servicios"
-48-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:35:13-38
-49            android:exported="true" />
-49-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:36:13-36
+39-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:25:13-43
+40            android:exported="true"
+40-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:26:13-36
+41            android:screenOrientation="portrait" />
+41-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:27:13-49
+42        <activity
+42-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:29:9-32:51
+43            android:name="com.example.reservasmedicasmobile.pacientes"
+43-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:30:13-38
+44            android:exported="true"
+44-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:31:13-36
+45            android:screenOrientation="portrait" />
+45-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:32:13-49
+46        <activity
+46-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:33:9-36:51
+47            android:name="com.example.reservasmedicasmobile.menudeopciones"
+47-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:34:13-43
+48            android:exported="true"
+48-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:35:13-36
+49            android:screenOrientation="portrait" />
+49-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:36:13-49
 50        <activity
-50-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:37:9-39:39
-51            android:name="com.example.reservasmedicasmobile.turnos"
-51-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:38:13-35
-52            android:exported="true" />
-52-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:39:13-36
-53        <activity
-53-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:40:9-42:39
-54            android:name="com.example.reservasmedicasmobile.contacto"
-54-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:41:13-37
-55            android:exported="true" />
-55-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:42:13-36
-56        <activity
-56-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:43:9-45:39
-57            android:name="com.example.reservasmedicasmobile.dashboard"
-57-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:44:13-38
-58            android:exported="true" />
-58-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:45:13-36
-59        <activity
-59-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:46:9-48:39
-60            android:name="com.example.reservasmedicasmobile.registro"
-60-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:47:13-37
-61            android:exported="true" />
-61-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:48:13-36
+50-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:37:9-40:51
+51            android:name="com.example.reservasmedicasmobile.medicos"
+51-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:38:13-36
+52            android:exported="true"
+52-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:39:13-36
+53            android:screenOrientation="portrait" />
+53-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:40:13-49
+54        <activity
+54-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:41:9-44:51
+55            android:name="com.example.reservasmedicasmobile.servicios"
+55-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:42:13-38
+56            android:exported="true"
+56-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:43:13-36
+57            android:screenOrientation="portrait" />
+57-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:44:13-49
+58        <activity
+58-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:45:9-48:51
+59            android:name="com.example.reservasmedicasmobile.turnos"
+59-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:46:13-35
+60            android:exported="true"
+60-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:47:13-36
+61            android:screenOrientation="portrait" />
+61-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:48:13-49
 62        <activity
-62-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:49:9-51:39
-63            android:name="com.example.reservasmedicasmobile.login"
-63-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:50:13-34
-64            android:exported="true" />
-64-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:51:13-36
-65        <activity
-65-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:52:9-59:20
-66            android:name="com.example.reservasmedicasmobile.ApiTestActivity"
-66-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:53:13-44
-67            android:exported="true" >
-67-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:54:13-36
-68            <intent-filter>
-68-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:55:13-58:29
-69                <action android:name="android.intent.action.MAIN" />
-69-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:56:17-69
-69-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:56:25-66
-70
-71                <category android:name="android.intent.category.LAUNCHER" />
-71-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:57:17-77
-71-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:57:27-74
-72            </intent-filter>
-73        </activity>
+62-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:49:9-52:51
+63            android:name="com.example.reservasmedicasmobile.contacto"
+63-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:50:13-37
+64            android:exported="true"
+64-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:51:13-36
+65            android:screenOrientation="portrait" />
+65-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:52:13-49
+66        <activity
+66-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:53:9-56:51
+67            android:name="com.example.reservasmedicasmobile.dashboard"
+67-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:54:13-38
+68            android:exported="true"
+68-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:55:13-36
+69            android:screenOrientation="portrait" />
+69-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:56:13-49
+70        <activity
+70-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:57:9-60:51
+71            android:name="com.example.reservasmedicasmobile.registro"
+71-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:58:13-37
+72            android:exported="true"
+72-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:59:13-36
+73            android:screenOrientation="portrait" />
+73-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:60:13-49
 74        <activity
-74-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:60:9-68:20
-75            android:name="com.example.reservasmedicasmobile.MainActivity"
-75-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:61:13-41
-76            android:exported="true" >
-76-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:62:13-36
-77            <intent-filter>
-77-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:55:13-58:29
-78                <action android:name="android.intent.action.MAIN" />
-78-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:56:17-69
-78-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:56:25-66
-79
-80                <category android:name="android.intent.category.LAUNCHER" />
-80-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:57:17-77
-80-->C:\Users\leand\OneDrive\Escritorio\repo\ReservasMedicasMobile\app\src\main\AndroidManifest.xml:57:27-74
-81            </intent-filter>
-82        </activity>
-83
-84        <provider
-84-->[androidx.emoji2:emoji2:1.3.0] C:\Users\leand\.gradle\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-85            android:name="androidx.startup.InitializationProvider"
-85-->[androidx.emoji2:emoji2:1.3.0] C:\Users\leand\.gradle\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-86            android:authorities="com.example.reservasmedicasmobile.androidx-startup"
-86-->[androidx.emoji2:emoji2:1.3.0] C:\Users\leand\.gradle\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
-87            android:exported="false" >
-87-->[androidx.emoji2:emoji2:1.3.0] C:\Users\leand\.gradle\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
-88            <meta-data
-88-->[androidx.emoji2:emoji2:1.3.0] C:\Users\leand\.gradle\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-89                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-89-->[androidx.emoji2:emoji2:1.3.0] C:\Users\leand\.gradle\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-90                android:value="androidx.startup" />
-90-->[androidx.emoji2:emoji2:1.3.0] C:\Users\leand\.gradle\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
-91            <meta-data
-91-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\leand\.gradle\caches\transforms-4\5360457336bca4aefce6e0fc2165be25\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
-92                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-92-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\leand\.gradle\caches\transforms-4\5360457336bca4aefce6e0fc2165be25\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
-93                android:value="androidx.startup" />
-93-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\leand\.gradle\caches\transforms-4\5360457336bca4aefce6e0fc2165be25\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
-94            <meta-data
-94-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
-95                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-95-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
-96                android:value="androidx.startup" />
-96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
-97        </provider>
-98
-99        <receiver
-99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
-100            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-100-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
-101            android:directBootAware="false"
-101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
-102            android:enabled="true"
-102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
-103            android:exported="true"
-103-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
-104            android:permission="android.permission.DUMP" >
-104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
-105            <intent-filter>
-105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
-106                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
-106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
-107            </intent-filter>
-108            <intent-filter>
-108-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
-109                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-109-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
-109-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
-110            </intent-filter>
-111            <intent-filter>
-111-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
-112                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-112-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
-112-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
-113            </intent-filter>
-114            <intent-filter>
-114-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
-115                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-115-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
-115-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\leand\.gradle\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
-116            </intent-filter>
-117        </receiver>
-118    </application>
-119
-120</manifest>
+74-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:61:9-64:51
+75            android:name="com.example.reservasmedicasmobile.login"
+75-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:62:13-34
+76            android:exported="true"
+76-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:63:13-36
+77            android:screenOrientation="portrait" />
+77-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:64:13-49
+78        <activity
+78-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:66:9-75:20
+79            android:name="com.example.reservasmedicasmobile.MainActivity"
+79-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:67:13-41
+80            android:exported="true"
+80-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:68:13-36
+81            android:screenOrientation="portrait" >
+81-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:69:13-49
+82            <intent-filter>
+82-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:70:13-74:29
+83                <action android:name="android.intent.action.MAIN" />
+83-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:71:17-69
+83-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:71:25-66
+84
+85                <category android:name="android.intent.category.LAUNCHER" />
+85-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:73:17-77
+85-->C:\Users\Monica\AndroidStudioProjects\RMM\app\src\main\AndroidManifest.xml:73:27-74
+86            </intent-filter>
+87        </activity>
+88
+89        <provider
+89-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+90            android:name="androidx.startup.InitializationProvider"
+90-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+91            android:authorities="com.example.reservasmedicasmobile.androidx-startup"
+91-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+92            android:exported="false" >
+92-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+93            <meta-data
+93-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+94                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+94-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+95                android:value="androidx.startup" />
+95-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\d565363563c4c258a81a89d5a8d276a6\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+96            <meta-data
+96-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\5360457336bca4aefce6e0fc2165be25\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+97                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+97-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\5360457336bca4aefce6e0fc2165be25\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+98                android:value="androidx.startup" />
+98-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\5360457336bca4aefce6e0fc2165be25\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+99            <meta-data
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+100                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+101                android:value="androidx.startup" />
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+102        </provider>
+103
+104        <receiver
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+105            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+106            android:directBootAware="false"
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+107            android:enabled="true"
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+108            android:exported="true"
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+109            android:permission="android.permission.DUMP" >
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+110            <intent-filter>
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+111                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+112            </intent-filter>
+113            <intent-filter>
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+114                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+115            </intent-filter>
+116            <intent-filter>
+116-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+117                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+118            </intent-filter>
+119            <intent-filter>
+119-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+120                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Monica\Documents\GitHub\ReservasMedicasMobile\caches\transforms-4\8de4ee4284a7ec1110d7f1f109b93a3d\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+121            </intent-filter>
+122        </receiver>
+123    </application>
+124
+125</manifest>

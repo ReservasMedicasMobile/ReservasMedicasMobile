@@ -3081,6 +3081,7 @@ drawable material_ic_keyboard_arrow_previous_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
+drawable medico_desenfoque
 drawable mtrl_bottomsheet_drag_handle
 drawable mtrl_checkbox_button
 drawable mtrl_checkbox_button_checked_unchecked
@@ -3132,6 +3133,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable rectangle_background
 drawable retroceso
 drawable rounded_button
 drawable rounded_corner
@@ -3225,7 +3227,6 @@ id animateToStart
 id announcement_text
 id antiClockwise
 id anticipate
-id api_test_text
 id arc
 id asConfigured
 id async
@@ -3247,10 +3248,13 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btn
 id btnBack
+id btnSubmi
 id btnSubmit
 id btn_contacto
 id btn_dashboard
+id btn_datos_paciente
 id btn_login
 id btn_logout
 id btn_registro
@@ -3258,6 +3262,7 @@ id btn_servicios
 id btn_turnos
 id buttonEnviarEspecialidad
 id buttonPanel
+id button_container
 id button_open_date_picker
 id button_open_time_picker
 id button_time_slot
@@ -3351,11 +3356,16 @@ id endToStart
 id enterAlways
 id enterAlwaysCollapsed
 id escape
+id etApellido
+id etCorreo
+id etDni
 id etEmail
 id etFirstName
 id etLastName
 id etMessage
+id etNombreCompleto
 id etPhoneNumber
+id etTelefono
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -3401,6 +3411,8 @@ id image
 id image1
 id image2
 id image3
+id imagen
+id imageperfil
 id immediateStop
 id included
 id indeterminate
@@ -3455,6 +3467,7 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
+id mensaje_saludo
 id message
 id middle
 id mini
@@ -3489,7 +3502,6 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
-id myImageView
 id nameTextView
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
@@ -3606,6 +3618,7 @@ id south
 id spacer
 id special_effects_controller_view_tag
 id spinner
+id spinner_obraSocial
 id spinner_professional
 id spinner_specialty
 id spline
@@ -3617,6 +3630,7 @@ id square
 id src_atop
 id src_in
 id src_over
+id sroll
 id standard
 id start
 id startHorizontal
@@ -3652,7 +3666,6 @@ id textStart
 id textTop
 id textView
 id textView3
-id textViewEspecialidades
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3670,11 +3683,11 @@ id title2
 id title3
 id titleDividerNoCustom
 id title_template
+id titulo
 id toggle
 id toolbar
 id toolbar_title
 id top
-id topLayout
 id topPanel
 id touch_outside
 id transitionToEnd
@@ -3830,7 +3843,6 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_api_test
 layout activity_contacto
 layout activity_dashboard
 layout activity_especialidades
@@ -3838,6 +3850,7 @@ layout activity_login
 layout activity_main
 layout activity_medicos
 layout activity_menu_de_opciones
+layout activity_pacientes
 layout activity_registro
 layout activity_servicios
 layout activity_turnos
@@ -3939,6 +3952,7 @@ mipmap ic_logormm
 mipmap ic_logormm_foreground
 mipmap ic_logormm_round
 plurals mtrl_badge_content_description
+string Paciente
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -4119,6 +4133,7 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string profesional
 string reservar_turno
+string saludo
 string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description

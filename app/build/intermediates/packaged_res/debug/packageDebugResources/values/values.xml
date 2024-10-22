@@ -34,6 +34,7 @@
     <item name="etLastName" type="id"/>
     <item name="etMessage" type="id"/>
     <item name="etPhoneNumber" type="id"/>
+    <string name="Paciente">Agregar Datos Personales</string>
     <string name="account">¿Aún no tenés cuenta?</string>
     <string name="agende">Agende su turno médico</string>
     <string name="app_name">ReservasMedicasMobile</string>
@@ -55,6 +56,7 @@
     <string name="passwordhint">Ingrese su contraseña</string>
     <string name="profesional">Profesional</string>
     <string name="reservar_turno">Reservar Turno</string>
+    <string name="saludo">Hola, %s</string>
     <string name="seleccionar_Fecha">Seleccionar Fecha</string>
     <string name="seleccionar_Horario">Seleccionar Horario</string>
     <string name="singup">Registrar Usuario</string>
