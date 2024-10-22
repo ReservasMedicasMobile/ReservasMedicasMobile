@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.reservasmedicasmobile.app-mergeDebugResources-29:/values-port/values-port.xml",
+            "outputFile": "com.example.reservasmedicasmobile.app-mergeDebugResources-2:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\leand\\.gradle\\caches\\transforms-4\\3dabf4e68f4a2cb2defe9cd46d20b97c\\transformed\\appcompat-1.7.0\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\Monica\\Documents\\GitHub\\ReservasMedicasMobile\\caches\\transforms-4\\3dabf4e68f4a2cb2defe9cd46d20b97c\\transformed\\appcompat-1.7.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

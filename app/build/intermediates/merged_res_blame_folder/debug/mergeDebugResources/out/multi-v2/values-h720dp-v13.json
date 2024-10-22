@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.reservasmedicasmobile.app-mergeDebugResources-29:/values-h720dp-v13/values-h720dp-v13.xml",
+            "outputFile": "com.example.reservasmedicasmobile.app-mergeDebugResources-2:/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\leand\\.gradle\\caches\\transforms-4\\3dabf4e68f4a2cb2defe9cd46d20b97c\\transformed\\appcompat-1.7.0\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "source": "C:\\Users\\Monica\\Documents\\GitHub\\ReservasMedicasMobile\\caches\\transforms-4\\3dabf4e68f4a2cb2defe9cd46d20b97c\\transformed\\appcompat-1.7.0\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

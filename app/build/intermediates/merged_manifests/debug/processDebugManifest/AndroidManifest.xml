@@ -10,7 +10,6 @@
 
     <!-- Permisos necesarios -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <permission
         android:name="com.example.reservasmedicasmobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
@@ -35,45 +34,51 @@
         android:usesCleartextTraffic="true" >
 
         <!-- Lista de actividades -->
+
         <activity
             android:name="com.example.reservasmedicasmobile.especialidades"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.reservasmedicasmobile.pacientes"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.reservasmedicasmobile.menudeopciones"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.reservasmedicasmobile.medicos"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.reservasmedicasmobile.servicios"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.reservasmedicasmobile.turnos"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.reservasmedicasmobile.contacto"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.reservasmedicasmobile.dashboard"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.reservasmedicasmobile.registro"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.reservasmedicasmobile.login"
-            android:exported="true" />
-        <activity
-            android:name="com.example.reservasmedicasmobile.ApiTestActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.reservasmedicasmobile.MainActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
