@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">ReservasMedicasMobile</string>
     <string name="agende">Agende su turno médico</string>
+    <string name="Paciente">Agregar Datos Personales</string>
     <string name="seleccionar_Fecha">Seleccionar Fecha</string>
     <string name="seleccionar_Horario">Seleccionar Horario</string>
     <string name="confirmar_reserva">Confirmar reserva</string>
     <string name="especialidad_medica">Especialidad médica</string>
     <string name="profesional">Profesional</string>
     <string name="reservar_turno">Reservar Turno</string>
+    <string name="saludo">Hola, %s</string> <!-- Cadena con marcador de posición -->
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

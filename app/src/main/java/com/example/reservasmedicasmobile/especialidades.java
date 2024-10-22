@@ -46,7 +46,7 @@ public class especialidades extends AppCompatActivity {
         });
 
         getSupportFragmentManager().beginTransaction().add(R.id.frameLayout1, new ListaEspecialidadFragment()).commit();
-        textViewEspecialidades = findViewById(R.id.textViewEspecialidades);
+
         rq = Volley.newRequestQueue(this);
 
     }

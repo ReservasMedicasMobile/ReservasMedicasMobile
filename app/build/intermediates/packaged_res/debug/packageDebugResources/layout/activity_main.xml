@@ -1,0 +1,56 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#151635"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Reservas Médicas Mobile"
+        app:titleTextAppearance="@style/ToolbarTitleTextStyle"
+        app:titleTextColor="#FFFFFF"
+        android:theme="@style/ToolbarStyle"/>
+
+    <!-- FrameLayout para superponer el texto sobre la imagen -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#80000000"> <!-- Fondo negro semitransparente -->
+
+        <!-- Imagen de fondo -->
+        <ImageView
+            android:id="@+id/myImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/clinico_inicio"
+            android:scaleType="centerCrop" />
+
+        <!-- LinearLayout para centrar el mensaje -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="50dp"> <!-- Ajusta el padding superior según sea necesario -->
+
+            <!-- Mensaje de bienvenida centrado
+            <TextView
+                android:id="@+id/welcomeMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />-->
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

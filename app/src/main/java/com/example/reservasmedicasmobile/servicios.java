@@ -36,7 +36,8 @@ public class servicios extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (itemId == R.id.navigation_home) {
-                Toast.makeText(servicios.this, "Inicio seleccionado", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(servicios.this, MainActivity.class);
+                startActivity(intent);
                 return true;
             } else if (itemId == R.id.navigation_turnos) {
                 // Navegar a TurnosActivity
@@ -44,18 +45,12 @@ public class servicios extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             } else if (itemId == R.id.navigation_perfil) {
-                Toast.makeText(servicios.this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(servicios.this, login.class);
+                startActivity(intent);
                 return true;
             } else {
                 return false;
             }
-        });
-
-        ImageButton backButton = findViewById(R.id.back_button);
-
-        backButton.setOnClickListener(v -> {
-
-            finish();
         });
 
     }
