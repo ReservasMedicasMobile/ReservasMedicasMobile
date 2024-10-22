@@ -21,3 +21,7 @@ local.properties
 .vscode
 .idea/deploymentTargetSelector.xml
 
+local.properties
+.idea/misc.xml
+/.idea
+/.gradle
