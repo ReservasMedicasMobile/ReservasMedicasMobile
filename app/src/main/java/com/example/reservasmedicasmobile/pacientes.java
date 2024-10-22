@@ -62,8 +62,8 @@ public class pacientes extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        int userId;
-        userId = sharedPreferences.getInt();
+        int userId = -1;
+
         String token = sharedPreferences.getString("token", null);
         editor.putInt("id", userId); // `userId` es el ID del usuario logueado
         editor.apply();
