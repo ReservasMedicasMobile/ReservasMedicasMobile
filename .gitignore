@@ -20,4 +20,6 @@ local.properties
 *.tmp
 .vscode
 .idea/deploymentTargetSelector.xml
-
+.gradle/
+.idea/
+app/build/
