@@ -76,6 +76,10 @@
         "source": "com.example.reservasmedicasmobile.app-main-6:/drawable/back.png"
     },
     {
+        "merged": "com.example.reservasmedicasmobile.app-debug-4:/drawable_rounded_button_home.xml.flat",
+        "source": "com.example.reservasmedicasmobile.app-main-6:/drawable/rounded_button_home.xml"
+    },
+    {
         "merged": "com.example.reservasmedicasmobile.app-debug-4:/drawable_spinner_background.xml.flat",
         "source": "com.example.reservasmedicasmobile.app-main-6:/drawable/spinner_background.xml"
     },

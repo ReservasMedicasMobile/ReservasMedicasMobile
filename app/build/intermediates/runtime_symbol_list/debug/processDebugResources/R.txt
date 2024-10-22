@@ -3135,6 +3135,7 @@ int drawable notify_panel_notification_icon_bg 0x7f0800fe
 int drawable rectangle_background 0x7f0800ff
 int drawable retroceso 0x7f080100
 int drawable rounded_button 0x7f080101
+int drawable rounded_button_home 0x7f080108
 int drawable rounded_corner 0x7f080102
 int drawable spinner_background 0x7f080103
 int drawable spinner_dropdown_item 0x7f080104

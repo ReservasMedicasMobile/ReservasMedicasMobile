@@ -3136,6 +3136,7 @@ drawable notify_panel_notification_icon_bg
 drawable rectangle_background
 drawable retroceso
 drawable rounded_button
+drawable rounded_button_home
 drawable rounded_corner
 drawable spinner_background
 drawable spinner_dropdown_item
