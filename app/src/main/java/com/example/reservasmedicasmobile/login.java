@@ -5,21 +5,25 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.VolleyError;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class login extends AppCompatActivity {
 
@@ -38,6 +42,9 @@ public class login extends AppCompatActivity {
             return insets;
         });
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.GONE);
+
         // Referencia a los elementos de la interfaz
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
@@ -46,9 +53,28 @@ public class login extends AppCompatActivity {
         // Instanciar ApiRequest
         apiRequest = new ApiRequest(this);
 
-        // Botón volver
-        ImageButton backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(v -> finish());
+
+        // Configurar BottomNavigationView
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(login.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_turnos) {
+                Intent intent = new Intent(login.this, turnos.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_perfil) {
+                Intent intent = new Intent(login.this, dashboard.class);
+                startActivity(intent);
+                return true;
+            } else {
+                return false;
+            }
+        });
 
         // Listener botón iniciar sesión
         login_button.setOnClickListener(v -> validarFormulario());
@@ -60,7 +86,6 @@ public class login extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
     private void validarFormulario() {
         // Obtén textos de los campos del formulario
         String dni = username.getText().toString().trim();
