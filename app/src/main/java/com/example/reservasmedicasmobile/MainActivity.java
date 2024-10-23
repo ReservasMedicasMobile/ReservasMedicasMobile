@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnEpecialidades, btnContacto, btnServicios, btnTurnos, btnRegistro, btnPerfil, btnLogin, btnLogout;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -103,14 +102,15 @@ public class MainActivity extends AppCompatActivity {
             recreate(); // Refresca la actividad para aplicar los cambios
         });
     }
+  
+    @Override
+    protected void onStop() {
+        super.onStop();
 
-
-
-
-
-
-
-
-
-
+        // Limpiar sesión cuando la app se detenga (cuando se cierra)
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();  // Limpia todas las preferencias guardadas
+        editor.apply();  // Aplica los cambios
+    }
 }
