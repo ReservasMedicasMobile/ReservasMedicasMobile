@@ -23,46 +23,42 @@
         tools:ignore="NotSibling" />
 
 
-
-
-
-
-
     <ScrollView
         android:id="@+id/sroll"
-        android:layout_width="359dp"
-        android:layout_height="519dp"
-        android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="325dp"
+        android:layout_height="589dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHorarios"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:textSize="30sp">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/imageperfil"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_perfil"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                 />
+                app:layout_constraintStart_toStartOf="parent" />
+
 
             <EditText
                 android:id="@+id/etNombreCompleto"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
                 android:hint="Nombre Completo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -72,9 +68,9 @@
                 android:id="@+id/etApellido"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
                 android:hint="Apellido"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,9 +80,9 @@
                 android:id="@+id/etDni"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
                 android:hint="DNI"
                 android:phoneNumber="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,15 +90,16 @@
                 app:layout_constraintTop_toBottomOf="@id/etApellido" />
 
             <Button
-                android:id="@+id/button_open_date_picker"
+                android:id="@+id/button_open_date_pickers"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="52dp"
                 android:background="@color/azul"
-                android:text="@string/seleccionar_Fecha"
+                android:text="@string/seleccionar_Fecha_Nacimiento"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:onClick="abrirCalendario"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,9 +110,9 @@
                 android:id="@+id/etCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
                 android:hint="Correo Electronico"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -126,9 +123,9 @@
                 android:id="@+id/etTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
                 android:hint="Telefono"
                 android:phoneNumber="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -137,56 +134,51 @@
 
             <Spinner
                 android:id="@+id/spinner_obraSocial"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="18dp"
-                android:padding="8dp"
                 style="@style/sppiner_estilo"
-                android:spinnerMode="dropdown"
-                android:popupBackground="@drawable/spinner_dropdown_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="18dp"
                 android:dropDownWidth="match_parent"
                 android:dropDownSelector="@drawable/spinner_dropdown_item"
-                android:layout_gravity="center"
+                android:padding="8dp"
+                android:popupBackground="@drawable/spinner_dropdown_item"
+                android:spinnerMode="dropdown"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etTelefono" />
 
 
             <Button
-                android:id="@+id/btnSubmit"
-                android:layout_gravity="center"
+                android:id="@+id/btnSubmits"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/rounded_button"
+                android:contentDescription="Enviar Datos"
+                android:text="Enviar"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:contentDescription="Enviar Datos"
-                android:text="Enviar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etTelefono" />
-            <Button
-                android:id="@+id/btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/rounded_button"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:contentDescription="Enviar Datos"
-                android:text="Enviar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnSubmi" />
 
 
         </LinearLayout>
     </ScrollView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/azul"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/colorGray"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHorarios"
+        app:layout_constraintTop_toBottomOf="@+id/sroll"
+        app:menu="@menu/bottom_nav_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewHorarios"
@@ -197,20 +189,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" >
 
+    </androidx.recyclerview.widget.RecyclerView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backgroundTint="@color/azul"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/colorGray"
-        app:layout_constraintBottom_toBottomOf="@id/sroll"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@
     <string name="agende">Agende su turno médico</string>
     <string name="Paciente">Agregar Datos Personales</string>
     <string name="seleccionar_Fecha">Seleccionar Fecha</string>
+    <string name="seleccionar_Fecha_Nacimiento">Seleccionar Fecha De Nacimiento</string>
     <string name="seleccionar_Horario">Seleccionar Horario</string>
     <string name="confirmar_reserva">Confirmar reserva</string>
     <string name="especialidad_medica">Especialidad médica</string>
