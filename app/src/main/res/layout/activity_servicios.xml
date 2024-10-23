@@ -24,7 +24,7 @@
             android:layout_height="70dp"
             android:background="#151635"
             android:gravity="center"
-            android:text="Contacto"
+            android:text="Servicios"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
             android:textStyle="bold"
