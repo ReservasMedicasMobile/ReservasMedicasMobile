@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Encabezado -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azul"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Asegúrate de que la flecha sea blanca -->
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="51dp"
+            android:layout_height="37dp"
+            android:background="#151635"
+            android:contentDescription="Botón de retroceso"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mis Turnos"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <!-- CardView para mostrar los turnos -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp">
+
+        <TextView
+            android:id="@+id/card_view_misturnos_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:textColor="@color/azul" /> <!-- Color del texto igual al encabezado -->
+    </androidx.cardview.widget.CardView>
+
+    <!-- Mensaje de no turnos -->
+    <TextView
+        android:id="@+id/no_turnos_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usted no posee turnos previos."
+        android:visibility="gone" />
+</LinearLayout>
