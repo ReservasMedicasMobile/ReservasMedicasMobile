@@ -15,8 +15,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.android.volley.AuthFailureError;
@@ -49,9 +47,6 @@ public class registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.GONE);
 
         // Inicializar vistas
         usernameInput = findViewById(R.id.username_input);
@@ -100,6 +95,7 @@ public class registro extends AppCompatActivity {
 
         // Configurar BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
@@ -107,12 +103,13 @@ public class registro extends AppCompatActivity {
                 Intent intent = new Intent(registro.this, MainActivity.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_turnos) {
+            } else if (itemId == R.id.navigation_login) {
+                // Navegar a TurnosActivity
                 Intent intent = new Intent(registro.this, login.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_perfil) {
-                Intent intent = new Intent(registro.this, login.class);
+            } else if (itemId == R.id.navigation_servicios) {
+                Intent intent = new Intent(registro.this, servicios.class);
                 startActivity(intent);
                 return true;
             } else {
@@ -130,6 +127,10 @@ public class registro extends AppCompatActivity {
             Intent intent = new Intent(registro.this, login.class);
             startActivity(intent);
         });
+
+
+
+
 
     }
 

@@ -25,7 +25,7 @@ public class servicios extends AppCompatActivity {
         Button reserveButton = findViewById(R.id.reserve_button);
 
         reserveButton.setOnClickListener(v -> {
-            Intent intent = new Intent(servicios.this, turnos.class);
+            Intent intent = new Intent(servicios.this, login.class);
             startActivity(intent);
         });
 
