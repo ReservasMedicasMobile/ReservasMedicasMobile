@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".especialidades">
 
+
     <androidx.appcompat.widget.Toolbar
 
         android:id="@+id/toolbar"
@@ -18,18 +19,9 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="Botón de retroceso"
-            android:src="@drawable/retroceso"
-            app:tint="@android:color/white" />
 
         <TextView
             android:id="@+id/toolbar_title"
@@ -40,6 +32,8 @@
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+
 
     </androidx.appcompat.widget.Toolbar>
 
