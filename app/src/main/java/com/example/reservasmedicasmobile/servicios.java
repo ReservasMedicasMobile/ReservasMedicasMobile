@@ -25,7 +25,7 @@ public class servicios extends AppCompatActivity {
         Button reserveButton = findViewById(R.id.reserve_button);
 
         reserveButton.setOnClickListener(v -> {
-            Intent intent = new Intent(servicios.this, turnos.class);
+            Intent intent = new Intent(servicios.this, login.class);
             startActivity(intent);
         });
 
@@ -39,19 +39,18 @@ public class servicios extends AppCompatActivity {
                 Intent intent = new Intent(servicios.this, MainActivity.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_turnos) {
+            } else if (itemId == R.id.navigation_login) {
                 // Navegar a TurnosActivity
-                Intent intent = new Intent(servicios.this, turnos.class);
+                Intent intent = new Intent(servicios.this, login.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_perfil) {
-                Intent intent = new Intent(servicios.this, login.class);
+            } else if (itemId == R.id.navigation_servicios) {
+                Intent intent = new Intent(servicios.this, servicios.class);
                 startActivity(intent);
                 return true;
             } else {
                 return false;
             }
         });
-
     }
 }

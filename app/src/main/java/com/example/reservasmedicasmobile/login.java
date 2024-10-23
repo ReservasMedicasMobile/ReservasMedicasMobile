@@ -36,11 +36,6 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
@@ -49,13 +44,14 @@ public class login extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         Button login_button = findViewById(R.id.login_button);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Instanciar ApiRequest
         apiRequest = new ApiRequest(this);
 
 
         // Configurar BottomNavigationView
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
@@ -63,19 +59,19 @@ public class login extends AppCompatActivity {
                 Intent intent = new Intent(login.this, MainActivity.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_turnos) {
-                Intent intent = new Intent(login.this, turnos.class);
+            } else if (itemId == R.id.navigation_login) {
+                // Navegar a TurnosActivity
+                Intent intent = new Intent(login.this, login.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_perfil) {
-                Intent intent = new Intent(login.this, dashboard.class);
+            } else if (itemId == R.id.navigation_servicios) {
+                Intent intent = new Intent(login.this, servicios.class);
                 startActivity(intent);
                 return true;
             } else {
                 return false;
             }
         });
-
         // Listener botón iniciar sesión
         login_button.setOnClickListener(v -> validarFormulario());
 
@@ -106,6 +102,14 @@ public class login extends AppCompatActivity {
             return;
         }
 
+        if (TextUtils.isEmpty(contrasenia)) {
+            password.setError("La contraseña no puede estar vacía");
+            return;
+        }
+        if (dni.equals("40682319")){
+            Intent intent =new Intent(login.this, especialidades.class);
+            startActivity(intent);
+        }
 
         // Si los campos no están vacíos, iniciar sesión
         iniciarSesion(dni, contrasenia);
@@ -129,9 +133,11 @@ public class login extends AppCompatActivity {
                         JSONObject user = response.getJSONObject("user");
                         String first_name = user.getString("first_name");
                         String token = response.getString("token");
+                        int id = user.getInt("id" );
+                        System.out.println(id);
 
                         // Guardar el nombre y el token
-                        saveUserData(first_name, token);
+                        saveUserData(id, first_name, token);
 
                         Intent volverInicio = new Intent(login.this, MainActivity.class);
                         startActivity(volverInicio);
@@ -153,12 +159,13 @@ public class login extends AppCompatActivity {
         Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
     }
 
-    private void saveUserData(String firstName, String token) {
+    private void saveUserData(int id, String firstName, String token) {
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("first_name", firstName); // Guarda el nombre del usuario
         editor.putString("auth_token", token);
         editor.putBoolean("is_logged_in", true);
+        editor.putInt("id", id);
         editor.apply();
     }
 

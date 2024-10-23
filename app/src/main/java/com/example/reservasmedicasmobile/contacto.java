@@ -68,12 +68,12 @@ public class contacto extends AppCompatActivity {
                 Intent intent = new Intent(contacto.this, MainActivity.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_turnos) {
-                Intent intent = new Intent(contacto.this, turnos.class);
+            } else if (itemId == R.id.navigation_login) {
+                Intent intent = new Intent(contacto.this, login.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_perfil) {
-                Intent intent = new Intent(contacto.this, dashboard.class);
+            } else if (itemId == R.id.navigation_servicios) {
+                Intent intent = new Intent(contacto.this, servicios.class);
                 startActivity(intent);
                 return true;
             } else {
