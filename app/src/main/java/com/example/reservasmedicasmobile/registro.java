@@ -95,6 +95,7 @@ public class registro extends AppCompatActivity {
 
         // Configurar BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
@@ -102,12 +103,13 @@ public class registro extends AppCompatActivity {
                 Intent intent = new Intent(registro.this, MainActivity.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_turnos) {
-                Intent intent = new Intent(registro.this, turnos.class);
+            } else if (itemId == R.id.navigation_login) {
+                // Navegar a TurnosActivity
+                Intent intent = new Intent(registro.this, login.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_perfil) {
-                Intent intent = new Intent(registro.this, dashboard.class);
+            } else if (itemId == R.id.navigation_servicios) {
+                Intent intent = new Intent(registro.this, servicios.class);
                 startActivity(intent);
                 return true;
             } else {
