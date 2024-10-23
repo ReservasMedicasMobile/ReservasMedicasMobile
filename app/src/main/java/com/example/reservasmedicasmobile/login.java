@@ -2,34 +2,45 @@ package com.example.reservasmedicasmobile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.VolleyError;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.safetynet.SafetyNet;
+import com.google.android.gms.safetynet.SafetyNetApi;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class login extends AppCompatActivity {
+public class login extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks {
 
     private EditText username;
     private EditText password;
     private ApiRequest apiRequest;
+    CheckBox checkbox;
+    GoogleApiClient googleApiClient;
+    String SiteKey = "6LeUmWkqAAAAAGxptu-eDbZ2Xq7_ZwKSbqrBjok1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +50,41 @@ public class login extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
+
+        checkbox = findViewById(R.id.check_box);
+
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(SafetyNet.API)
+                .addConnectionCallbacks(login.this)
+                .build();
+        googleApiClient.connect();
+
+        checkbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkbox.isChecked()){
+                    SafetyNet.SafetyNetApi.verifyWithRecaptcha(googleApiClient, SiteKey)
+                            .setResultCallback(new ResultCallback<SafetyNetApi.RecaptchaTokenResult>() {
+                                @Override
+                                public void onResult(@NonNull SafetyNetApi.RecaptchaTokenResult recaptchaTokenResult) {
+
+                                    Status status = recaptchaTokenResult.getStatus();
+
+                                    if ((status != null && status.isSuccess())){
+                                        Toast.makeText(login.this, "Verificado Exitosamente",
+                                                Toast.LENGTH_SHORT).show();
+                                        checkbox.setTextColor(Color.BLUE);
+                                    }
+                                }
+                            });
+
+                }else{
+                    checkbox.setTextColor(Color.RED);
+                    Toast.makeText(login.this, "No ha sido verificado", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         // Referencia a los elementos de la interfaz
         username = findViewById(R.id.username);
@@ -113,6 +159,7 @@ public class login extends AppCompatActivity {
 
         // Si los campos no están vacíos, iniciar sesión
         iniciarSesion(dni, contrasenia);
+
     }
 
     private void iniciarSesion(String dni, String contrasenia) {
@@ -159,6 +206,7 @@ public class login extends AppCompatActivity {
         Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
     }
 
+
     private void saveUserData(int id, String firstName, String token) {
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -169,7 +217,34 @@ public class login extends AppCompatActivity {
         editor.apply();
     }
 
+    private void verifyReCaptcha() {
+        String siteKey = "6Ldt6WkqAAAAAKek7SApEh_m8_knHFmssFJv4hoK";
 
+        SafetyNet.getClient(this).verifyWithRecaptcha(siteKey)
+                .addOnCompleteListener(new OnCompleteListener<SafetyNetApi.RecaptchaTokenResponse>() {
+                    @Override
+                    public void onComplete(Task<SafetyNetApi.RecaptchaTokenResponse> task) {
+                        if (task.isSuccessful()) {
+                            SafetyNetApi.RecaptchaTokenResponse response = task.getResult();
+                            if (!response.getTokenResult().isEmpty()) {
 
+                                Toast.makeText(login.this, "Formulario enviado", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(login.this, "Verificación fallida", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Log.e("reCAPTCHA", "Error: " + task.getException().getMessage());
+                        }
+                    }
+                });
+    }
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
 
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
 }
