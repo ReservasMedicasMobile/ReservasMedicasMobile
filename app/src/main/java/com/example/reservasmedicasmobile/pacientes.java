@@ -1,5 +1,6 @@
 package com.example.reservasmedicasmobile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,11 +25,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +51,6 @@ public class pacientes extends AppCompatActivity {
     private String fechaSeleccionada = "";
     private Map<String, Map<String, List<String>>> horariosPorEspecialistaYFecha;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,29 +62,25 @@ public class pacientes extends AppCompatActivity {
             return insets;
         });
 
+
+
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        int userId = -1;
 
-        String token = sharedPreferences.getString("token", null);
-        editor.putInt("id", userId); // `userId` es el ID del usuario logueado
-        editor.apply();
+        boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
 
 
 
 
+        if (!isLoggedIn) {
 
+            Intent intent = new Intent(pacientes.this, login.class);
+            startActivity(intent);
+            finish();
+        } else {
 
-        if (token != null) {
-            userId = getUserIdFromToken(token); // Extrae el ID del usuario
+            setContentView(R.layout.activity_pacientes);
+
         }
-
-
-        if (token != null) {
-            userId = getUserIdFromToken(token); // Extrae el ID del usuario
-        }
-
-
 
 
         spinner_obraSocial = findViewById(R.id.spinner_obraSocial);
@@ -98,20 +96,51 @@ public class pacientes extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         cargarObraSocial();
-        int finalUserId = userId;
-        btnSubmits.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                agregaarDatosPacientes(finalUserId);
-            }
+
+        btnSubmits.setOnClickListener(v -> {
+            agregarDatosPacientes(getUserId());
         });
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(pacientes.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_turnos) {
+                // Navegar a TurnosActivity
+                Intent intent = new Intent(pacientes.this, turnos.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_perfil) {
+                Intent intent = new Intent(pacientes.this, dashboard.class);
+                startActivity(intent);
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 
-//---------------Datos Paciente---------------
-    private void agregaarDatosPacientes(int userId){
+
+
+    //---------------Datos Paciente---------------
+    private void agregarDatosPacientes(int id) {
+
+
         JSONObject datosPaciente = new JSONObject();
         try {
+
+
+            String nombre = etNombreCompleto.getText().toString().trim();
+            String apellido = etApellido.getText().toString().trim();
+            String dni = etDni.getText().toString().trim();
+            String fechaSeleccionada = "2024-10-20";
+            String correo = etCorreo.getText().toString().trim();
+            String telefono = etTelefono.getText().toString().trim();
             ObraSocial obraSocialSeleccionado = (ObraSocial) spinner_obraSocial.getSelectedItem();
             int obraSocialId = obraSocialSeleccionado.getId();
 
@@ -119,27 +148,24 @@ public class pacientes extends AppCompatActivity {
                 Toast.makeText(pacientes.this, "Error: Selecione una Obra Social.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            try {
-                datosPaciente.put("user_id", userId); // Añadir el ID al JSON
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            datosPaciente.put("nombre", etNombreCompleto);
-            datosPaciente.put("apellido", etApellido);
-            datosPaciente.put("dni", etDni);
-            datosPaciente.put("fecha_nacimiento", button_open_date_pickers);
-            datosPaciente.put("correo", etCorreo);
-            datosPaciente.put("telefono", etTelefono);
+            datosPaciente.put("id", id);
+            datosPaciente.put("nombre", nombre);
+            datosPaciente.put("apellido", apellido);
+            datosPaciente.put("dni", dni);
+            datosPaciente.put("fecha_nacimiento", fechaSeleccionada);
+            datosPaciente.put("correo", correo);
+            datosPaciente.put("telefono", telefono);
             datosPaciente.put("obra_social", obraSocialId);
-            datosPaciente.put("user_id", userId);
-        }catch (JSONException e){
+
+
+        } catch (JSONException e) {
             Log.e("CrearPacientes", "Error al crear el JSON: ", e);
             Toast.makeText(pacientes.this, "Error al crear el Paciente.", Toast.LENGTH_SHORT).show();
             return;
         }
         Log.d("Datos Personales", "Creando Correctamente: " + datosPaciente.toString());
 
-        String url = "https://reservasmedicas.ddns.net/api/v1/paciente/"+ userId +"/";
+        String url = "https://reservasmedicas.ddns.net/api/v1/paciente/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, datosPaciente,
                 response -> {
                     Toast.makeText(pacientes.this, "Datos cargados exitosamente", Toast.LENGTH_SHORT).show();
@@ -154,9 +180,16 @@ public class pacientes extends AppCompatActivity {
 
 
         requestQueue.add(jsonObjectRequest);
+
+        Intent intent = new Intent(pacientes.this, dashboard.class);
+        startActivity(intent);
     }
-//-------------- Obra Social----------------
-    public class ObraSocial{
+
+    public void abrirCalendario(View view){
+        Calendar calendario = Calendar.getInstance();
+    }
+    //-------------- Obra Social----------------
+    public class ObraSocial {
         private int id;
         private String nombre_obra;
 
@@ -179,7 +212,7 @@ public class pacientes extends AppCompatActivity {
         }
     }
 
-    private void cargarObraSocial(){
+    private void cargarObraSocial() {
 
         String urlObraSocial = "https://reservasmedicas.ddns.net/api/v1/obra_social/";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -190,7 +223,7 @@ public class pacientes extends AppCompatActivity {
                     ArrayList<ObraSocial> obraSocialsList = new ArrayList<>();
                     obraSocialsList.add(new ObraSocial(0, "OBRA SOCIAL"));
 
-                    for (int i=0; i < response.length(); i++){
+                    for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject obraSocial = response.getJSONObject(i);
                             int id = obraSocial.getInt("id");
@@ -205,26 +238,19 @@ public class pacientes extends AppCompatActivity {
                     adapter.setDropDownViewResource(R.layout.spinner_item_obrasocial);
                     spinner_obraSocial.setAdapter(adapter);
 
-                },error -> {
-                Toast.makeText(pacientes.this, "Error al cargar obra social", Toast.LENGTH_SHORT).show();
-                Log.e("Obra Social", "Error: " + error.getMessage());
-                }
+                }, error -> {
+            Toast.makeText(pacientes.this, "Error al cargar obra social", Toast.LENGTH_SHORT).show();
+            Log.e("Obra Social", "Error: " + error.getMessage());
+        }
         );
         requestQueue.add(jsonArrayRequest);
     }
 
-//-----------Recuperar Id Token--------------------
-public int getUserIdFromToken(String token) {
-    String[] parts = token.split("\\.");
-    if (parts.length > 1) {
-        String payload = new String(Base64.decode(parts[1], Base64.URL_SAFE));
-        try {
-            JSONObject json = new JSONObject(payload);
-            return json.getInt("user_id"); // Asegúrate de que el nombre del campo sea correcto
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+    public int getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        return sharedPreferences.getInt("id", -1); //
     }
-    return -1; // Valor por defecto si no se puede extraer el ID
-}
+
+
 }

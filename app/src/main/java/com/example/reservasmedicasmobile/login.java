@@ -137,9 +137,11 @@ public class login extends AppCompatActivity {
                         JSONObject user = response.getJSONObject("user");
                         String first_name = user.getString("first_name");
                         String token = response.getString("token");
+                        int id = user.getInt("id" );
+                        System.out.println(id);
 
                         // Guardar el nombre y el token
-                        saveUserData(first_name, token);
+                        saveUserData(id, first_name, token);
 
                         Intent volverInicio = new Intent(login.this, MainActivity.class);
                         startActivity(volverInicio);
@@ -161,12 +163,13 @@ public class login extends AppCompatActivity {
         Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
     }
 
-    private void saveUserData(String firstName, String token) {
+    private void saveUserData(int id, String firstName, String token) {
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("first_name", firstName); // Guarda el nombre del usuario
         editor.putString("auth_token", token);
         editor.putBoolean("is_logged_in", true);
+        editor.putInt("id", id);
         editor.apply();
     }
 
