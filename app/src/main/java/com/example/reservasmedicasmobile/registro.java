@@ -27,6 +27,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.util.Log;  // Importar la clase Log
 import java.util.HashMap;
 import java.util.Map;
+import android.text.Editable;
+import android.text.TextWatcher;
 
 
 public class registro extends AppCompatActivity {
@@ -38,6 +40,7 @@ public class registro extends AppCompatActivity {
     private EditText passwordInput;
     private Button registerBtn;
     private ImageButton backButton; // Declaración de ImageButton
+    private TextView passwordRequirements;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -53,6 +56,30 @@ public class registro extends AppCompatActivity {
         passwordInput = findViewById(R.id.password_input);
         registerBtn = findViewById(R.id.inicio_btn);
         backButton = findViewById(R.id.back_button); // Inicializar el botón
+        passwordRequirements = findViewById(R.id.password_requirements);
+
+        // Advertencia de campos requeridos
+        passwordInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String password = s.toString();
+                boolean hasUpperCase = !password.equals(password.toLowerCase());
+                boolean hasLowerCase = !password.equals(password.toUpperCase());
+                boolean hasDigit = password.matches(".*\\d.*");
+
+                if (hasUpperCase && hasLowerCase && hasDigit) {
+                    passwordRequirements.setVisibility(View.GONE);
+                } else {
+                    passwordRequirements.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 
 
         // Configurar el botón de registro
@@ -92,12 +119,16 @@ public class registro extends AppCompatActivity {
         usernameInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
 
 
-        // Link a registro
+        // Link a login
         TextView login1 = findViewById(R.id.login1);
         login1.setOnClickListener(v -> {
             Intent intent = new Intent(registro.this, login.class);
             startActivity(intent);
         });
+
+
+
+
 
     }
 
@@ -250,6 +281,8 @@ public class registro extends AppCompatActivity {
         VolleySingleton.getInstance(this).
                 addToRequestQueue(jsonObjectRequest);
     }
+
+
 
     // Limpiar el formulario después de un registro exitoso
     private void clearForm() {
