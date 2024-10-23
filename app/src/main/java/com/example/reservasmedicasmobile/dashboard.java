@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +19,7 @@ public class dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // Inicializar el botón de retroceso (back button)
+        // Botón de retroceso
         ImageButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> finish());
 

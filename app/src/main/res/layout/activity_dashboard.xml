@@ -9,9 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="bottom"
         android:background="@drawable/button_background"
+        android:gravity="bottom"
+        android:orientation="vertical"
         android:padding="20dp">
 
         <!-- Título del dashboard -->
@@ -30,16 +30,12 @@
             android:id="@+id/back_button"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_gravity="start"
-            android:layout_margin="10dp"
-            android:background="@color/white"
+            android:background="@null"
             android:contentDescription="Botón de retroceso"
-            android:padding="8dp"
-            android:src="@drawable/back"
-            app:tint="@color/azul" />
+            android:src="@drawable/baseline_arrow_back_24"
+            app:tint="@android:color/white" />
     </LinearLayout>
 
-    <!-- TextView para mostrar el saludo -->
     <TextView
         android:id="@+id/greetingTextView"
         android:layout_width="wrap_content"

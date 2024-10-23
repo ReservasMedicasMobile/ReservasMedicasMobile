@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,10 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.VolleyError;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MisturnosDashboard extends AppCompatActivity {
 
-    private LinearLayout turnosLayout; // Usamos LinearLayout para el contenedor
+    private TextView turnosTextView;
     private TextView noTurnosMessage;
 
     @SuppressLint("MissingInflatedId")
@@ -26,8 +27,12 @@ public class MisturnosDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mis_turnos_dashboard);
 
-        turnosLayout = findViewById(R.id.turno_list); // LinearLayout para mostrar los turnos
-        noTurnosMessage = findViewById(R.id.no_turnos_message); // TextView para mostrar el mensaje de 'sin turnos'
+        // Botón de retroceso
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish());
+
+        turnosTextView = findViewById(R.id.card_view_misturnos_dashboard);
+        noTurnosMessage = findViewById(R.id.no_turnos_message);
 
         // Obtener el token del SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
@@ -46,26 +51,41 @@ public class MisturnosDashboard extends AppCompatActivity {
             @Override
             public void onSuccess(JSONArray response) {
                 if (response.length() == 0) {
-                    turnosLayout.setVisibility(View.GONE);
+                    turnosTextView.setVisibility(View.GONE);
                     noTurnosMessage.setVisibility(View.VISIBLE);
                 } else {
-                    turnosLayout.setVisibility(View.VISIBLE);
+                    turnosTextView.setVisibility(View.VISIBLE);
                     noTurnosMessage.setVisibility(View.GONE);
+                    StringBuilder turnosBuilder = new StringBuilder();
+                    System.out.println(response);
 
-                    turnosLayout.removeAllViews(); // Limpiamos las vistas previas
+                    // Utilizar la respuesta directamente en lugar de jsonArray
                     for (int i = 0; i < response.length(); i++) {
                         try {
-                            String fecha = response.getJSONObject(i).getString("fecha");
-                            String medico = response.getJSONObject(i).getString("medico");
+                            JSONObject turno = response.getJSONObject(i); // Usa response aquí
 
-                            // Crear un nuevo TextView por cada turno
-                            TextView turnoView = new TextView(MisturnosDashboard.this);
-                            turnoView.setText("Fecha: " + fecha + ", Médico: " + medico);
-                            turnosLayout.addView(turnoView); // Agregarlo al layout
+                            // Extraer los datos necesarios del objeto JSON
+                            int paciente = turno.getInt("paciente");
+                            int profesional = turno.getInt("profesional");
+                            String horaTurno = turno.getString("hora_turno");
+                            String fechaTurno = turno.getString("fecha_turno");
+                            int especialidad = turno.getInt("especialidad");
+
+                            // Construir la cadena de salida
+                            turnosBuilder.append("Paciente: ").append(paciente)
+                                    .append(", Profesional: ").append(profesional)
+                                    .append(", Hora: ").append(horaTurno)
+                                    .append(", Fecha: ").append(fechaTurno)
+                                    .append(", Especialidad: ").append(especialidad)
+                                    .append("\n");
                         } catch (Exception e) {
                             Log.e("MisturnosDashboard", "Error procesando turnos: ", e);
                         }
                     }
+
+                    // Mostrar los turnos procesados
+                    System.out.println(turnosBuilder.toString());
+                    turnosTextView.setText(turnosBuilder.toString());
                 }
             }
 

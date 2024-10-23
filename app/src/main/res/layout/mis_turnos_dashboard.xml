@@ -1,16 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MisturnosDashboard">
 
-    <!-- Encabezado azul -->
+    <!-- Encabezado azul con botón de retroceso -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/azul"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="16dp">
+
+        <!-- Botón de retroceso -->
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="65dp"
+            android:layout_height="67dp"
+            android:background="@null"
+            android:contentDescription="Botón de retroceso"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:tint="@android:color/white" />
 
         <TextView
             android:id="@+id/card_view_misturnos_dashboard"
@@ -19,14 +31,19 @@
             android:text="Mis Turnos"
             android:textColor="@color/dashboard_text_white"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp" /> <!-- Espaciado entre el botón y el texto -->
     </LinearLayout>
 
-    <!-- Listado de turnos -->
+    <!-- Listado de turnos en el centro -->
     <LinearLayout
         android:id="@+id/turno_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="0dp"
         android:orientation="vertical"
         android:padding="16dp" />
 
@@ -35,7 +52,6 @@
         android:id="@+id/no_turnos_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:text="Usted no posee turnos previos."
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -49,4 +65,11 @@
         android:layout_height="2dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/wave_separator" />
+
+    <!-- Imagen del doctor -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:layout_marginTop="10dp" /> <!-- Colocar debajo del separador -->
+
 </RelativeLayout>
