@@ -1,5 +1,6 @@
 package com.example.reservasmedicasmobile;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -42,14 +45,17 @@ public class pacientes extends AppCompatActivity {
 
     private Spinner spinner_obraSocial;
     private EditText etNombreCompleto, etApellido, etDni, etCorreo, etTelefono;
-    private Button btnSubmits, button_open_date_pickers;
+    private Button btnSubmits, buttonOpenDatePickers;
     private ImageButton imageperfil;
+    private CalendarView calendarView;
+    private String selectedDate;
 
 
 
     private RequestQueue requestQueue;
     private String fechaSeleccionada = "";
     private Map<String, Map<String, List<String>>> horariosPorEspecialistaYFecha;
+    private String fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +88,7 @@ public class pacientes extends AppCompatActivity {
 
         }
 
-
+        calendarView = findViewById(R.id.calendar_view);
         spinner_obraSocial = findViewById(R.id.spinner_obraSocial);
         etNombreCompleto = findViewById(R.id.etNombreCompleto);
         etApellido = findViewById(R.id.etApellido);
@@ -90,14 +96,35 @@ public class pacientes extends AppCompatActivity {
         etCorreo = findViewById(R.id.etCorreo);
         etTelefono = findViewById(R.id.etTelefono);
         btnSubmits = findViewById(R.id.btnSubmits);
-        button_open_date_pickers = findViewById(R.id.button_open_date_pickers);
+        buttonOpenDatePickers = findViewById(R.id.button_open_date_pickers);
 
         //Volley
         requestQueue = Volley.newRequestQueue(this);
 
         cargarObraSocial();
+        calendarView.setVisibility(View.GONE);
+        buttonOpenDatePickers.setOnClickListener(v -> {
+            if (calendarView.getVisibility() == View.GONE) {
+                calendarView.setVisibility(View.VISIBLE);
+            } else {
+                calendarView.setVisibility(View.GONE);
+            }
+
+
+        });
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth; // Formato: YYYY-MM-DD
+            Log.d("TAG", "Fecha seleccionada: " + selectedDate);
+
+        });
+
+
+
+
+
 
         btnSubmits.setOnClickListener(v -> {
+
             agregarDatosPacientes(getUserId());
         });
 
@@ -138,7 +165,7 @@ public class pacientes extends AppCompatActivity {
             String nombre = etNombreCompleto.getText().toString().trim();
             String apellido = etApellido.getText().toString().trim();
             String dni = etDni.getText().toString().trim();
-            String fechaSeleccionada = "2024-10-20";
+            String date = selectedDate;
             String correo = etCorreo.getText().toString().trim();
             String telefono = etTelefono.getText().toString().trim();
             ObraSocial obraSocialSeleccionado = (ObraSocial) spinner_obraSocial.getSelectedItem();
@@ -152,7 +179,7 @@ public class pacientes extends AppCompatActivity {
             datosPaciente.put("nombre", nombre);
             datosPaciente.put("apellido", apellido);
             datosPaciente.put("dni", dni);
-            datosPaciente.put("fecha_nacimiento", fechaSeleccionada);
+            datosPaciente.put("fecha_nacimiento", date);
             datosPaciente.put("correo", correo);
             datosPaciente.put("telefono", telefono);
             datosPaciente.put("obra_social", obraSocialId);
@@ -185,9 +212,7 @@ public class pacientes extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void abrirCalendario(View view){
-        Calendar calendario = Calendar.getInstance();
-    }
+
     //-------------- Obra Social----------------
     public class ObraSocial {
         private int id;
