@@ -37,7 +37,7 @@ import org.json.JSONObject;
 
 
 public class login extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks {
-public class login extends AppCompatActivity {
+
 
     private EditText username;
     private EditText password;
@@ -225,4 +225,4 @@ public class login extends AppCompatActivity {
 
     }
 }
-}
+
