@@ -14,22 +14,20 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.VolleyError;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 
 public class login extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
     private ApiRequest apiRequest;
+    private int loginAttempts = 0; // Contador de intentos de inicio de sesión
+    private static final int MAX_LOGIN_ATTEMPTS = 3; // Máximo de intentos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,34 +42,10 @@ public class login extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         Button login_button = findViewById(R.id.login_button);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Instanciar ApiRequest
         apiRequest = new ApiRequest(this);
 
-
-        // Configurar BottomNavigationView
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-
-            if (itemId == R.id.navigation_home) {
-                Intent intent = new Intent(login.this, MainActivity.class);
-                startActivity(intent);
-                return true;
-            } else if (itemId == R.id.navigation_login) {
-                // Navegar a TurnosActivity
-                Intent intent = new Intent(login.this, login.class);
-                startActivity(intent);
-                return true;
-            } else if (itemId == R.id.navigation_servicios) {
-                Intent intent = new Intent(login.this, servicios.class);
-                startActivity(intent);
-                return true;
-            } else {
-                return false;
-            }
-        });
         // Listener botón iniciar sesión
         login_button.setOnClickListener(v -> validarFormulario());
 
@@ -82,7 +56,14 @@ public class login extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
     private void validarFormulario() {
+        // Verifica si los intentos han superado el máximo permitido
+        if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+            Toast.makeText(this, "Tu cuenta está bloqueada temporalmente. Intenta más tarde.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Obtén textos de los campos del formulario
         String dni = username.getText().toString().trim();
         String contrasenia = password.getText().toString().trim();
@@ -97,18 +78,8 @@ public class login extends AppCompatActivity {
 
             if (TextUtils.isEmpty(contrasenia)) {
                 password.setError("La contraseña no puede estar vacía");
-                return;
             }
             return;
-        }
-
-        if (TextUtils.isEmpty(contrasenia)) {
-            password.setError("La contraseña no puede estar vacía");
-            return;
-        }
-        if (dni.equals("40682319")){
-            Intent intent =new Intent(login.this, especialidades.class);
-            startActivity(intent);
         }
 
         // Si los campos no están vacíos, iniciar sesión
@@ -119,30 +90,25 @@ public class login extends AppCompatActivity {
         // Llamar a la API para iniciar sesión
         apiRequest.login(dni, contrasenia, new ApiRequest.ApiCallback() {
             @Override
-
-
             public void onSuccess(JSONObject response) {
                 Log.d("Login", "Respuesta de la API: " + response.toString()); // Imprime la respuesta completa
 
                 try {
-                    if (dni.equals("40682319")){
-                        Intent intent =new Intent(login.this, especialidades.class);
-                        startActivity(intent);
-                    }else{
-                        // Acceder al objeto 'user' y luego al 'first_name'
-                        JSONObject user = response.getJSONObject("user");
-                        String first_name = user.getString("first_name");
-                        String token = response.getString("token");
-                        int id = user.getInt("id" );
-                        System.out.println(id);
+                    loginAttempts = 0; // Resetear intentos al iniciar sesión correctamente
 
-                        // Guardar el nombre y el token
-                        saveUserData(id, first_name, token);
+                    // Acceder al objeto 'user' y luego al 'first_name'
+                    JSONObject user = response.getJSONObject("user");
+                    String first_name = user.getString("first_name");
+                    String token = response.getString("token");
+                    int id = user.getInt("id");
+                    System.out.println(id);
 
-                        Intent volverInicio = new Intent(login.this, MainActivity.class);
-                        startActivity(volverInicio);
-                        Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-                    }
+                    // Guardar el nombre y el token
+                    saveUserData(id, first_name, token);
+
+                    Intent volverInicio = new Intent(login.this, MainActivity.class);
+                    startActivity(volverInicio);
+                    Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
                     Log.e("Login", "Error al procesar la respuesta JSON", e);
@@ -152,8 +118,11 @@ public class login extends AppCompatActivity {
 
             @Override
             public void onError(VolleyError error) {
-                String errorMessage = error.getMessage();
-                Toast.makeText(login.this, "Error de inicio de sesión: " + errorMessage, Toast.LENGTH_SHORT).show();
+                loginAttempts++; // Incrementar contador al fallar
+                Toast.makeText(login.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+                    Toast.makeText(login.this, "Demasiados intentos fallidos. Tu cuenta está bloqueada temporalmente.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
@@ -168,8 +137,4 @@ public class login extends AppCompatActivity {
         editor.putInt("id", id);
         editor.apply();
     }
-
-
-
-
 }
