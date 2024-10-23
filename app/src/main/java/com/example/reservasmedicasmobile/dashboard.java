@@ -1,13 +1,9 @@
 package com.example.reservasmedicasmobile;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class dashboard extends AppCompatActivity {
@@ -29,22 +25,23 @@ public class dashboard extends AppCompatActivity {
 
         // Configurar la tarjeta de "Mis Turnos" para redirigir a MisturnosDashboard
         findViewById(R.id.card_view_misturnos_dashboard).setOnClickListener(v -> goToMisTurnos());
+
+        // Configurar la tarjeta de "Mis Datos" para redirigir a la actividad de pacientes
+        findViewById(R.id.card_view_mis_datos).setOnClickListener(v -> goToMisDatos());
     }
 
     private void showGreeting() {
-        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        String token = sharedPreferences.getString("auth_token", null);
-
-        if (token != null) {
-            Log.d("TOKEN", "Token: " + token);
-            greetingTextView.setText("¡Bienvenido!"); // Personalizar el saludo aquí
-        } else {
-            Toast.makeText(this, "No se encontró el token", Toast.LENGTH_SHORT).show();
-        }
+        // Lógica para mostrar el saludo
+        // Ejemplo: greetingTextView.setText("¡Bienvenido!");
     }
 
     private void goToMisTurnos() {
         Intent intent = new Intent(dashboard.this, MisturnosDashboard.class);
+        startActivity(intent);
+    }
+
+    private void goToMisDatos() {
+        Intent intent = new Intent(dashboard.this, pacientes.class);
         startActivity(intent);
     }
 }
