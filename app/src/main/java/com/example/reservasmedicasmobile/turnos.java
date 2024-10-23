@@ -85,6 +85,7 @@ public class turnos extends AppCompatActivity {
         inicializarHorariosPorEspecialistaYFecha();
 
         cargarEspecialidades();
+        obtenerPacientes();
 
         openDatePickerButton.setOnClickListener(v -> mostrarFechasDisponibles());
 
@@ -164,26 +165,93 @@ public class turnos extends AppCompatActivity {
         Toast.makeText(this, "No estás autenticado. Inicia sesión.", Toast.LENGTH_SHORT).show();
     }
 
+    public class Paciente {
+        private int id;
+        private String nombre;
+        public Paciente(int id, String nombre) {
+            this.id = id;
+            this.nombre = nombre;
+        }
+        public int getId() {
+            return id;
+        }
+        public String getNombre() {
+            return nombre;
+        }
+    }
+    private List<Paciente> listaPacientes = new ArrayList<>(); // Lista para almacenar pacientes
+    private void obtenerPacientes() {
+        String url = "https://reservasmedicas.ddns.net/api/v1/paciente/"; // URL de la API para obtener pacientes
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        // Limpiar la lista antes de agregar nuevos pacientes
+                        listaPacientes.clear();
+                        // Recorrer la respuesta JSON y agregar pacientes a la lista
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject pacienteJson = response.getJSONObject(i);
+                            int id = pacienteJson.getInt("id");
+                            String nombre = pacienteJson.getString("nombre");
+                            // Crea un objeto Paciente y añádelo a la lista
+                            listaPacientes.add(new Paciente(id, nombre));
+                        }
+                    } catch (JSONException e) {
+                        Log.e("ObtenerPacientes", "Error al parsear la respuesta: ", e);
+                    }
+                },
+                error -> {
+                    Toast.makeText(turnos.this, "Error al obtener pacientes: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+        // Agregar la solicitud a la cola
+        requestQueue.add(jsonArrayRequest);
+    }
+
+
     private void crearTurno() {
         JSONObject turnoData = new JSONObject();
         try {
-            // Valores hardcodeados
-            int pacienteId = 2; // ID del paciente
+            // Validar que haya pacientes disponibles
+            if (listaPacientes.isEmpty()) {
+                Toast.makeText(turnos.this, "No hay pacientes disponibles.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
+            // Seleccionar un paciente aleatorio
+            Paciente pacienteAleatorio = listaPacientes.get(new Random().nextInt(listaPacientes.size()));
+            int pacienteId = pacienteAleatorio.getId(); // ID del paciente aleatorio
+
+            // Obtener el profesional seleccionado del Spinner
             Profesional profesionalSeleccionado = (Profesional) professionalSpinner.getSelectedItem();
+
+            // Verificar si el profesional seleccionado es nulo
+            if (profesionalSeleccionado == null) {
+                Toast.makeText(turnos.this, "Por favor, selecciona un profesional válido.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Obtener la especialidad seleccionada del Spinner
             Especialidad especialidadSeleccionada = (Especialidad) specialtySpinner.getSelectedItem();
+
+            // Verificar si la especialidad seleccionada es nula
+            if (especialidadSeleccionada == null) {
+                Toast.makeText(turnos.this, "Por favor, selecciona una especialidad válida.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             int profesionalId = profesionalSeleccionado.getId();
             int especialidadId = especialidadSeleccionada.getId();
 
-            String horaSeleccionada = "10:00"; // Hora hardcodeada
-            String fechaSeleccionada = "2024-10-20"; // Fecha hardcodeada (ajusta según tu formato)
-
-            // Validar que los IDs no sean 0 (en caso de que hayas definido una opción por defecto con ID 0)
-            if (profesionalId == 0 || especialidadId == 0) {
-                Toast.makeText(turnos.this, "Error: profesional o especialidad no válida.", Toast.LENGTH_SHORT).show();
+            // Validar que se haya seleccionado una fecha y una hora
+            if (fechaSeleccionada == null || fechaSeleccionada.isEmpty()) {
+                Toast.makeText(turnos.this, "Por favor, selecciona una fecha.", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            if (horaSeleccionada == null || horaSeleccionada.isEmpty()) {
+                Toast.makeText(turnos.this, "Por favor, selecciona una hora.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             // Crear el objeto JSON para el turno
             turnoData.put("paciente", pacienteId);
             turnoData.put("profesional", profesionalId);
@@ -207,7 +275,7 @@ public class turnos extends AppCompatActivity {
                     Toast.makeText(turnos.this, "Turno creado exitosamente", Toast.LENGTH_SHORT).show();
                 },
                 error -> {
-                    String errorMessage = error.getMessage();
+                    String errorMessage = "Error desconocido";
                     if (error.networkResponse != null && error.networkResponse.data != null) {
                         errorMessage = new String(error.networkResponse.data);
                     }
@@ -216,17 +284,21 @@ public class turnos extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json"); // Especifica el tipo de contenido
+                headers.put("Content-Type", "application/json");
                 return headers;
             }
         };
 
+        // Configurar el tiempo de espera de la solicitud
         int socketTimeout = 30000; // 30 segundos
         DefaultRetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
 
+        // Agregar la solicitud a la cola
         requestQueue.add(jsonObjectRequest);
     }
+
+
 
     public class Especialidad {
         private int id;
