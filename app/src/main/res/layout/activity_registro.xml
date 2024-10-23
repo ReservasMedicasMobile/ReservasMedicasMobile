@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/titulo"
-        android:layout_width="412dp"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:background="#151635"
         android:gravity="center"
         android:text="@string/registro"
@@ -36,119 +36,118 @@
 
     <LinearLayout
         android:id="@+id/bottomLayout"
-        android:layout_width="410dp"
-        android:layout_height="543dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:padding="20dp"
-        app:layout_constraintTop_toBottomOf="@id/titulo"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@id/titulo">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="0dp"
             android:autofillHints=""
             android:text="@string/dni"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/username_input"
-            android:layout_width="370dp"
-            android:layout_height="33dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="@string/ingrese_su_dni"
             android:inputType="number"
             android:minHeight="33dp"
             android:textColor="@color/black"
             android:textColorHint="#757575"
-            android:textSize="12sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:autofillHints=""
             android:text="@string/nombre"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/etFirstName"
             android:layout_width="370dp"
-            android:layout_height="33dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="@string/ingrese_su_nombre"
             android:inputType="text"
             android:minHeight="33dp"
             android:textColor="@color/black"
             android:textColorHint="#757575"
-            android:textSize="12sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:autofillHints=""
             android:text="@string/apellido"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/etLastName"
             android:layout_width="370dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="13dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:hint="@string/ingrese_su_apellido"
             android:inputType="text"
             android:minHeight="33dp"
             android:textColor="@color/black"
             android:textColorHint="#757575"
-            android:textSize="12sp" />
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:autofillHints=""
             android:text="@string/correo_electr_nico"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/email_input"
             android:layout_width="370dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="13dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:hint="@string/ingrese_su_correo_electr_nico"
             android:inputType="textEmailAddress"
             android:minHeight="33dp"
             android:textColor="@color/black"
             android:textColorHint="#757575"
-            android:textSize="12sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:autofillHints=""
             android:text="@string/contrase_a"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/password_input"
             android:layout_width="370dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="13dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:hint="@string/ingrese_su_contrase_a"
             android:inputType="textPassword"
             android:minHeight="33dp"
             android:textColor="@color/black"
             android:textColorHint="#757575"
-            android:textSize="12sp" />
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/password_requirements"
@@ -157,18 +156,18 @@
             android:layout_marginTop="5dp"
             android:text="@string/la_contrase_a_debe_tener_una_may_scula_una_min_scula_un_numero_y_un_simbolo"
             android:textColor="#FF0000"
-        android:textSize="12sp"
-        android:visibility="gone" />
+            android:textSize="15sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/inicio_btn"
             android:layout_width="370dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/rounded_button"
             android:text="@string/registrarse"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView"
