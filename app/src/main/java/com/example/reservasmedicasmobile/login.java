@@ -49,13 +49,14 @@ public class login extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         Button login_button = findViewById(R.id.login_button);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Instanciar ApiRequest
         apiRequest = new ApiRequest(this);
 
 
         // Configurar BottomNavigationView
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
@@ -63,19 +64,19 @@ public class login extends AppCompatActivity {
                 Intent intent = new Intent(login.this, MainActivity.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_turnos) {
-                Intent intent = new Intent(login.this, turnos.class);
+            } else if (itemId == R.id.navigation_login) {
+                // Navegar a TurnosActivity
+                Intent intent = new Intent(login.this, login.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_perfil) {
-                Intent intent = new Intent(login.this, dashboard.class);
+            } else if (itemId == R.id.navigation_servicios) {
+                Intent intent = new Intent(login.this, servicios.class);
                 startActivity(intent);
                 return true;
             } else {
                 return false;
             }
         });
-
         // Listener botón iniciar sesión
         login_button.setOnClickListener(v -> validarFormulario());
 
