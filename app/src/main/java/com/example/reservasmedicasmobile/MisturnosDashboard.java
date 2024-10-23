@@ -16,16 +16,22 @@ import com.android.volley.VolleyError;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class MisturnosDashboard extends AppCompatActivity {
 
     private TextView turnosTextView;
     private TextView noTurnosMessage;
+    private ArrayList<TurnoDTO> turnosList; // Lista para almacenar los turnos
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mis_turnos_dashboard);
+
+        // Inicializa la lista de turnos
+        turnosList = new ArrayList<>();
 
         // Botón de retroceso
         ImageButton backButton = findViewById(R.id.back_button);
@@ -57,12 +63,11 @@ public class MisturnosDashboard extends AppCompatActivity {
                     turnosTextView.setVisibility(View.VISIBLE);
                     noTurnosMessage.setVisibility(View.GONE);
                     StringBuilder turnosBuilder = new StringBuilder();
-                    System.out.println(response);
 
                     // Utilizar la respuesta directamente en lugar de jsonArray
                     for (int i = 0; i < response.length(); i++) {
                         try {
-                            JSONObject turno = response.getJSONObject(i); // Usa response aquí
+                            JSONObject turno = response.getJSONObject(i);
 
                             // Extraer los datos necesarios del objeto JSON
                             int paciente = turno.getInt("paciente");
@@ -83,8 +88,7 @@ public class MisturnosDashboard extends AppCompatActivity {
                         }
                     }
 
-                    // Mostrar los turnos procesados
-                    System.out.println(turnosBuilder.toString());
+                    // Mostrar los turnos procesados en el cuerpo de la página
                     turnosTextView.setText(turnosBuilder.toString());
                 }
             }
@@ -92,7 +96,7 @@ public class MisturnosDashboard extends AppCompatActivity {
             @Override
             public void onError(VolleyError error) {
                 Log.e("MisturnosDashboard", "Error al cargar los turnos: ", error);
-                Toast.makeText(MisturnosDashboard.this, "Error al cargar los turnos.", Toast.LENGTH_LONG).show();
+                Toast.makeText(MisturnosDashboard.this, "Error al cargar los turnos: " + error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

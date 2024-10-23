@@ -61,7 +61,7 @@
             app:cardElevation="2dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -90,30 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:cardCornerRadius="12dp"
-            app:cardElevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <ImageView
-                    android:layout_width="98dp"
-                    android:layout_height="121dp"
-                    android:src="@drawable/ic_perfil"
-                    app:tint="@color/dashboard_blue" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mis Datos"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            app:cardElevation="2dp"/>
     </LinearLayout>
 
     <!-- Separador en degradado -->

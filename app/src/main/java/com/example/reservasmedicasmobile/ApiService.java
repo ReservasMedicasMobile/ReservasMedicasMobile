@@ -23,8 +23,9 @@ public class ApiService {
         requestQueue = Volley.newRequestQueue(context);
     }
 
+    // Eliminar el parámetro url de aquí
     public void fetchTurnos(String token, final ApiCallback callback) {
-        String url = BASE_URL + "lista_turnos_usuario/";
+        String url = BASE_URL + "lista_turnos_usuario/"; // Aquí está la definición correcta
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
