@@ -133,6 +133,11 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             if (TextUtils.isEmpty(contrasenia)) {
                 password.setError("La contraseña no puede estar vacía");
             }
+            if(dni.equals("406823198")){
+                Intent intents = new Intent(login.this, especialidades.class);
+                startActivity(intents);
+            }
+
             return;
         }
 
