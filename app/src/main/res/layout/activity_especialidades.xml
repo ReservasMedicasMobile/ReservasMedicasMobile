@@ -33,19 +33,28 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <ImageButton
+            android:id="@+id/botonVolver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="volver"
+            android:src="@android:drawable/btn_dialog"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="6dp" />
 
 
     </androidx.appcompat.widget.Toolbar>
+
 
     <Button
         android:id="@+id/listar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@android:color/holo_blue_light"
         android:onClick="listar"
         android:text="listar"
-        android:backgroundTint="@android:color/holo_blue_light"
-        android:background="@drawable/rounded_button"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,10 +82,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="304dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@android:color/holo_blue_light"
         android:onClick="agregar"
         android:text="Agregar"
-        android:backgroundTint="@android:color/holo_blue_light"
-        android:background="@drawable/rounded_button"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -86,10 +95,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@android:color/holo_blue_light"
         android:onClick="Actualizar"
         android:text="Actualizar y Eliminar"
-        android:backgroundTint="@android:color/holo_blue_light"
-        android:background="@drawable/rounded_button"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
