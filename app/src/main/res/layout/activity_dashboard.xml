@@ -1,211 +1,138 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="7"
     tools:context=".MainActivity">
 
-
-    <!-- Cabecera con fondo azul y texto -->
-    <LinearLayout
+    <TextView
+        android:id="@+id/titulo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="0.5"
-        android:gravity="bottom"
-        android:background="@drawable/header_background_dashboard"
-        android:padding="10dp">
+        android:layout_height="70dp"
+        android:background="#151635"
+        android:gravity="center"
+        android:text="Perfil"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <!-- Título del Dashboard -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dashboard"
-                android:textStyle="bold"
-                android:textColor="@color/dashboard_text_white"
-                android:textSize="30sp"
-                android:layout_weight="1" />
-
-
-
-
-            <!-- Iconos de Inicio y Cerrar sesión con bordes -->
-
-
-        </LinearLayout>
-
-        <!-- Subtítulo bajo el Dashboard -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tus Turnos Médicos"
-            android:textColor="@color/dashboard_text_white"
-            android:textSize="25sp" />
-
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="Botón de retroceso"
-            android:src="@drawable/retroceso"
-            app:tint="@android:color/white" />
-    </LinearLayout>
-
-    <!-- Sección principal con tarjetas -->
     <LinearLayout
+        android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
-        android:orientation="vertical">
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintTop_toBottomOf="@id/titulo">
 
-        <!-- Primera fila de tarjetas -->
-        <LinearLayout
+        <!-- Tarjeta de Mis Turnos -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_misturnos_dashboard"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:padding="16dp">
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
 
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="16dp"
-                android:background="#151635">
+                android:background="@color/azul"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/icon_mis_datos"
+                    android:layout_width="98dp"
+                    android:layout_height="121dp"
+                    android:src="@drawable/ic_perfil"
+                    app:tint="@color/white" />
 
-                    <ImageView
-                        android:layout_width="98dp"
-                        android:layout_height="121dp"
-                        android:src="@drawable/ic_history_dashboard"
-                        app:tint="@color/dashboard_blue" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MIS DATOS"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="96dp"
-                        android:layout_height="wrap_content"
-                        android:text="Historial"
-                        android:textAlignment="center"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="16dp"
-                android:background="@color/dashboard_blue">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="109dp"
-                        android:layout_height="112dp"
-                        android:src="@drawable/ic_calendar_dashboard"
-                        app:tint="@color/dashboard_blue" />
-
-                    <TextView
-                        android:layout_width="107dp"
-                        android:layout_height="wrap_content"
-                        android:text="Nuevo Turno"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-        <!-- Segunda fila de tarjetas -->
-        <LinearLayout
+        <!-- Tarjeta de Mis Datos -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_mis_datos"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:padding="16dp">
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
 
-            <!-- Tarjeta Teléfonos Útiles -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="16dp"
-                android:background="@color/dashboard_blue">
+                android:background="@color/azul"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/icon_misturnos_dashboard"
+                    android:layout_width="98dp"
+                    android:layout_height="121dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_history_dashboard"
+                    app:tint="@android:color/white" />
 
-                    <ImageView
-                        android:layout_width="99dp"
-                        android:layout_height="99dp"
-                        android:src="@drawable/ic_phone_dashboard"
-                        app:tint="@color/dashboard_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Teléfonos Útiles"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MIS TURNOS"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="16dp"
-                android:background="@color/dashboard_blue">
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="99dp"
-                        android:layout_height="99dp"
-                        android:src="@drawable/ic_map_dashboard"
-                        app:tint="@color/dashboard_blue" />
-
-                    <TextView
-                        android:layout_width="103dp"
-                        android:layout_height="wrap_content"
-                        android:text="Cómo Llegar"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/announcement_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Tu salud es nuestra prioridad\nGracias por elegirnos"
+            android:textColor="@color/azul"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </LinearLayout>
-</LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/azul"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/colorGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>

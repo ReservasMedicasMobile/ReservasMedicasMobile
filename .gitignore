@@ -1,6 +1,7 @@
 *.iml
 .gradle
 /local.properties
+.idea/
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
@@ -9,7 +10,12 @@
 /.idea/assetWizardSettings.xml
 .idea/gradle.xml
 .idea/misc.xml
+.idea/other.xml
+/.idea/gradle.xml
+/.idea/misc.xml
+/.idea/other.xml
 .DS_Store
+app/build/
 /build
 /captures
 .externalNativeBuild
@@ -20,4 +26,17 @@ local.properties
 *.tmp
 .vscode
 .idea/deploymentTargetSelector.xml
+
+
+.idea/workspace.xml
+.idea/workspace.xml
+.idea/workspace.xml
+.gradle/
+.idea/
+app/build/
+
+local.properties
+.idea/misc.xml
+/.idea
+/.gradle
 

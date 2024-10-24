@@ -1,10 +1,31 @@
 <resources>
     <string name="app_name">ReservasMedicasMobile</string>
     <string name="agende">Agende su turno médico</string>
+    <string name="Paciente">Agregar Datos Personales</string>
     <string name="seleccionar_Fecha">Seleccionar Fecha</string>
+    <string name="seleccionar_Fecha_Nacimiento">Seleccionar Fecha De Nacimiento</string>
     <string name="seleccionar_Horario">Seleccionar Horario</string>
     <string name="confirmar_reserva">Confirmar reserva</string>
     <string name="especialidad_medica">Especialidad médica</string>
     <string name="profesional">Profesional</string>
     <string name="reservar_turno">Reservar Turno</string>
+    <string name="saludo">Hola, %s</string> <!-- Cadena con marcador de posición -->
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="iniciar_sesion">Iniciar sesion</string>
+    <string name="ya_tenes_una_cuenta">¿Ya tenes una cuenta?</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="la_contrase_a_debe_contener_al_menos_una_may_scula_una_min_scula_y_un_n_mero">La contraseña debe contener al menos una mayúscula, una minúscula y un número.</string>
+    <string name="ingrese_su_contrase_a">Ingrese su Contraseña</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="correo_electr_nico">Correo Electrónico</string>
+    <string name="ingrese_su_correo_electr_nico">Ingrese su Correo Electrónico</string>
+    <string name="ingrese_su_apellido">Ingrese su Apellido</string>
+    <string name="apellido">Apellido</string>
+    <string name="ingrese_su_nombre">Ingrese su Nombre</string>
+    <string name="nombre">Nombre</string>
+    <string name="ingrese_su_dni">Ingrese su DNI</string>
+    <string name="dni">DNI</string>
+    <string name="registro">Registro</string>
+    <string name="la_contrase_a_debe_tener_una_may_scula_una_min_scula_un_numero_y_un_simbolo">La contraseña debe tener una mayúscula, una minúscula, un numero y un simbolo</string>
 </resources>
