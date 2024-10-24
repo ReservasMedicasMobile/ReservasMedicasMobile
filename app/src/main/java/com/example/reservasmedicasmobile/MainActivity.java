@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
             recreate(); // Refresca la actividad para aplicar los cambios
         });
     }
+
+    
   
     @Override
     protected void onStop() {
