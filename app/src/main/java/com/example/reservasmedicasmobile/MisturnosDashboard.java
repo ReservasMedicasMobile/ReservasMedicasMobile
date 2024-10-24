@@ -1,6 +1,7 @@
 package com.example.reservasmedicasmobile;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,9 +35,30 @@ public class MisturnosDashboard extends AppCompatActivity {
         // Inicializa la lista de turnos
         turnosList = new ArrayList<>();
 
-        // Botón de retroceso
-        ImageButton backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(v -> finish());
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(MisturnosDashboard.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_turnos) {
+                // Navegar a TurnosActivity
+                Intent intent = new Intent(MisturnosDashboard.this, turnos.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_perfil) {
+                Intent intent = new Intent(MisturnosDashboard.this, dashboard.class);
+                startActivity(intent);
+                return true;
+            } else {
+                return false;
+            }
+        });
+
 
         turnosTextView = findViewById(R.id.card_view_misturnos_dashboard);
         noTurnosMessage = findViewById(R.id.no_turnos_message);
