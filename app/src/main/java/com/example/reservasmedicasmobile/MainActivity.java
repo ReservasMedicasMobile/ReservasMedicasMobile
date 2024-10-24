@@ -102,8 +102,10 @@ public class MainActivity extends AppCompatActivity {
             recreate(); // Refresca la actividad para aplicar los cambios
         });
     }
+
+    
   
-    @Override
+    /*@Override
     protected void onStop() {
         super.onStop();
 
@@ -112,5 +114,5 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();  // Limpia todas las preferencias guardadas
         editor.apply();  // Aplica los cambios
-    }
+    }*/
 }
