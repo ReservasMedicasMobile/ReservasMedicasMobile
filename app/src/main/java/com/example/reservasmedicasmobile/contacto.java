@@ -69,7 +69,7 @@ public class contacto extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             } else if (itemId == R.id.navigation_login) {
-                Intent intent = new Intent(contacto.this, login.class);
+                Intent intent = new Intent(contacto.this, MainActivity.class);
                 startActivity(intent);
                 return true;
             } else if (itemId == R.id.navigation_servicios) {
