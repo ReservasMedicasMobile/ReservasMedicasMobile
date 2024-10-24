@@ -55,6 +55,7 @@ public class registro extends AppCompatActivity {
         emailInput = findViewById(R.id.email_input);
         passwordInput = findViewById(R.id.password_input);
         registerBtn = findViewById(R.id.inicio_btn);
+        backButton = findViewById(R.id.back_button); // Inicializar el botón
         passwordRequirements = findViewById(R.id.password_requirements);
 
         // Advertencia de campos requeridos
