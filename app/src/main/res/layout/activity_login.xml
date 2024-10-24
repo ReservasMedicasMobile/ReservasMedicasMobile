@@ -70,19 +70,32 @@
             android:text="@string/password"
             android:textColor="@color/black"
             android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/password"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="@string/passwordhint"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:textColor="@color/black"
-            android:textColorHint="#757575"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:hint="@string/passwordhint"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHint="#757575"
+                android:textSize="20sp" />
 
+            <ImageView
+                android:id="@+id/imageViewTogglePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Mostrar u ocultar contraseña"
+                android:padding="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_eye" />
+        </LinearLayout>
         <Button
             android:id="@+id/login_button"
             android:layout_width="match_parent"
@@ -94,25 +107,21 @@
             android:textSize="22sp"
             />
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            />
-
         <CheckBox
             android:id="@+id/check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="No soy un robot"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:layout_gravity="center" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="15dp"
             android:text="@string/account"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -127,6 +136,12 @@
             android:textColor="@color/celeste"
             android:textSize="19sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

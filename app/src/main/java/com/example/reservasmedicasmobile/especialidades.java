@@ -1,12 +1,14 @@
 package com.example.reservasmedicasmobile;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +38,10 @@ public class especialidades extends AppCompatActivity {
     private TextView textViewEspecialidades;
     private RequestQueue rq;
     private Button btnLogoutes;
+    private ImageButton btnImagenLogoutes;
 
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -54,7 +58,8 @@ public class especialidades extends AppCompatActivity {
 
         rq = Volley.newRequestQueue(this);
 
-
+        btnImagenLogoutes = findViewById(R.id.btnImagenLogoutes);
+        btnImagenLogoutes.setOnClickListener(v -> startActivity(new Intent(especialidades.this, MainActivity.class)));
 
         // Comprobar si el usuario está logueado
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
