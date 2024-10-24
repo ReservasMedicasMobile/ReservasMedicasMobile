@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         // Setup Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        {
+            if(isLoggedIn && id == 53){
+                String saludo = getString(R.string.saludo, first_name);
     }
 
     @Override
