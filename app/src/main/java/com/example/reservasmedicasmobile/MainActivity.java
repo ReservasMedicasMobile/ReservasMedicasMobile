@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Setup Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-<<<<<<< Updated upstream
+
         setSupportActionBar(toolbar);
-=======
+
         toolbar.setVisibility(View.GONE);
 
         // Inicializar botones
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             recreate(); // Refresca la actividad para aplicar los cambios
         });
->>>>>>> Stashed changes
+
     }
 
     @Override
