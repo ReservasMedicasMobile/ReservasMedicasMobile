@@ -92,6 +92,27 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             }
         });
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(login.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_login) {
+                Intent intent = new Intent(login.this, login.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_servicios) {
+                Intent intent = new Intent(login.this, servicios.class);
+                startActivity(intent);
+                return true;
+            } else {
+                return false;
+            }
+        });
+
         // Referencia a los elementos de la interfaz
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
