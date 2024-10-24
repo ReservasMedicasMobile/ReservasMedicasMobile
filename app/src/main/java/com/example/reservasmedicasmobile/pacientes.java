@@ -119,7 +119,7 @@ public class pacientes extends AppCompatActivity {
 
         btnSubmits.setOnClickListener(v -> {
 
-            agregarDatosPacientes();
+            agregarDatosPacientes(getUserId());
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -149,9 +149,9 @@ public class pacientes extends AppCompatActivity {
 
 
     //---------------Datos Paciente---------------
-    private void agregarDatosPacientes() {
+    private void agregarDatosPacientes(int id) {
 
-        int userId = getUserId();
+
         JSONObject datosPaciente = new JSONObject();
         try {
 
@@ -169,7 +169,7 @@ public class pacientes extends AppCompatActivity {
                 Toast.makeText(pacientes.this, "Error: Selecione una Obra Social.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            datosPaciente.put("id", userId);
+            datosPaciente.put("id", id);
             datosPaciente.put("nombre", nombre);
             datosPaciente.put("apellido", apellido);
             datosPaciente.put("dni", dni);
