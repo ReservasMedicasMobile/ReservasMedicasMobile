@@ -1,7 +1,9 @@
 package com.example.reservasmedicasmobile;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,9 +13,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -23,12 +31,15 @@ public class MisturnosDashboard extends AppCompatActivity {
     private TextView turnosTextView;
     private TextView noTurnosMessage;
     private ArrayList<TurnoDTO> turnosList; // Lista para almacenar los turnos
+    private RequestQueue rq;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mis_turnos_dashboard);
+
+
 
         // Inicializa la lista de turnos
         turnosList = new ArrayList<>();
@@ -43,15 +54,75 @@ public class MisturnosDashboard extends AppCompatActivity {
         // Obtener el token del SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         String token = sharedPreferences.getString("auth_token", null);
+        int id =  sharedPreferences.getInt("id", -1);
 
-        if (token != null) {
+        /*if (token != null) {
             fetchTurnos(token); // Obtener los turnos
         } else {
             Toast.makeText(this, "Token no disponible. Por favor, inicia sesión.", Toast.LENGTH_SHORT).show();
-        }
+        }*/
+
+        rq = Volley.newRequestQueue(this);
+
+
+        fechaTurno(id);
+        System.out.println();
+
     }
 
-    private void fetchTurnos(String token) {
+    public void fechaTurno(int id){
+
+        String url = "https://reservasmedicas.ddns.net/api/v1/turnos/" + id ;
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        mostrarDatos(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MisturnosDashboard.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        rq.add(jsonArrayRequest);
+
+    }
+
+    public void mostrarDatos(JSONArray DataModel) {
+        for (int i = 0; i < DataModel.length(); i++) {
+            try {
+                JSONObject MisTurnos = DataModel.getJSONObject(i);
+                String paciente = MisTurnos.getString("paciente");
+                String profesional = MisTurnos.getString("profesional");
+                String horaTurno = MisTurnos.getString("hora_turno");
+                String fechaTurno = MisTurnos.getString("fecha_turno");
+                String especialidad = MisTurnos.getString("especialidad");
+
+                TextView textView = new TextView(this);
+                textView.setTextSize(20);
+                textView.setPadding(16, 16, 16, 16);
+                textView.setText(paciente + ": \n");
+                textView.append(profesional + ": \n");
+                textView.append("* "+horaTurno + "\n");
+                textView.append("* "+fechaTurno + "\n");
+                textView.append("* "+especialidad + "\n");
+                textView.append("----------------------------------------------------------\n");
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+   /* private void fetchTurnos(String token) {
         ApiService apiService = new ApiService(this);
         apiService.fetchTurnos(token, new ApiService.ApiCallback() {
             @Override
@@ -70,6 +141,8 @@ public class MisturnosDashboard extends AppCompatActivity {
                             JSONObject turno = response.getJSONObject(i);
 
                             // Extraer los datos necesarios del objeto JSON
+
+
                             int paciente = turno.getInt("paciente");
                             int profesional = turno.getInt("profesional");
                             String horaTurno = turno.getString("hora_turno");
@@ -99,5 +172,11 @@ public class MisturnosDashboard extends AppCompatActivity {
                 Toast.makeText(MisturnosDashboard.this, "Error al cargar los turnos: " + error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-    }
+    }*/
+
+
+
+
+
+
 }

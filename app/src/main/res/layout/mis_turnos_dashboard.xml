@@ -48,6 +48,13 @@
             android:padding="16dp"
             android:textSize="16sp"
             android:textColor="@color/azul" /> <!-- Color del texto igual al encabezado -->
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="turnos"
+            android:onClick="fechaTurno"/>
     </androidx.cardview.widget.CardView>
 
     <!-- Mensaje de no turnos -->
