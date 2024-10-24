@@ -6,102 +6,125 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:src="@drawable/retroceso"
-        android:contentDescription="Botón de retroceso"
-        android:layout_gravity="start"
-        app:tint="@android:color/holo_blue_dark"
-        tools:ignore="MissingConstraints" />
+        android:background="#151635"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="@string/agende"
-        android:textColor="@color/azul"
-        android:textSize="25sp"
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#151635"
+        android:gravity="center"
+        android:text="Turnos"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <ImageView
-        android:id="@+id/image1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_calendario_"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+    <TextView
+        android:id="@+id/agende_turno_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Agende su turno médico"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        app:layout_constraintTop_toBottomOf="@id/titulo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp" />
 
     <Spinner
         android:id="@+id/spinner_specialty"
-        style="@style/sppiner_estilo"
-        android:textAlignment="center"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:layout_marginTop="12dp"
         android:padding="8dp"
+        style="@style/sppiner_estilo"
+        android:spinnerMode="dropdown"
+        android:popupBackground="@drawable/spinner_dropdown_item"
+        android:dropDownWidth="match_parent"
+        android:dropDownSelector="@drawable/spinner_dropdown_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image1" />
+        app:layout_constraintTop_toBottomOf="@id/agende_turno_text"
+        android:layout_marginTop="40dp" />
 
     <Spinner
         android:id="@+id/spinner_professional"
-        style="@style/sppiner_estilo"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:layout_marginTop="52dp"
         android:padding="8dp"
+        style="@style/sppiner_estilo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinner_specialty" />
+        app:layout_constraintTop_toBottomOf="@id/spinner_specialty"
+        android:layout_marginTop="30dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHorarios"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_professional"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button_open_date_picker"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
         android:background="@color/azul"
         android:text="@string/seleccionar_Fecha"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinner_professional" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_open_date_picker" />
 
     <Button
         android:id="@+id/button_open_time_picker"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
         android:background="@color/azul"
         android:text="@string/seleccionar_Horario"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_open_date_picker" />
+        app:layout_constraintTop_toBottomOf="@id/calendarView" />
 
     <Button
         android:id="@+id/button_time_slot"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/rounded_button"
         android:text="@string/confirmar_reserva"
         android:textColor="@color/white"
@@ -111,7 +134,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_open_time_picker"
-        app:layout_constraintVertical_bias="0.315" />
+        app:layout_constraintVertical_bias="0.0" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/azul"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/colorGray"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewHorarios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

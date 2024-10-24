@@ -25,7 +25,7 @@ public class servicios extends AppCompatActivity {
         Button reserveButton = findViewById(R.id.reserve_button);
 
         reserveButton.setOnClickListener(v -> {
-            Intent intent = new Intent(servicios.this, turnos.class);
+            Intent intent = new Intent(servicios.this, login.class);
             startActivity(intent);
         });
 
@@ -36,27 +36,21 @@ public class servicios extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (itemId == R.id.navigation_home) {
-                Toast.makeText(servicios.this, "Inicio seleccionado", Toast.LENGTH_SHORT).show();
-                return true;
-            } else if (itemId == R.id.navigation_turnos) {
-                // Navegar a TurnosActivity
-                Intent intent = new Intent(servicios.this, turnos.class);
+                Intent intent = new Intent(servicios.this, MainActivity.class);
                 startActivity(intent);
                 return true;
-            } else if (itemId == R.id.navigation_perfil) {
-                Toast.makeText(servicios.this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
+            } else if (itemId == R.id.navigation_login) {
+                // Navegar a TurnosActivity
+                Intent intent = new Intent(servicios.this, login.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_servicios) {
+                Intent intent = new Intent(servicios.this, servicios.class);
+                startActivity(intent);
                 return true;
             } else {
                 return false;
             }
         });
-
-        ImageButton backButton = findViewById(R.id.back_button);
-
-        backButton.setOnClickListener(v -> {
-
-            finish();
-        });
-
     }
 }

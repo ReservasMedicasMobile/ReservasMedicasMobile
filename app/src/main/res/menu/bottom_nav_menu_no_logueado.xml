@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/navigation_login"
+        android:icon="@drawable/ic_login"
+        android:title="Login" />
+    <item
+        android:id="@+id/navigation_servicios"
+        android:icon="@drawable/ic_servicio"
+        android:background="#151635"
+        android:textColor="#FFFFFF"
+        android:title="Servicios" />
+</menu>
