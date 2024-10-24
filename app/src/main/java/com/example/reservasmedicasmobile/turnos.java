@@ -208,7 +208,6 @@ public class turnos extends AppCompatActivity {
 
 
     private void crearTurno() {
-        int userId = getUserId();
         JSONObject turnoData = new JSONObject();
         try {
             // Validar que haya pacientes disponibles
@@ -254,12 +253,11 @@ public class turnos extends AppCompatActivity {
             }
 
             // Crear el objeto JSON para el turno
-            turnoData.put("username_id", userId);
-            turnoData.put("paciente_id", pacienteId);
-            turnoData.put("profesional_id", profesionalId);
+            turnoData.put("paciente", pacienteId);
+            turnoData.put("profesional", profesionalId);
             turnoData.put("hora_turno", horaSeleccionada);
             turnoData.put("fecha_turno", fechaSeleccionada);
-            turnoData.put("especialidad_id", especialidadId);
+            turnoData.put("especialidad", especialidadId);
 
         } catch (JSONException e) {
             Log.e("CrearTurno", "Error al crear el JSON: ", e);
@@ -611,10 +609,5 @@ public class turnos extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
-
-    public int getUserId() {
-        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        return sharedPreferences.getInt("id", -1); //
     }
 }

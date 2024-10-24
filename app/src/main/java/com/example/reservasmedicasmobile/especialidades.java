@@ -35,7 +35,7 @@ public class especialidades extends AppCompatActivity {
     private FrameLayout ListaEspecialidadFragment;
     private TextView textViewEspecialidades;
     private RequestQueue rq;
-    private Button imageButton, btnLogoutes;
+    private Button btnLogoutes;
 
 
     @Override
@@ -53,7 +53,6 @@ public class especialidades extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.frameLayout1, new ListaEspecialidadFragment()).commit();
 
         rq = Volley.newRequestQueue(this);
-
 
 
 
@@ -75,7 +74,6 @@ public class especialidades extends AppCompatActivity {
 
     }
 
-
     private void startActivity() {
         Intent intent = new Intent(especialidades.this, MainActivity.class);
         startActivity(intent);
@@ -86,11 +84,6 @@ public class especialidades extends AppCompatActivity {
 
     }
 
-    public void volver(View v){
-        Intent intent = new Intent(especialidades.this, MainActivity.class);
-        startActivity(intent);
-    }
-
     public void agregar(View v){
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1, new AgregarEspecialidadFragment()).commit();
@@ -99,5 +92,4 @@ public class especialidades extends AppCompatActivity {
     public void Actualizar(View v){
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1, new ActualizarEspcialidadFragment()).commit();
     }
-
 }
