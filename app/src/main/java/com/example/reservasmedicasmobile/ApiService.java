@@ -1,6 +1,9 @@
 package com.example.reservasmedicasmobile;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -23,9 +26,15 @@ public class ApiService {
         requestQueue = Volley.newRequestQueue(context);
     }
 
+    
+
+
+
+
     // Eliminar el parámetro url de aquí
     public void fetchTurnos(String token, final ApiCallback callback) {
-        String url = BASE_URL + "lista_turnos_usuario/"; // Aquí está la definición correcta
+
+        String url = BASE_URL + "turnos/"; // Aquí está la definición correcta
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
@@ -83,4 +92,12 @@ public class ApiService {
         void onSuccess(JSONArray response); // Para la respuesta de los turnos
         void onError(VolleyError error); // Para manejar errores
     }
+
+
+
+
+
+
+
+
 }
