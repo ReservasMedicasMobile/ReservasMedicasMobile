@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.reservasmedicasmobile.modelo.DataModelTurnos;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,15 +97,15 @@ public class MisturnosDashboard extends AppCompatActivity {
 
     }
 
-    public void mostrarDatos(JSONArray DataModel) {
-        for (int i = 0; i < DataModel.length(); i++) {
+    public void mostrarDatos(JSONArray DataModelTurnos) {
+        for (int i = 0; i < DataModelTurnos.length(); i++) {
             try {
-                JSONObject MisTurnos = DataModel.getJSONObject(i);
-                String paciente = MisTurnos.getString("paciente");
-                String profesional = MisTurnos.getString("profesional");
+                JSONObject MisTurnos = DataModelTurnos.getJSONObject(i);
+                int paciente = MisTurnos.getInt("paciente");
+                int profesional = MisTurnos.getInt("profesional");
                 String horaTurno = MisTurnos.getString("hora_turno");
                 String fechaTurno = MisTurnos.getString("fecha_turno");
-                String especialidad = MisTurnos.getString("especialidad");
+                int especialidad = MisTurnos.getInt("especialidad");
 
                 TextView textView = new TextView(this);
                 textView.setTextSize(20);
@@ -118,8 +119,13 @@ public class MisturnosDashboard extends AppCompatActivity {
 
 
             } catch (JSONException e) {
-                e.printStackTrace();
+
+                Log.e("JSONError", "Ocurrió una JSONException", e);
+
+
+
             }
+
         }
     }
    /* private void fetchTurnos(String token) {
