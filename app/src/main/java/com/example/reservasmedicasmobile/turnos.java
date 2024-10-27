@@ -57,6 +57,7 @@ public class turnos extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
+        int id =  sharedPreferences.getInt("id", -1);
 
         if (!isLoggedIn) {
             // Redirigir a la pantalla de login si no está logueado
@@ -206,6 +207,10 @@ public class turnos extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
+    public int getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        return sharedPreferences.getInt("id", -1);
+    }
 
     private void crearTurno() {
         JSONObject turnoData = new JSONObject();
@@ -215,6 +220,7 @@ public class turnos extends AppCompatActivity {
                 Toast.makeText(turnos.this, "No hay pacientes disponibles.", Toast.LENGTH_SHORT).show();
                 return;
             }
+
 
             // Seleccionar un paciente aleatorio
             Paciente pacienteAleatorio = listaPacientes.get(new Random().nextInt(listaPacientes.size()));
@@ -252,12 +258,17 @@ public class turnos extends AppCompatActivity {
                 return;
             }
 
+            int userId = getUserId();
+            System.out.println("userid: " + userId);
+
             // Crear el objeto JSON para el turno
-            turnoData.put("paciente", pacienteId);
-            turnoData.put("profesional", profesionalId);
+            turnoData.put("id_user_id", userId);
+            turnoData.put("paciente_id", pacienteId);
+            turnoData.put("profesional_id", profesionalId);
             turnoData.put("hora_turno", horaSeleccionada);
             turnoData.put("fecha_turno", fechaSeleccionada);
-            turnoData.put("especialidad", especialidadId);
+            turnoData.put("especialidad_id", especialidadId);
+
 
         } catch (JSONException e) {
             Log.e("CrearTurno", "Error al crear el JSON: ", e);
@@ -268,7 +279,8 @@ public class turnos extends AppCompatActivity {
         Log.d("Turno", "Creando turno: " + turnoData.toString());
 
         // Crear la solicitud JSON
-        String url = "https://reservasmedicas.ddns.net/api/v1/turnos/";
+        //String url = "https://reservasmedicas.ddns.net/api/v1/turnos/";
+        String url = "https://reservasmedicas.ddns.net/nuevo_turno/";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, turnoData,
                 response -> {
