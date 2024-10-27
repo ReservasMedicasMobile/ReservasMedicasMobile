@@ -12,12 +12,13 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnEpecialidades, btnContacto, btnServicios, btnTurnos, btnRegistro, btnPerfil, btnLogin, btnLogout;
+    private Button btnEpecialidades, btnContacto, btnServicios, btnTurnos, btnRegistro, btnPerfil, btnLogin, btnLogout, btnAyuda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // Configurar Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         btnPerfil = findViewById(R.id.btn_dashboard);
         btnLogin = findViewById(R.id.btn_login);
         btnLogout = findViewById(R.id.btn_logout);
+        btnAyuda = findViewById(R.id.btn_ayuda);
 
         btnEpecialidades = findViewById(R.id.btn_especialidad);
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 btnRegistro.setVisibility(View.GONE);
                 btnPerfil.setVisibility(View.GONE);
                 btnLogin.setVisibility(View.GONE);
+                btnAyuda.setVisibility(View.GONE);
                 btnTurnos.setVisibility(View.GONE);
             }else if (isLoggedIn && id !=49) {
 
@@ -68,11 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 btnServicios.setVisibility(View.GONE); // Solo para usuarios no logueados
                 btnRegistro.setVisibility(View.GONE);  // Solo para usuarios no logueados
                 btnLogin.setVisibility(View.GONE);     // Solo para usuarios no logueados
-
-
-
-
-
+                btnAyuda.setVisibility(View.GONE);
 
             } else {
                 btnTurnos.setVisibility(View.GONE);    // Solo para usuarios logueados
@@ -91,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         btnTurnos.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, turnos.class)));
         btnRegistro.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, registro.class)));
         btnPerfil.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, dashboard.class)));
+        btnAyuda.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, VideoActivity.class)));
         btnLogin.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, login.class)));
 
         btnEpecialidades.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, especialidades.class)));
@@ -103,16 +103,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    
-  
-    /*@Override
-    protected void onStop() {
-        super.onStop();
-
-        // Limpiar sesión cuando la app se detenga (cuando se cierra)
-        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();  // Limpia todas las preferencias guardadas
-        editor.apply();  // Aplica los cambios
-    }*/
 }
