@@ -6,23 +6,32 @@ public class DataModelTurnos {
     private String profecional_id;
     String hora_turno;
     String fecha_turno;
-    String especialidad;
+    int especialidad;
+    boolean cancelado;
 
-    public DataModelTurnos(String paciente_id, String profecional_id, String hora_turno, String fecha_turno, String especialidad) {
+    public DataModelTurnos(boolean cancelado,String paciente_id, String profecional_id, String hora_turno, String fecha_turno, int especialidad) {
         this.paciente_id = paciente_id;
         this.profecional_id = profecional_id;
         this.hora_turno = hora_turno;
         this.fecha_turno = fecha_turno;
         this.especialidad = especialidad;
+        this.cancelado = cancelado;
+    }
+
+    public boolean isCancelado() {
+        return cancelado;
+    }
+
+    public int getEspecialidad() {
+        return especialidad;
     }
 
     public String getPaciente_id() {
         return paciente_id;
     }
 
-    public String getEspecialidad() {
-        return especialidad;
-    }
+
+
 
     public String getHora_turno() {
         return hora_turno;

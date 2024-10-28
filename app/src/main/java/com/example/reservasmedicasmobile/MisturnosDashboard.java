@@ -1,15 +1,18 @@
 package com.example.reservasmedicasmobile;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -19,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.reservasmedicasmobile.modelo.DataModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,12 +91,25 @@ public class MisturnosDashboard extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         mostrarDatos(response);
+
+
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MisturnosDashboard.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(MisturnosDashboard.this)
+                                .setTitle("Información")
+                                .setMessage("No tiene turnos reservados")
+                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss(); // Cierra el diálogo al presionar "Aceptar"
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_info) // Icono opcional
+                                .show();
+                        //Toast.makeText(MisturnosDashboard.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -109,58 +126,64 @@ public class MisturnosDashboard extends AppCompatActivity {
 
                 String hora = MisTurnos.getString("hora_turno");
                 String fecha = MisTurnos.getString("fecha_turno");
+                int especialidad = MisTurnos.getInt("especialidad");
 
                 TextView textView = new TextView(this);
+                CheckBox checkBox = new CheckBox(this);
+
+
                 textView.setTextSize(20);
                 textView.setPadding(16, 16, 16, 16);
                 textView.append("TIENE UN TURNO \n");
                 textView.append("\n");
+                textView.append("En: "+ convertirEspecialidad(especialidad) +"\n");
                 textView.append("Hora: " + hora + "\n");
                 textView.append("Fecha: " + fecha + "\n");
                 textView.append("\n");
-                textView.append("*********************************\n");
+                textView.append("********************     ");
+
 
 
 
 
 
                 linerT.addView(textView);
+
+
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.e("JSONError", "Ocurrió una JSONException", e);
             }
         }
 
-       /* try {
-            int paciente = MisTurnos.getInt("paciente");
-            int profesional = MisTurnos.getInt("profesional");
-            String horaTurno = MisTurnos.getString("hora_turno");
-            String fechaTurno = MisTurnos.getString("fecha_turno");
-            int especialidad = MisTurnos.getInt("especialidad");
 
-            TextView textView = new TextView(this);
-            textView.setTextSize(20);
-            textView.setPadding(16, 16, 16, 16);
-            textView.append("TIENE UN TURNO \n");
-            textView.append("\n");
-            textView.append("Hora: " + horaTurno + "\n");
-            textView.append("Fecha: " + fechaTurno + "\n");
-            textView.append("\n");
-            textView.append("*********************************\n");
-            textView.append("\n");
-
-
-
-            // Assuming `cardView` is a reference to your CardView layout
-            cardView.addView(textView);
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Log.e("JSONError", "Ocurrió una JSONException", e);
-        }*/
     }
-
+    private String convertirEspecialidad(int especialidad) {
+        switch (especialidad) {
+            case 1:
+                return "Cardiología";
+            case 3:
+                return "Traumatologia";
+            case 4:
+                return "Dermatología";
+            case 6:
+                return "Pediatria";
+            case 7:
+                return "Psicologia";
+            case 8:
+                return "Oncologia";
+            case 9:
+                return "Psiquiatria";
+            case 15:
+                return "Ginecologia";
+            case 20:
+                return "Oftalmologia";
+            default:
+                return "Especialidad desconocida"; // Valor por defecto si no coincide
+        }
+    }
    /* private void fetchTurnos(String token) {
         ApiService apiService = new ApiService(this);
         apiService.fetchTurnos(token, new ApiService.ApiCallback() {

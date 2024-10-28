@@ -41,12 +41,15 @@
         android:layout_margin="16dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="8dp">
-
-        <LinearLayout
-            android:id="@+id/linerT"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/linerT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </ScrollView>
 
 
 
