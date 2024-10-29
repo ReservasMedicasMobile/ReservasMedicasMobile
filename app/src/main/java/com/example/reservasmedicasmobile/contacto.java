@@ -43,9 +43,6 @@ public class contacto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacto);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.GONE);
-
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
         etEmail = findViewById(R.id.etEmail);
@@ -69,7 +66,7 @@ public class contacto extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             } else if (itemId == R.id.navigation_login) {
-                Intent intent = new Intent(contacto.this, MainActivity.class);
+                Intent intent = new Intent(contacto.this, login.class);
                 startActivity(intent);
                 return true;
             } else if (itemId == R.id.navigation_servicios) {

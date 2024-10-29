@@ -69,8 +69,6 @@ public class turnos extends AppCompatActivity {
             setContentView(R.layout.activity_turnos);
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.GONE);
 
         specialtySpinner = findViewById(R.id.spinner_specialty);
         professionalSpinner = findViewById(R.id.spinner_professional);

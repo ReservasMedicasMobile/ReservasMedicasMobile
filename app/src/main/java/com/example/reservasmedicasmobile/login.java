@@ -56,8 +56,6 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.GONE);
 
         ImageView imageViewTogglePassword = findViewById(R.id.imageViewTogglePassword);
         boolean[] isPasswordVisible = {false};

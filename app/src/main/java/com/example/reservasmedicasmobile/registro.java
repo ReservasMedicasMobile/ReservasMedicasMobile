@@ -50,8 +50,6 @@ public class registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.GONE);
 
         // Inicializar vistas
         usernameInput = findViewById(R.id.username_input);

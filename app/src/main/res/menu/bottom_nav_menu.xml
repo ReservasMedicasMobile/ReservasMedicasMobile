@@ -12,6 +12,6 @@
         android:id="@+id/navigation_perfil"
         android:icon="@drawable/ic_perfil"
         android:background="#151635"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:title="Perfil" />
 </menu>

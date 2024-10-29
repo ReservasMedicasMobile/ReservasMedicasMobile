@@ -36,7 +36,7 @@
         <EditText
             android:id="@+id/etNombreCompleto"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="0dp"
             android:textSize="20sp"
@@ -48,7 +48,7 @@
         <EditText
             android:id="@+id/etApellido"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="16dp"
@@ -141,10 +141,11 @@
 
         <Button
             android:id="@+id/btnSubmits"
-            android:layout_width="370dp"
-            android:layout_height="55dp"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="45dp"
+            android:padding="12dp"
             android:background="@drawable/rounded_button"
             android:contentDescription="Enviar Datos"
             android:text="Enviar"
@@ -162,7 +163,7 @@
         android:layout_height="wrap_content"
         app:backgroundTint="@color/azul"
         app:itemIconTint="@color/white"
-        app:itemTextColor="@color/colorGray"
+        app:itemTextColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewHorarios"
         app:menu="@menu/bottom_nav_menu" />
 
