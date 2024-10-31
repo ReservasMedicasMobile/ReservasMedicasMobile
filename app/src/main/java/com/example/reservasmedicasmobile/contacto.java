@@ -64,14 +64,12 @@ public class contacto extends AppCompatActivity {
             }
         });
 
-
-                // Configuración de las opciones del Spinner con la opción "Seleccionar" y "2"
-                String[] opciones = { "Seleccionar", "Sugerencia", "Reclamo"};
-                ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
-                opcionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerOpcion.setAdapter(opcionAdapter);
-            }
-
+        // Configuración de las opciones del Spinner con la opción "Seleccionar" y "2"
+        String[] opciones = {"Seleccionar", "Sugerencia", "Reclamo"};
+        ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
+        opcionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerOpcion.setAdapter(opcionAdapter);
+    }
 
     private boolean validateFields() {
         String firstName = etFirstName.getText().toString().trim();
@@ -80,31 +78,58 @@ public class contacto extends AppCompatActivity {
         String phoneNumber = etPhoneNumber.getText().toString().trim();
         String message = etMessage.getText().toString().trim();
 
+        // Validación para el campo Nombre (mínimo 2 caracteres, máximo 35)
         if (TextUtils.isEmpty(firstName) || !firstName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
             etFirstName.setError("El nombre es obligatorio y no debe contener números");
             return false;
-        }
-
-        if (TextUtils.isEmpty(lastName) || !lastName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
-            etLastName.setError("El apellido es obligatorio y no debe contener números");
+        } else if (firstName.length() < 2) {
+            etFirstName.setError("El nombre debe tener al menos 2 caracteres");
+            return false;
+        } else if (firstName.length() > 45) {
+            etFirstName.setError("El nombre no debe exceder 45 caracteres");
             return false;
         }
 
+        // Validación para el campo Apellido (mínimo 2 caracteres, máximo 35)
+        if (TextUtils.isEmpty(lastName) || !lastName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
+            etLastName.setError("El apellido es obligatorio y no debe contener números");
+            return false;
+        } else if (lastName.length() < 2) {
+            etLastName.setError("El apellido debe tener al menos 2 caracteres");
+            return false;
+        } else if (lastName.length() > 45) {
+            etLastName.setError("El apellido no debe exceder 45 caracteres");
+            return false;
+        }
+
+        // Validación para el correo electrónico
         if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError("Correo electrónico inválido");
             return false;
         }
 
+        // Validación para el número de teléfono (mínimo 10 dígitos)
         if (TextUtils.isEmpty(phoneNumber) || !phoneNumber.matches("[0-9]+") || phoneNumber.length() < 10) {
             etPhoneNumber.setError("Número de teléfono inválido (mínimo 10 dígitos)");
             return false;
         }
 
+        // Validación para el campo Mensaje (mínimo 10 caracteres, máximo 200) y no permitir URLs
         if (TextUtils.isEmpty(message)) {
             etMessage.setError("El mensaje es obligatorio");
             return false;
+        } else if (message.length() < 10) {
+            etMessage.setError("El mensaje debe tener al menos 10 caracteres");
+            return false;
+        } else if (message.length() > 200) {
+            etMessage.setError("El mensaje no debe exceder 200 caracteres");
+            return false;
+        } else if (Patterns.WEB_URL.matcher(message).find()) { // Nueva validación para URLs
+            etMessage.setError("El mensaje no debe contener URLs");
+            return false;
         }
 
+        // Validación para el Spinner
         if (spinnerOpcion.getSelectedItem().toString().equals("Seleccionar")) {
             Toast.makeText(this, "Por favor, selecciona un tipo de consulta", Toast.LENGTH_LONG).show();
             return false;
@@ -140,12 +165,11 @@ public class contacto extends AppCompatActivity {
             String tipoDeConsulta = spinnerOpcion.getSelectedItem().toString();
             if (tipoDeConsulta.equals("Sugerencia")) {
                 postData.put("tipo_de_consulta", 2); // Aquí se manda el código '2' en lugar del texto
-            }   else if (tipoDeConsulta.equals("Reclamo")) {
+            } else if (tipoDeConsulta.equals("Reclamo")) {
                 postData.put("tipo_de_consulta", 3); // Código '3' para reclamo
-            } else if(tipoDeConsulta.equals("Seleccionar")){
+            } else if (tipoDeConsulta.equals("Seleccionar")) {
                 postData.put("tipo_de_consulta", 1); // Código por defecto si es necesario
             }
-
 
             postData.put("mensaje", etMessage.getText().toString().trim());
             postData.put("aviso", false);
@@ -156,8 +180,7 @@ public class contacto extends AppCompatActivity {
         System.out.println(previaJson);
         int timeoutMs = 10000;
 
-
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
                 apiUrl,
@@ -197,12 +220,11 @@ public class contacto extends AppCompatActivity {
 
         // Cambiar el texto del botón
         btnSubmit.setText("Pronto nos comunicaremos con usted");
-        // Usar un Handler para restaurar el texto original después de 2 segundos
-        new android.os.Handler().postDelayed(() -> {
-            btnSubmit.setText("Enviar");
-        }, 2000); // 2000 milisegundos = 2 segundos
+        // Usar un Runnable para que el texto del botón vuelva a cambiar después de 5 segundos
+        btnSubmit.postDelayed(() -> btnSubmit.setText("Enviar"), 5000);
     }
 }
+
 
 
 
