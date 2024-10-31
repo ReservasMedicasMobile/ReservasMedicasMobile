@@ -1,6 +1,7 @@
 package com.example.reservasmedicasmobile;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +22,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,10 +44,7 @@ public class contacto extends AppCompatActivity {
         setContentView(R.layout.activity_contacto);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ImageButton backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(v -> finish());
+        toolbar.setVisibility(View.GONE);
 
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
@@ -56,6 +54,33 @@ public class contacto extends AppCompatActivity {
         etMessage = findViewById(R.id.etMessage);
         btnSubmit = findViewById(R.id.btnSubmit);
 
+        // Configuración de las opciones del Spinner
+        String[] opciones = {"Tipo de consulta", "Sugerencia", "Reclamo"};
+        ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(contacto.this, R.layout.spinner_item_contacto, opciones);
+        opcionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerOpcion.setAdapter(opcionAdapter);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(contacto.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_login) {
+                Intent intent = new Intent(contacto.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.navigation_servicios) {
+                Intent intent = new Intent(contacto.this, servicios.class);
+                startActivity(intent);
+                return true;
+            } else {
+                return false;
+            }
+        });
+
         // Listener para el botón de envío
         btnSubmit.setOnClickListener(v -> {
             System.out.println("hice click en el boton enviar");
@@ -63,15 +88,7 @@ public class contacto extends AppCompatActivity {
                 sendFormWithJWT();
             }
         });
-
-
-                // Configuración de las opciones del Spinner con la opción "Seleccionar" y "2"
-                String[] opciones = { "Seleccionar", "Sugerencia", "Reclamo"};
-                ArrayAdapter<String> opcionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
-                opcionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerOpcion.setAdapter(opcionAdapter);
-            }
-
+    }
 
     private boolean validateFields() {
         String firstName = etFirstName.getText().toString().trim();
@@ -140,12 +157,11 @@ public class contacto extends AppCompatActivity {
             String tipoDeConsulta = spinnerOpcion.getSelectedItem().toString();
             if (tipoDeConsulta.equals("Sugerencia")) {
                 postData.put("tipo_de_consulta", 2); // Aquí se manda el código '2' en lugar del texto
-            }   else if (tipoDeConsulta.equals("Reclamo")) {
-                postData.put("tipo_de_consulta", 3); // Código '3' para reclamo
-            } else if(tipoDeConsulta.equals("Seleccionar")){
-                postData.put("tipo_de_consulta", 1); // Código por defecto si es necesario
+            } else if (tipoDeConsulta.equals("Reclamo")) {
+                postData.put("tipo_de_consulta", 1); // Código '3' para reclamo
+            } else if (tipoDeConsulta.equals("Seleccionar")) {
+                postData.put("tipo_de_consulta", 3); // Código por defecto si es necesario
             }
-
 
             postData.put("mensaje", etMessage.getText().toString().trim());
             postData.put("aviso", false);
@@ -156,8 +172,7 @@ public class contacto extends AppCompatActivity {
         System.out.println(previaJson);
         int timeoutMs = 10000;
 
-
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
                 apiUrl,
@@ -196,16 +211,11 @@ public class contacto extends AppCompatActivity {
         spinnerOpcion.setSelection(0); // Volver a la primera opción del Spinner ("Seleccionar")
 
         // Cambiar el texto del botón
-        btnSubmit.setText("Pronto nos comunicaremos con usted");
+        btnSubmit.setText("Pronto nos comunicaremos");
         // Usar un Handler para restaurar el texto original después de 2 segundos
         new android.os.Handler().postDelayed(() -> {
             btnSubmit.setText("Enviar");
         }, 2000); // 2000 milisegundos = 2 segundos
     }
 }
-
-
-
-
-
 

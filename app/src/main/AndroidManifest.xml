@@ -1,12 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.reservasmedicasmobile">
 
-
-    <!-- Permiso para acceder a Internet -->
+    <!-- Permisos necesarios -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_logo_rmm"
@@ -16,38 +19,62 @@
         android:theme="@style/Theme.ReservasMedicasMobile"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <!-- Tus actividades -->
-        <activity
-            android:name=".menudeopciones"
-            android:exported="true" />
+
+        <!-- Lista de actividades -->
         <activity
             android:name=".especialidades"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".pacientes"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".menudeopciones"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".medicos"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".servicios"
-            android:exported="true" />
-        <activity
-            android:name=".reservas"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".turnos"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".contacto"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".dashboard"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".registro"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MisturnosDashboard"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VideoActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
+            android:exported="true"
+            android:screenOrientation="portrait">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -55,4 +82,3 @@
     </application>
 
 </manifest>
-

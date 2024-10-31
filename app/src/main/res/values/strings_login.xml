@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back_button">Botón para volver</string>
+    <string name="name1">Reservas \nMédicas</string>
+    <string name="name2">Mobile</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="information">Ingrese su información para iniciar sesión</string>
+    <string name="user">Usuario</string>
+    <string name="userhint">Ingrese su DNI</string>
+    <string name="password">Contraseña</string>
+    <string name="passwordhint">Ingrese su contraseña</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="account">¿Aún no tenés cuenta?</string>
+    <string name="singup">Registrar Usuario</string>
+</resources>
