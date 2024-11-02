@@ -79,10 +79,11 @@
 
     <Button
         android:id="@+id/agregar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="304dp"
         android:layout_marginBottom="16dp"
+        android:layout_marginRight="60dp"
         android:onClick="agregar"
         android:text="Agregar"
         android:backgroundTint="@android:color/holo_blue_light"
@@ -96,6 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:layout_marginLeft="25dp"
         android:onClick="Actualizar"
         android:text="Actualizar y Eliminar"
         android:backgroundTint="@android:color/holo_blue_light"

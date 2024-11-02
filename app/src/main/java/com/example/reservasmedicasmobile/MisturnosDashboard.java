@@ -32,6 +32,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import retrofit2.http.DELETE;
+
 public class MisturnosDashboard extends AppCompatActivity {
 
     private TextView turnosTextView;
@@ -138,6 +140,10 @@ public class MisturnosDashboard extends AppCompatActivity {
                 Button deleteButton = new Button(this);
                 deleteButton.setTag(id);
                 deleteButton.setText("Eliminar Turno");
+                deleteButton.setBackgroundColor(Color.parseColor("#007bff"));
+                deleteButton.setTextColor(Color.WHITE);
+                deleteButton.setTextSize(16);
+                deleteButton.setPadding(16, 16, 16, 16); // Padding
 
                 textView.setTextSize(20);
                 textView.setPadding(16, 16, 16, 16);
@@ -147,7 +153,8 @@ public class MisturnosDashboard extends AppCompatActivity {
                 textView.append("Hora: " + hora + "\n");
                 textView.append("Fecha: " + fecha + "\n");
                 textView.append("\n");
-                textView.append("********************     ");
+
+
 
 
 
