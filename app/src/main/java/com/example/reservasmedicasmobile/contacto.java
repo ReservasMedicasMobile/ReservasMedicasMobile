@@ -94,31 +94,58 @@ public class contacto extends AppCompatActivity {
         String phoneNumber = etPhoneNumber.getText().toString().trim();
         String message = etMessage.getText().toString().trim();
 
+        // Validación para el campo Nombre (mínimo 2 caracteres, máximo 35)
         if (TextUtils.isEmpty(firstName) || !firstName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
             etFirstName.setError("El nombre es obligatorio y no debe contener números");
             return false;
-        }
-
-        if (TextUtils.isEmpty(lastName) || !lastName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
-            etLastName.setError("El apellido es obligatorio y no debe contener números");
+        } else if (firstName.length() < 2) {
+            etFirstName.setError("El nombre debe tener al menos 2 caracteres");
+            return false;
+        } else if (firstName.length() > 45) {
+            etFirstName.setError("El nombre no debe exceder 45 caracteres");
             return false;
         }
 
+        // Validación para el campo Apellido (mínimo 2 caracteres, máximo 35)
+        if (TextUtils.isEmpty(lastName) || !lastName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
+            etLastName.setError("El apellido es obligatorio y no debe contener números");
+            return false;
+        } else if (lastName.length() < 2) {
+            etLastName.setError("El apellido debe tener al menos 2 caracteres");
+            return false;
+        } else if (lastName.length() > 45) {
+            etLastName.setError("El apellido no debe exceder 45 caracteres");
+            return false;
+        }
+
+        // Validación para el correo electrónico
         if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError("Correo electrónico inválido");
             return false;
         }
 
+        // Validación para el número de teléfono (mínimo 10 dígitos)
         if (TextUtils.isEmpty(phoneNumber) || !phoneNumber.matches("[0-9]+") || phoneNumber.length() < 10) {
             etPhoneNumber.setError("Número de teléfono inválido (mínimo 10 dígitos)");
             return false;
         }
 
+        // Validación para el campo Mensaje (mínimo 10 caracteres, máximo 200) y no permitir URLs
         if (TextUtils.isEmpty(message)) {
             etMessage.setError("El mensaje es obligatorio");
             return false;
+        } else if (message.length() < 10) {
+            etMessage.setError("El mensaje debe tener al menos 10 caracteres");
+            return false;
+        } else if (message.length() > 400) {
+            etMessage.setError("El mensaje no debe exceder 400 caracteres");
+            return false;
+        } else if (Patterns.WEB_URL.matcher(message).find()) { // Nueva validación para URLs
+            etMessage.setError("El mensaje no debe contener URLs");
+            return false;
         }
 
+        // Validación para el Spinner
         if (spinnerOpcion.getSelectedItem().toString().equals("Seleccionar")) {
             Toast.makeText(this, "Por favor, selecciona un tipo de consulta", Toast.LENGTH_LONG).show();
             return false;
