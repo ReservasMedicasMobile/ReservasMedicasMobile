@@ -132,10 +132,10 @@ public class contacto extends AppCompatActivity {
         if (TextUtils.isEmpty(lastName) || !lastName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
             etLastName.setError("El apellido es obligatorio y no debe contener números");
             return false;
-        } else if (lastName.length() < 2) {
+        } else if (lastName.length() < 3) {
             etLastName.setError("El apellido debe tener al menos 2 caracteres");
             return false;
-        } else if (lastName.length() > 45) {
+        } else if (lastName.length() > 25) {
             etLastName.setError("El apellido no debe exceder 45 caracteres");
             return false;
         }
