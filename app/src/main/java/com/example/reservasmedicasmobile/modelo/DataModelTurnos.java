@@ -2,6 +2,7 @@ package com.example.reservasmedicasmobile.modelo;
 
 public class DataModelTurnos {
 
+    private int id;
     private String paciente_id;
     private String profecional_id;
     String hora_turno;
@@ -9,13 +10,19 @@ public class DataModelTurnos {
     int especialidad;
     boolean cancelado;
 
-    public DataModelTurnos(boolean cancelado,String paciente_id, String profecional_id, String hora_turno, String fecha_turno, int especialidad) {
+
+    public DataModelTurnos(int id,boolean cancelado,String paciente_id, String profecional_id, String hora_turno, String fecha_turno, int especialidad) {
         this.paciente_id = paciente_id;
         this.profecional_id = profecional_id;
         this.hora_turno = hora_turno;
         this.fecha_turno = fecha_turno;
         this.especialidad = especialidad;
         this.cancelado = cancelado;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public boolean isCancelado() {
