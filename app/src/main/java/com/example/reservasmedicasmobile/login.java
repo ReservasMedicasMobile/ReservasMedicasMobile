@@ -2,12 +2,10 @@ package com.example.reservasmedicasmobile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,13 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.android.volley.VolleyError;
 
 import com.hcaptcha.sdk.HCaptcha;
 import com.hcaptcha.sdk.HCaptchaConfig;
-import com.hcaptcha.sdk.HCaptchaError;
 import com.hcaptcha.sdk.HCaptchaException;
 
 
@@ -43,7 +37,7 @@ public class login extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private int loginAttempts = 0; // Contador de intentos de inicio de sesión
     private static final int MAX_LOGIN_ATTEMPTS = 3; // Máximo de intentos
-    private static final long BLOCK_DURATION = 1 * 60 * 1000; //BLOQUEO POR 1 minuto en milisegundos (SOLO PARA LA DEMOSTRACION, DESPUES SE PUEDE CAMBIAR POR 15 MINUTOS O LO QUE UNO QUIERA)
+    private static final long BLOCK_DURATION = 60 * 1000; //BLOQUEO POR 1 minuto en milisegundos (SOLO PARA LA DEMOSTRACION, DESPUES SE PUEDE CAMBIAR POR 15 MINUTOS O LO QUE UNO QUIERA)
 
 
     @Override
