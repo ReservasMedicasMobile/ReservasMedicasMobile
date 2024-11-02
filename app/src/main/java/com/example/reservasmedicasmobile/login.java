@@ -9,44 +9,37 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.android.volley.VolleyError;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.safetynet.SafetyNet;
-import com.google.android.gms.safetynet.SafetyNetApi;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.VolleyError;
 
+import com.hcaptcha.sdk.HCaptcha;
+import com.hcaptcha.sdk.HCaptchaConfig;
+import com.hcaptcha.sdk.HCaptchaError;
+import com.hcaptcha.sdk.HCaptchaException;
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class login extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks {
+public class login extends AppCompatActivity {
 
+    private static final String SITE_KEY = "d1389988-f526-42c6-8786-7670d548dfa0";
 
     private EditText username;
     private EditText password;
     private ApiRequest apiRequest;
-    CheckBox checkbox;
-    GoogleApiClient googleApiClient;
-    String SiteKey = "6LeUmWkqAAAAAGxptu-eDbZ2Xq7_ZwKSbqrBjok1";
     private SharedPreferences sharedPreferences;
     private int loginAttempts = 0; // Contador de intentos de inicio de sesión
     private static final int MAX_LOGIN_ATTEMPTS = 3; // Máximo de intentos
@@ -91,41 +84,8 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             // Colocar el cursor al final del texto
             password.setSelection(password.getText().length());
         });
-        checkbox = findViewById(R.id.check_box);
 
-
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(SafetyNet.API)
-                .addConnectionCallbacks(login.this)
-                .build();
-        googleApiClient.connect();
-
-        checkbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (checkbox.isChecked()){
-                    SafetyNet.SafetyNetApi.verifyWithRecaptcha(googleApiClient, SiteKey)
-                            .setResultCallback(new ResultCallback<SafetyNetApi.RecaptchaTokenResult>() {
-                                @Override
-                                public void onResult(@NonNull SafetyNetApi.RecaptchaTokenResult recaptchaTokenResult) {
-
-                                    Status status = recaptchaTokenResult.getStatus();
-
-                                    if ((status != null && status.isSuccess())){
-                                        Toast.makeText(login.this, "Verificado Exitosamente",
-                                                Toast.LENGTH_SHORT).show();
-                                        checkbox.setTextColor(Color.BLUE);
-                                    }
-                                }
-                            });
-
-                }else{
-                    checkbox.setTextColor(Color.RED);
-                    Toast.makeText(login.this, "No ha sido verificado", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
+    //Barra navegacion inferior
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
@@ -156,7 +116,9 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         apiRequest = new ApiRequest(this);
 
         // Listener botón iniciar sesión
-        login_button.setOnClickListener(v -> validarFormulario());
+        login_button.setOnClickListener(v -> {
+            validarFormulario(); // Verificar campos antes de iniciar hCaptcha
+        });
 
         // Link a registro
         TextView registro = findViewById(R.id.registro);
@@ -201,11 +163,6 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             if (TextUtils.isEmpty(contrasenia)) {
                 password.setError("La contraseña no puede estar vacía");
             }
-            if(dni.equals("406823198")){
-                Intent intents = new Intent(login.this, especialidades.class);
-                startActivity(intents);
-            }
-
             return;
         }
 
@@ -221,19 +178,39 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             return;
         }
 
-        // Si los campos no están vacíos, iniciar sesión
-        iniciarSesion(dni, contrasenia);
+        // Si los campos están correctos, inicializa hCaptcha
+        HCaptchaConfig hCaptchaConfig = HCaptchaConfig.builder()
+                .siteKey(SITE_KEY)
+                .locale("es")
+                .build();
 
+        HCaptcha.getClient(this).verifyWithHCaptcha(hCaptchaConfig)
+                .addOnSuccessListener(hCaptchaTokenResponse -> {
+                    // Verificación exitosa
+                    String hCaptchaToken = hCaptchaTokenResponse.getTokenResult(); // Obtener el token del response
+                    Log.d("hCaptcha", "Verificación exitosa. Token: " + hCaptchaToken);
+                    iniciarSesion(dni, contrasenia, hCaptchaToken);
+                })
+                .addOnFailureListener(e -> {
+                    // Error en la verificación
+                    if (e instanceof HCaptchaException) {
+                        Log.e("hCaptcha", "Verificación fallida. Error: " + e.getMessage());
+                    }
+                });
     }
 
-    private void iniciarSesion(String dni, String contrasenia) {
+
+    private void iniciarSesion(String dni, String contrasenia, String hCaptchaToken) {
+        // Log para confirmar la llamada a iniciar sesión
+        Log.d("hCaptcha", "Llamando a iniciar sesión con token hCaptcha");
+
         // Llamar a la API para iniciar sesión
-        apiRequest.login(dni, contrasenia, new ApiRequest.ApiCallback() {
+        apiRequest.login(dni, contrasenia,hCaptchaToken, new ApiRequest.ApiCallback() {
             @Override
             public void onSuccess(JSONObject response) {
                 loginAttempts = 0; // Resetear intentos al iniciar sesión correctamente
                 sharedPreferences.edit().putInt("login_attempts", loginAttempts).remove("block_timestamp").apply(); // Guardar intentos y eliminar bloqueo
-                // Procesar la respuesta y continuar el flujo de éxito
+                // Procesar la respuesta y continuar el flujo exitoso
                 try {
                     JSONObject user = response.getJSONObject("user");
                     String first_name = user.getString("first_name");
@@ -276,35 +253,5 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         editor.apply();
     }
 
-    private void verifyReCaptcha() {
-        String siteKey = "6Ldt6WkqAAAAAKek7SApEh_m8_knHFmssFJv4hoK";
-
-        SafetyNet.getClient(this).verifyWithRecaptcha(siteKey)
-                .addOnCompleteListener(new OnCompleteListener<SafetyNetApi.RecaptchaTokenResponse>() {
-                    @Override
-                    public void onComplete(Task<SafetyNetApi.RecaptchaTokenResponse> task) {
-                        if (task.isSuccessful()) {
-                            SafetyNetApi.RecaptchaTokenResponse response = task.getResult();
-                            if (!response.getTokenResult().isEmpty()) {
-
-                                Toast.makeText(login.this, "Formulario enviado", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(login.this, "Verificación fallida", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Log.e("reCAPTCHA", "Error: " + task.getException().getMessage());
-                        }
-                    }
-                });
-    }
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
 }
 

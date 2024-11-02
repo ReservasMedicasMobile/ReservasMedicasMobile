@@ -25,22 +25,20 @@ public class ApiRequest {
         requestQueue = Volley.newRequestQueue(context);
     }
 
-    public void login(String username, String password, final ApiCallback callback) {
+    public void login(String username, String password, String hCaptchaToken, final ApiCallback callback) {
         String url = BASE_URL + "login/";
-
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("username", username);
             jsonBody.put("password", password);
+            jsonBody.put("hCaptchaToken", hCaptchaToken); // Agregar el token de hCaptcha
         } catch (JSONException e) {
             Log.e("ApiRequest", "Error creando JSON: ", e);
         }
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 callback::onSuccess,
                 error -> {
                     String errorMessage = "Credenciales incorrectas"; // Mensaje genérico
-
                     if (error.networkResponse != null) {
                         Log.e("VolleyError", "Código de respuesta: " + error.networkResponse.statusCode);
                         switch (error.networkResponse.statusCode) {
@@ -60,17 +58,15 @@ public class ApiRequest {
                     } else {
                         errorMessage = "Error de conexión. Verifica tu red.";
                     }
-
                     Log.e("VolleyError", errorMessage);
                     callback.onError(new VolleyError(errorMessage));
                 });
-
         int socketTimeout = 30000; // 30 segundos
         DefaultRetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
-
         requestQueue.add(jsonObjectRequest);
     }
+
 
     // Interfaz para los callbacks
     public interface ApiCallback {
