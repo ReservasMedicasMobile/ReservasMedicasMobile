@@ -99,7 +99,7 @@ public class ActualizarEspcialidadFragment extends Fragment {
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PATCH, url, jsonBody,
-                response -> fetchData(),
+                response -> {fetchData();},
                 error -> Log.e("Volley", "Error: " + error.getMessage())
         );
 
@@ -121,7 +121,7 @@ public class ActualizarEspcialidadFragment extends Fragment {
                             RequestQueue queue = Volley.newRequestQueue(getContext());
 
                             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, url, null,
-                                    response -> fetchData(),
+                                    response ->{fetchData();} ,
                                     error -> Log.e("Volley", "Error: " + error.getMessage())
                             );
 

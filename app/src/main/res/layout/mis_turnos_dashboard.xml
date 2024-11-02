@@ -49,17 +49,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"/>
+
         </ScrollView>
+
 
 
 
     </androidx.cardview.widget.CardView>
 
     <!-- Mensaje de no turnos -->
-    <TextView
-        android:id="@+id/no_turnos_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Usted no posee turnos previos."
-        android:visibility="gone" />
+
 </LinearLayout>

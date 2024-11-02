@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -21,6 +22,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.reservasmedicasmobile.modelo.DataModel;
 
@@ -57,7 +59,7 @@ public class MisturnosDashboard extends AppCompatActivity {
         backButton.setOnClickListener(v -> finish());
 
         //turnosTextView = findViewById(R.id.card_view_misturnos_dashboard);
-        noTurnosMessage = findViewById(R.id.no_turnos_message);
+
 
         // Obtener el token del SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
@@ -127,10 +129,15 @@ public class MisturnosDashboard extends AppCompatActivity {
                 String hora = MisTurnos.getString("hora_turno");
                 String fecha = MisTurnos.getString("fecha_turno");
                 int especialidad = MisTurnos.getInt("especialidad");
+                int id = MisTurnos.getInt("id");
+
+                LinearLayout layout = new LinearLayout(this);
+                layout.setOrientation(LinearLayout.VERTICAL);
 
                 TextView textView = new TextView(this);
-                CheckBox checkBox = new CheckBox(this);
-
+                Button deleteButton = new Button(this);
+                deleteButton.setTag(id);
+                deleteButton.setText("Eliminar Turno");
 
                 textView.setTextSize(20);
                 textView.setPadding(16, 16, 16, 16);
@@ -145,9 +152,21 @@ public class MisturnosDashboard extends AppCompatActivity {
 
 
 
+                layout.addView(textView);
+                layout.addView(deleteButton);
 
+                deleteButton.setOnClickListener(v -> {
+                    int idT = (int) v.getTag();
+                    new AlertDialog.Builder(this)
+                            .setTitle("Confirmar Eliminación")
+                            .setMessage("¿Estás seguro de que deseas eliminar este turno?")
+                            .setPositiveButton("Sí", (dialog, which) -> eliminarTurno(idT))
+                            .setNegativeButton("No", null)
+                            .show();
 
-                linerT.addView(textView);
+                });
+
+                linerT.addView(layout);
 
 
 
@@ -160,6 +179,7 @@ public class MisturnosDashboard extends AppCompatActivity {
 
 
     }
+
     private String convertirEspecialidad(int especialidad) {
         switch (especialidad) {
             case 1:
@@ -184,61 +204,24 @@ public class MisturnosDashboard extends AppCompatActivity {
                 return "Especialidad desconocida"; // Valor por defecto si no coincide
         }
     }
-   /* private void fetchTurnos(String token) {
-        ApiService apiService = new ApiService(this);
-        apiService.fetchTurnos(token, new ApiService.ApiCallback() {
-            @Override
-            public void onSuccess(JSONArray response) {
-                if (response.length() == 0) {
-                    turnosTextView.setVisibility(View.GONE);
-                    noTurnosMessage.setVisibility(View.VISIBLE);
-                } else {
-                    turnosTextView.setVisibility(View.VISIBLE);
-                    noTurnosMessage.setVisibility(View.GONE);
-                    StringBuilder turnosBuilder = new StringBuilder();
 
-                    // Utilizar la respuesta directamente en lugar de jsonArray
-                    for (int i = 0; i < response.length(); i++) {
-                        try {
-                            JSONObject turno = response.getJSONObject(i);
+    private void eliminarTurno(int id) {
+        String url = "https://reservasmedicas.ddns.net/api/v1/turnos/" + id+ "/";
 
-                            // Extraer los datos necesarios del objeto JSON
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url,
+                response -> {
 
+                    Toast.makeText(this, "Turno eliminado exitosamente", Toast.LENGTH_SHORT).show();
+                    recreate();
 
-                            int paciente = turno.getInt("paciente");
-                            int profesional = turno.getInt("profesional");
-                            String horaTurno = turno.getString("hora_turno");
-                            String fechaTurno = turno.getString("fecha_turno");
-                            int especialidad = turno.getInt("especialidad");
+                },
+                error -> {
 
-                            // Construir la cadena de salida
-                            turnosBuilder.append("Paciente: ").append(paciente)
-                                    .append(", Profesional: ").append(profesional)
-                                    .append(", Hora: ").append(horaTurno)
-                                    .append(", Fecha: ").append(fechaTurno)
-                                    .append(", Especialidad: ").append(especialidad)
-                                    .append("\n");
-                        } catch (Exception e) {
-                            Log.e("MisturnosDashboard", "Error procesando turnos: ", e);
-                        }
-                    }
-
-                    // Mostrar los turnos procesados en el cuerpo de la página
-                    turnosTextView.setText(turnosBuilder.toString());
+                    Toast.makeText(this, "Error al eliminar el turno: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            }
+        );
 
-            @Override
-            public void onError(VolleyError error) {
-                Log.e("MisturnosDashboard", "Error al cargar los turnos: ", error);
-                Toast.makeText(MisturnosDashboard.this, "Error al cargar los turnos: " + error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }*/
-
-
-
-
-
+        rq.add(stringRequest);
+    }
 
 }
