@@ -60,18 +60,42 @@ public class AgregarEspecialidadFragment extends Fragment {
             Toast.makeText(getActivity(), "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        final String especialidad = editTextEspcialidad.getText().toString();
 
         new android.app.AlertDialog.Builder(getActivity())
                 .setTitle("Confirmación")
                 .setMessage("¿Estás seguro de que quieres enviar los datos?")
                 .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        enviarDatos();
+                        verificarExistenciaEspecialidad(especialidad);;
                     }
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    private void verificarExistenciaEspecialidad(final String especialidad) {
+        String url = "https://reservasmedicas.ddns.net/especialidad/existe/" + especialidad;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.contains("\"existe\":true")) {
+                            Toast.makeText(getActivity(), "La especialidad ya existe.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            enviarDatos();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "Error al verificar: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        Volley.newRequestQueue(requireContext()).add(stringRequest);
     }
 
     private void enviarDatos() {

@@ -101,11 +101,30 @@ public class contacto extends AppCompatActivity {
         if (TextUtils.isEmpty(firstName) || !firstName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
             etFirstName.setError("El nombre es obligatorio y no debe contener números");
             return false;
+
+        } else if (firstName.length() < 3) {
+            etFirstName.setError("El nombre debe tener al menos 3 caracteres");
+            return false;
+        } else if (firstName.length() > 25) {
+            etFirstName.setError("El nombre no debe exceder 25 caracteres");
+            return false;
+
+        }
+
+        if (TextUtils.isEmpty(lastName) || !lastName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
+            etLastName.setError("El apellido es obligatorio y no debe contener números");
         } else if (firstName.length() < 2) {
             etFirstName.setError("El nombre debe tener al menos 2 caracteres");
             return false;
         } else if (firstName.length() > 45) {
             etFirstName.setError("El nombre no debe exceder 45 caracteres");
+            return false;
+
+        } else if (lastName.length() < 3) {
+            etLastName.setError("El apellido debe tener al menos 3 caracteres");
+            return false;
+        } else if (lastName.length() > 25) {
+            etLastName.setError("El apellido no debe exceder 25 caracteres");
             return false;
         }
 
@@ -113,10 +132,10 @@ public class contacto extends AppCompatActivity {
         if (TextUtils.isEmpty(lastName) || !lastName.matches("[a-zA-ZÀ-ÿ'\\s]+")) {
             etLastName.setError("El apellido es obligatorio y no debe contener números");
             return false;
-        } else if (lastName.length() < 2) {
+        } else if (lastName.length() < 3) {
             etLastName.setError("El apellido debe tener al menos 2 caracteres");
             return false;
-        } else if (lastName.length() > 45) {
+        } else if (lastName.length() > 25) {
             etLastName.setError("El apellido no debe exceder 45 caracteres");
             return false;
         }
@@ -130,6 +149,9 @@ public class contacto extends AppCompatActivity {
         // Validación para el número de teléfono (mínimo 10 dígitos)
         if (TextUtils.isEmpty(phoneNumber) || !phoneNumber.matches("[0-9]+") || phoneNumber.length() < 10) {
             etPhoneNumber.setError("Número de teléfono inválido (mínimo 10 dígitos)");
+            return false;
+        }else if (phoneNumber.length() > 18) {
+            etPhoneNumber.setError("El numero de telefono no puede exceder los 18 caracteres");
             return false;
         }
 
@@ -145,6 +167,9 @@ public class contacto extends AppCompatActivity {
             return false;
         } else if (Patterns.WEB_URL.matcher(message).find()) { // Nueva validación para URLs
             etMessage.setError("El mensaje no debe contener URLs");
+            return false;
+        } else if (message.matches(".*[;'\"]+.*")) { // Evitar caracteres especiales para no inyeccion sql
+            etMessage.setError("El mensaje contiene caracteres no permitidos");
             return false;
         }
 

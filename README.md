@@ -20,7 +20,6 @@ El backend de esta aplicación seguirá siendo el mismo, desarrollado en Django 
 - [Funcionalidades Futuras](#funcionalidades-futuras)
 - [Contacto](#contacto)
 - [Repositorios](#repositorios)
-- [Documentacion](#documentación)
 - [Integrantes](#integrantes)
 
 
@@ -108,15 +107,13 @@ Este proyecto está licenciado bajo los términos de la [Licencia MIT](https://o
 ## Contacto  
 Para más información o soporte, puedes contactar al equipo de desarrollo a través de nuestro correo: soporte@reservamedica.com.
 
-## Repositorios
+## Repositorios:
 - [Organizacion en github](https://github.com/ReservasMedicasMobile)
 - [App Mobile](https://github.com/ReservasMedicasMobile/ReservasMedicasMobile)
 - [Api Django](https://github.com/ReservasMedicasMobile/Backend_api_django)
 - [Proyecto Reservas Médicas Web](https://github.com/ReservasMedicasMobile/ReservasMedicasWeb)
 
-
-## Documentación
-[Wiki del proyecto - Reservas Medicas Mobile](https://github.com/ReservasMedicasMobile/ReservasMedicasMobile/wiki)
+  
 ## Integrantes:
 
 | Integrante                  | Rol            | Github  |

@@ -67,6 +67,7 @@ public class pacientes extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
 
         boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
+        int id =  sharedPreferences.getInt("id", -1);
 
 
 
@@ -169,7 +170,7 @@ public class pacientes extends AppCompatActivity {
                 Toast.makeText(pacientes.this, "Error: Selecione una Obra Social.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            datosPaciente.put("id", id);
+            datosPaciente.put("username_id", id);
             datosPaciente.put("nombre", nombre);
             datosPaciente.put("apellido", apellido);
             datosPaciente.put("dni", dni);

@@ -6,9 +6,7 @@
     <item
         android:id="@+id/btn_turnos"
         android:title="Turnos" />
-    <item
-        android:id="@+id/btn_turnos"
-        android:title="Turnos" />
+
     <item
         android:id="@+id/btn_dashboard"
         android:title="Perfil" />
