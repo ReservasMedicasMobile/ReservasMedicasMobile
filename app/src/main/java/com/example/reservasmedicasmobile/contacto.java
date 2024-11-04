@@ -168,6 +168,9 @@ public class contacto extends AppCompatActivity {
         } else if (Patterns.WEB_URL.matcher(message).find()) { // Nueva validación para URLs
             etMessage.setError("El mensaje no debe contener URLs");
             return false;
+        } else if (message.matches(".*[;'\"]+.*")) { // Evitar caracteres especiales para no inyeccion sql
+            etMessage.setError("El mensaje contiene caracteres no permitidos");
+            return false;
         }
 
         // Validación para el Spinner
