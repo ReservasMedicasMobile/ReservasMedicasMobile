@@ -169,6 +169,9 @@ public class registro extends AppCompatActivity {
         } else if (!first_name.matches("[A-Za-z ]+")) {  // Permitimos espacios
             first_nameInput.setError("El nombre solo puede contener letras y espacios");
             return;
+        }  else if (first_name.length() < 3 || first_name.length() > 20) {  // el nombre debe tener un minimo de 3 caracteres y un maximo de 20
+            first_nameInput.setError("El nombre es demasiado corto");
+            return;
         }
 
         // Validar apellido
