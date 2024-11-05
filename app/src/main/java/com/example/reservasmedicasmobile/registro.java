@@ -163,6 +163,9 @@ public class registro extends AppCompatActivity {
         } else if (username.startsWith("0")) {  // El dni no puede empezar con 0
             usernameInput.setError("El DNI no puede empezar con '0'");
             return;
+        } else if (username.matches("(\\d)\\1{7}")) { // El dni no podra tener 8 números repetidos (ej. "11111111")
+            usernameInput.setError("El DNI no puede contener 8 números repetidos");
+            return;
         }
 
         // Validar nombre
