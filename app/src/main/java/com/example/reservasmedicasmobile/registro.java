@@ -160,6 +160,9 @@ public class registro extends AppCompatActivity {
         } else if (username.length() != 8) { // Verifica que tenga exactamente 8 dígitos
             usernameInput.setError("El DNI debe tener exactamente 8 dígitos");
             return;
+        } else if (username.startsWith("0")) {  // El dni no puede empezar con 0
+            usernameInput.setError("El DNI no puede empezar con '0'");
+            return;
         }
 
         // Validar nombre
