@@ -38,8 +38,13 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 
 public class turnos extends AppCompatActivity {
+
+
 
     private Spinner specialtySpinner;
     private Spinner professionalSpinner;
@@ -56,6 +61,9 @@ public class turnos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turnos);
+
+        // Cargar los turnos reservados desde SharedPreferences al iniciar la actividad
+        cargarTurnosReservados();
 
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
@@ -107,7 +115,7 @@ public class turnos extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected(AdapterView<?> parentView) {
             }
         });
 
@@ -718,7 +726,7 @@ public class turnos extends AppCompatActivity {
         dialog.show();
     }
 
-    private void mostrarHorariosDisponibles() {
+   /* private void mostrarHorariosDisponibles() {
         String especialistaSeleccionado = professionalSpinner.getSelectedItem().toString();
         if (!horariosPorEspecialistaYFecha.containsKey(especialistaSeleccionado)) {
             Toast.makeText(this, "Selecciona un profesional válido", Toast.LENGTH_SHORT).show();
@@ -738,10 +746,27 @@ public class turnos extends AppCompatActivity {
             return;
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        /*.Builder builder = new AlertDialog.Builder(this);
 
         ListView listView = new ListView(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, horariosDisponibles);
+        listView.setAdapter(adapter);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        builder.setView(listView);
+
+        // Filtrar los horarios reservados y crear una lista de horarios disponibles
+        List<String> horariosDisponiblesActualizados = new ArrayList<>();
+        for (String hora : horariosDisponibles) {
+            // Verificar si el turno ya está reservado
+            if (!turnosReservados.contains(fechaSeleccionada + " " + hora)) {
+                horariosDisponiblesActualizados.add(hora);
+            }
+        }
+
+        // Mostrar los horarios disponibles (sin los reservados)
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        ListView listView = new ListView(this);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, horariosDisponiblesActualizados);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         builder.setView(listView);
@@ -751,16 +776,107 @@ public class turnos extends AppCompatActivity {
             openTimePickerButton.setText("Horario: " + horaSeleccionada);
         });
 
-        builder.setNegativeButton("Cancelar", null);
+        /*builder.setNegativeButton("Cancelar", null);
         builder.setPositiveButton("Seleccionar", (dialog, which) -> {
             if (!horaSeleccionada.isEmpty()) {
                 Toast.makeText(this, "Hora seleccionada: " + horaSeleccionada, Toast.LENGTH_SHORT).show();
             }
         });
 
+        builder.setPositiveButton("Seleccionar", (dialog, which) -> {
+            if (!horaSeleccionada.isEmpty()) {
+                // Agregar el turno seleccionado al conjunto de turnos reservados
+                turnosReservados.add(fechaSeleccionada + " " + horaSeleccionada);
+                Toast.makeText(this, "Hora seleccionada: " + horaSeleccionada, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
+    }*/
+
+
+
+
+        //Almaceno los turnos reservados (SharedPreferences)
+        Set<String> turnosReservados = new HashSet<>();
+
+        private void cargarTurnosReservados() {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            // Recuperamos los turnos reservados guardados como un conjunto de cadenas (Set<String>)
+            Set<String> turnos = sharedPreferences.getStringSet("turnos_reservados", new HashSet<>());
+            turnosReservados.addAll(turnos);
+        }
+
+        private void guardarTurnosReservados() {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            // Guardamos el conjunto de turnos reservados en SharedPreferences
+            editor.putStringSet("turnos_reservados", turnosReservados);
+            editor.apply(); // Guardamos los cambios de manera asíncrona
+        }
+
+        private void mostrarHorariosDisponibles() {
+            String especialistaSeleccionado = professionalSpinner.getSelectedItem().toString();
+            if (!horariosPorEspecialistaYFecha.containsKey(especialistaSeleccionado)) {
+                Toast.makeText(this, "Selecciona un profesional válido", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (fechaSeleccionada.isEmpty()) {
+                Toast.makeText(this, "Selecciona una fecha primero", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Map<String, List<String>> fechasHorarios = horariosPorEspecialistaYFecha.get(especialistaSeleccionado);
+            List<String> horariosDisponibles = fechasHorarios.get(fechaSeleccionada);
+
+            if (horariosDisponibles == null || horariosDisponibles.isEmpty()) {
+                Toast.makeText(this, "No hay horarios disponibles para la fecha seleccionada", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Filtrar los horarios reservados y crear una lista de horarios disponibles
+            List<String> horariosDisponiblesActualizados = new ArrayList<>();
+            for (String hora : horariosDisponibles) {
+                // Verificar si el turno ya está reservado
+                if (!turnosReservados.contains(fechaSeleccionada + " " + hora)) {
+                    horariosDisponiblesActualizados.add(hora);
+                }
+            }
+
+            // Mostrar los horarios disponibles (sin los reservados)
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            ListView listView = new ListView(this);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, horariosDisponiblesActualizados);
+            listView.setAdapter(adapter);
+            listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            builder.setView(listView);
+
+            listView.setOnItemClickListener((parent, view, position, id) -> {
+                horaSeleccionada = horariosDisponiblesActualizados.get(position);
+                openTimePickerButton.setText("Horario: " + horaSeleccionada);
+            });
+
+            builder.setNegativeButton("Cancelar", null);
+
+            // Guardar el turno reservado al confirmar la selección
+            builder.setPositiveButton("Seleccionar", (dialog, which) -> {
+                if (!horaSeleccionada.isEmpty()) {
+                    // Agregar el turno seleccionado al conjunto de turnos reservados
+                    turnosReservados.add(fechaSeleccionada + " " + horaSeleccionada);
+                    // Guardar los turnos reservados en SharedPreferences
+                    guardarTurnosReservados();
+                    Toast.makeText(this, "Hora seleccionada: " + horaSeleccionada, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
+
+
     public static String formatearFecha(String fecha) {
         SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         SimpleDateFormat formatoSalida = new SimpleDateFormat("EEEE yyyy-MM-dd", new Locale("es", "ES"));
