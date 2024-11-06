@@ -139,7 +139,7 @@ public class MisturnosDashboard extends AppCompatActivity {
                 TextView textView = new TextView(this);
                 Button deleteButton = new Button(this);
                 deleteButton.setTag(id);
-                deleteButton.setText("Eliminar Turno");
+                deleteButton.setText("Cancelar Turno");
                 deleteButton.setBackgroundColor(Color.parseColor("#007bff"));
                 deleteButton.setTextColor(Color.WHITE);
                 deleteButton.setTextSize(16);
