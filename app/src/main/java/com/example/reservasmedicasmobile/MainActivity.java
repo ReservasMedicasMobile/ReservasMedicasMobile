@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         String first_name = sharedPreferences.getString("first_name", "Usuario");
         int id = sharedPreferences.getInt("id", -1);
 
+        if (first_name != null && first_name.length() > 0) {
+            first_name = first_name.substring(0, 1).toUpperCase() + first_name.substring(1).toLowerCase();
+        }
+
         // Mostrar u ocultar botones según el estado de logueo
         if (isLoggedIn && id == 49) {
             String saludo = getString(R.string.saludo, first_name);
