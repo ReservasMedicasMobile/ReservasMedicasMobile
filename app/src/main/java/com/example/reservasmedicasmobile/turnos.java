@@ -283,6 +283,10 @@ public class turnos extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, turnoData,
                 response -> {
                     Toast.makeText(turnos.this, "Turno creado exitosamente", Toast.LENGTH_SHORT).show();
+
+
+                    // Llamo a clearForm para limpiar el formulario después de la creación exitosa del turno
+                    clearForm();
                 },
                 error -> {
                     String errorMessage = "Error desconocido";
@@ -308,6 +312,21 @@ public class turnos extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
+
+    // Aca esta el método clearForm
+    private void clearForm() {
+        // Restablecer los Spinners a su posición inicial
+        specialtySpinner.setSelection(0);
+        professionalSpinner.setSelection(0);
+
+        // Aca se vuelve los botones de selección de fecha y hora a su texto original
+        openDatePickerButton.setText("Seleccionar Fecha");
+        openTimePickerButton.setText("Seleccionar Hora");
+
+        // Aca limpia las variables de fecha y hora seleccionadas
+        fechaSeleccionada = "";
+        horaSeleccionada = "";
+    }
 
 
     public class Especialidad {
@@ -620,4 +639,5 @@ public class turnos extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 }
