@@ -801,7 +801,7 @@ public class turnos extends AppCompatActivity {
         //Almaceno los turnos reservados (SharedPreferences)
         Set<String> turnosReservados = new HashSet<>();
 
-        private void cargarTurnosReservados() {
+       private void cargarTurnosReservados() {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             // Recuperamos los turnos reservados guardados como un conjunto de cadenas (Set<String>)
             Set<String> turnos = sharedPreferences.getStringSet("turnos_reservados", new HashSet<>());
