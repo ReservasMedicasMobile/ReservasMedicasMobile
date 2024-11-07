@@ -876,8 +876,7 @@ public class turnos extends AppCompatActivity {
         }
 
 
-
-    public static String formatearFecha(String fecha) {
+        public static String formatearFecha(String fecha) {
         SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         SimpleDateFormat formatoSalida = new SimpleDateFormat("EEEE yyyy-MM-dd", new Locale("es", "ES"));
         try {
