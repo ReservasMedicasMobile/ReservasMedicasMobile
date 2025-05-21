@@ -130,7 +130,8 @@ public class MisturnosDashboard extends AppCompatActivity {
 
                 String hora = MisTurnos.getString("hora_turno");
                 String fecha = MisTurnos.getString("fecha_turno");
-                int especialidad = MisTurnos.getInt("especialidad");
+                String especialidad = MisTurnos.getString("nombre_especialidad");
+                String profesional = MisTurnos.getString("nombre_profesional");
                 int id = MisTurnos.getInt("id");
 
                 LinearLayout layout = new LinearLayout(this);
@@ -149,7 +150,8 @@ public class MisturnosDashboard extends AppCompatActivity {
                 textView.setPadding(16, 16, 16, 16);
                 textView.append("TIENE UN TURNO \n");
                 textView.append("\n");
-                textView.append("En: "+ convertirEspecialidad(especialidad) +"\n");
+                textView.append("En: "+ especialidad +"\n");
+                textView.append("Con el Medico/a: "+ profesional +"\n");
                 textView.append("Hora: " + hora + "\n");
                 textView.append("Fecha: " + fecha + "\n");
                 textView.append("\n");
