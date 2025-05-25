@@ -5,6 +5,7 @@
     <color name="azul">#151635</color>
     <color name="colorGray">#808080</color>
     <color name="celeste">#0E6CF4</color>
+    <color name="Rojo">#FF0000</color>
     <style name="SpinnerTextStyle">
         <item name="android:textColor">@color/white</item>
     </style>

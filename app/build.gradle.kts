@@ -39,7 +39,7 @@ dependencies {
     implementation(libs.constraintlayout)
 
     implementation (libs.volley)
-
+    implementation ("com.stripe:stripe-android:20.45.0")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation(libs.volley)
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")

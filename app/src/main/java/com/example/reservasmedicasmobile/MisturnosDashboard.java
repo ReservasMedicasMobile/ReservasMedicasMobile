@@ -2,8 +2,10 @@ package com.example.reservasmedicasmobile;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -22,6 +24,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.reservasmedicasmobile.modelo.DataModel;
@@ -139,9 +142,18 @@ public class MisturnosDashboard extends AppCompatActivity {
 
                 TextView textView = new TextView(this);
                 Button deleteButton = new Button(this);
+                Button PagarButton = new Button(this);
+
+                PagarButton.setTag(id);
+                PagarButton.setText("Pagar Turno");
+                PagarButton.setBackgroundColor(Color.parseColor("#151635"));
+                PagarButton.setTextColor(Color.WHITE);
+                PagarButton.setTextSize(16);
+                PagarButton.setPadding(16, 16, 16, 16);
+
                 deleteButton.setTag(id);
                 deleteButton.setText("Cancelar Turno");
-                deleteButton.setBackgroundColor(Color.parseColor("#007bff"));
+                deleteButton.setBackgroundColor(Color.parseColor("#D10000"));
                 deleteButton.setTextColor(Color.WHITE);
                 deleteButton.setTextSize(16);
                 deleteButton.setPadding(16, 16, 16, 16); // Padding
@@ -163,6 +175,7 @@ public class MisturnosDashboard extends AppCompatActivity {
 
                 layout.addView(textView);
                 layout.addView(deleteButton);
+                layout.addView(PagarButton);
 
                 deleteButton.setOnClickListener(v -> {
                     int idT = (int) v.getTag();
@@ -174,6 +187,51 @@ public class MisturnosDashboard extends AppCompatActivity {
                             .show();
 
                 });
+
+                PagarButton.setOnClickListener(v -> {
+                    int idTurno = (int) v.getTag();
+
+                    JSONArray items = new JSONArray();
+                    JSONObject item = new JSONObject();
+
+                    try {
+                        item.put("title", "Turno médico con " + profesional);
+                        item.put("image", "https://via.placeholder.com/150");
+                        item.put("price", 5000); // en centavos = $50.00
+                        items.put(item);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    JSONObject payload = new JSONObject();
+                    try {
+                        payload.put("items", items);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    String url = "http://10.0.2.2:4242/checkout"; // usa la IP correspondiente
+
+                    JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, payload,
+                            response -> {
+                                try {
+                                    String stripeUrl = response.getString("url");
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(stripeUrl));
+                                    startActivity(browserIntent); // Esto abre el navegador y lleva al pago
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            },
+                            error -> {
+                                error.printStackTrace();
+                                Toast.makeText(getApplicationContext(), "Error iniciando pago", Toast.LENGTH_SHORT).show();
+                            });
+
+                    queue.add(request);
+                });
+
+
 
                 linerT.addView(layout);
 
@@ -189,30 +247,7 @@ public class MisturnosDashboard extends AppCompatActivity {
 
     }
 
-    private String convertirEspecialidad(int especialidad) {
-        switch (especialidad) {
-            case 1:
-                return "Cardiología";
-            case 3:
-                return "Traumatologia";
-            case 4:
-                return "Dermatología";
-            case 6:
-                return "Pediatria";
-            case 7:
-                return "Psicologia";
-            case 8:
-                return "Oncologia";
-            case 9:
-                return "Psiquiatria";
-            case 15:
-                return "Ginecologia";
-            case 20:
-                return "Oftalmologia";
-            default:
-                return "Especialidad desconocida"; // Valor por defecto si no coincide
-        }
-    }
+
 
     private void eliminarTurno(int id) {
         String url = "https://reservasmedicas.ddns.net/api/v1/turnos/" + id+ "/";
