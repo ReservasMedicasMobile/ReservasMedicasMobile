@@ -4,8 +4,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:importantForAutofill="no"
     tools:context=".MainActivity">
-
 
     <TextView
         android:id="@+id/titulo"
@@ -17,6 +17,7 @@
         android:textColor="#FFFFFF"
         android:textSize="28sp"
         android:textStyle="bold"
+        android:importantForAutofill="no"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -29,6 +30,7 @@
         android:text="Agende su turno médico"
         android:textColor="#000000"
         android:textSize="22sp"
+        android:importantForAutofill="no"
         app:layout_constraintTop_toBottomOf="@id/titulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +48,7 @@
         android:padding="8dp"
         android:popupBackground="@drawable/spinner_dropdown_item"
         android:spinnerMode="dropdown"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/agende_turno_text" />
@@ -58,6 +61,7 @@
         android:layout_marginTop="30dp"
         android:minHeight="48dp"
         android:padding="8dp"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinner_specialty" />
@@ -74,6 +78,7 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinner_professional" />
@@ -90,6 +95,7 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_open_date_picker" />
@@ -106,6 +112,7 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:importantForAutofill="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +123,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:importantForAutofill="no"
         app:backgroundTint="@color/azul"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"

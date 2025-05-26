@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -90,7 +91,7 @@ public class turnos extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
-        inicializarHorariosPorEspecialistaYFecha();
+
 
         cargarEspecialidades();
         obtenerPacientes();
@@ -360,8 +361,9 @@ public class turnos extends AppCompatActivity {
         private int id;
         private String nombreCompleto;
         private int especialidadId;
+        List<Integer> diasDeAtencion;
 
-        public Profesional(int id, String nombreCompleto, int especialidadId) {
+        public Profesional(int id,  String nombreCompleto, int especialidadId) {
             this.id = id;
             this.nombreCompleto = nombreCompleto;
             this.especialidadId = especialidadId;
@@ -438,231 +440,100 @@ public class turnos extends AppCompatActivity {
                             String nombreCompleto = profesional.getString("nombre") + " " + profesional.getString("apellido");
                             int especialidad = profesional.getInt("especialidad");
 
-                            // Filtrar por especialidad
                             if (especialidad == especialidadId) {
                                 profesionalesList.add(new Profesional(id, nombreCompleto, especialidad));
                             }
-
                             Log.d("Turnos", "Profesional cargado: " + nombreCompleto + " (ID: " + id + ")");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
 
+                    // Cargar el Spinner
                     ArrayAdapter<Profesional> adapter = new ArrayAdapter<>(this, R.layout.spinner_item_turnos, profesionalesList);
                     adapter.setDropDownViewResource(R.layout.spinner_item_turnos);
                     professionalSpinner.setAdapter(adapter);
+
+                    // --- Aquí inicializás los horarios para estos profesionales ---
+                    // Quitá la opción "PROFESIONALES" si no querés contarla
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        profesionalesList.removeIf(p -> p.getId() == 0);
+                    }
+                    inicializarHorariosPorEspecialistaYFecha(profesionalesList);
                 },
                 error -> {
                     Toast.makeText(this, "Error al cargar profesionales", Toast.LENGTH_SHORT).show();
                     Log.e("Turnos", "Error: " + error.getMessage());
-                });
+                }
+        );
 
         requestQueue.add(jsonArrayRequest);
     }
 
-    private void inicializarHorariosPorEspecialistaYFecha() {
+    // 1) Adaptar la función para recibir la lista de profesionales
+    private void inicializarHorariosPorEspecialistaYFecha(List<Profesional> profesionales) {
         horariosPorEspecialistaYFecha = new HashMap<>();
 
-        // Definir horarios por especialista y fechas en formato "yyyy-MM-dd"
+        // Días y horarios "tipo Leandro"
+        List<Integer> diasLeandro = Arrays.asList(Calendar.MONDAY, Calendar.WEDNESDAY, Calendar.FRIDAY);
+        List<String> horariosLeandro = Arrays.asList("09:00", "10:00", "11:00", "13:00", "15:00");
 
-        // Horarios para Leandro Martinez
-        Map<String, List<String>> horariosLeandro = new HashMap<>();
-        horariosLeandro.put("2024-11-08", Arrays.asList("09:00", "11:00", "12:30", "13:30", "15:00"));
-        horariosLeandro.put("2024-11-12", Arrays.asList("10:00", "11:00", "13:00", "13:30", "14:30"));
-        horariosLeandro.put("2024-11-13", Arrays.asList("11:00", "11:30", "13:00", "14:00", "13:30"));
-        horariosLeandro.put("2024-11-15", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosLeandro.put("2024-11-18", Arrays.asList("10:30", "11:00", "13:30", "14:00", "15:00", "15:30"));
-        horariosLeandro.put("2024-11-20", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosLeandro.put("2024-11-21", Arrays.asList("11:30", "12:00", "13:00", "15:30", "16:30"));
-        horariosLeandro.put("2024-11-25", Arrays.asList("09:30", "10:00", "11:30","12:00", "13:30"));
-        horariosLeandro.put("2024-11-28", Arrays.asList("11:00", "12:00", "13:30", "15:00", "15:30"));
-        horariosLeandro.put("2024-12-02", Arrays.asList("10:30", "12:00", "13:30", "14:00", "15:30"));
-        horariosLeandro.put("2024-11-04", Arrays.asList("09:30", "12:30", "13:30","14:00", "14:30"));
-        horariosPorEspecialistaYFecha.put("Leandro Martinez", horariosLeandro);
+        // Días y horarios "tipo Camila"
+        List<Integer> diasCamila = Arrays.asList(Calendar.TUESDAY, Calendar.THURSDAY);
+        List<String> horariosCamila = Arrays.asList("10:00", "11:30", "13:30", "14:30", "16:00");
 
-        // Horarios para Camila Medina
-        Map<String, List<String>> horariosCamila = new HashMap<>();
-        horariosCamila.put("2024-11-08", Arrays.asList("11:00", "11:30", "12:00", "12:30", "15:00"));
-        horariosCamila.put("2024-11-11", Arrays.asList("10:30", "11:30", "13:00","13:30", "15:00"));
-        horariosCamila.put("2024-11-13", Arrays.asList("11:30", "13:30", "15:00", "15:30"));
-        horariosCamila.put("2024-11-08", Arrays.asList("11:00", "11:30", "12:00", "12:30"));
-        horariosCamila.put("2024-11-11", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosCamila.put("2024-11-13", Arrays.asList("09:30", "11:30", "12:00","14:00", "14:30"));
-        horariosCamila.put("2024-11-15", Arrays.asList("09:00", "10:30", "12:00", "13:30"));
-        horariosCamila.put("2024-11-19", Arrays.asList("11:30", "12:30", "13:00", "13:30", "15:00"));
-        horariosCamila.put("2024-11-22", Arrays.asList("09:30", "12:30", "13:30","14:00", "14:30"));
-        horariosCamila.put("2024-11-26", Arrays.asList("11:00", "11:30", "12:30", "13:00"));
-        horariosCamila.put("2024-11-29", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosCamila.put("2024-12-02", Arrays.asList("09:30", "110", "13:30","14:00", "14:30"));
-        horariosCamila.put("2024-12-06", Arrays.asList("09:30", "12:30", "13:30","14:00", "14:30"));
-        horariosPorEspecialistaYFecha.put("Camila Medina", horariosCamila);
+        int mitad = profesionales.size() / 2;
 
-        // Horarios para Juan Pedro García
-        Map<String, List<String>> horariosJuan = new HashMap<>();
-        horariosJuan.put("2024-11-12", Arrays.asList("08:00", "08:30", "10:00", "10:30", "12:00"));
-        horariosJuan.put("2024-11-15", Arrays.asList("08:30", "11:30", "12:00","12:30", "14:00"));
-        horariosJuan.put("2024-11-19", Arrays.asList("09:00", "10:30", "11:00", "14:00", "14:30"));
-        horariosJuan.put("2024-11-22", Arrays.asList("11:00", "11:30", "13:00", "14:00", "13:30"));
-        horariosJuan.put("2024-11-26", Arrays.asList("11:00", "11:30", "12:00", "12:30", "15:00"));
-        horariosJuan.put("2024-11-29", Arrays.asList("08:30", "10:30", "11:00","12:30", "13:00", "14:00"));
-        horariosJuan.put("2024-12-03", Arrays.asList("08:00", "09:30", "10:00", "12:00", "12:30", "13:30"));
-        horariosJuan.put("2024-12-06", Arrays.asList("09:00", "19:30", "11:00", "11:30", "12:30", "13:00", "13:30"));
-        horariosPorEspecialistaYFecha.put("Juan Pedro García", horariosJuan);
+        for (int i = 0; i < profesionales.size(); i++) {
+            Profesional prof = profesionales.get(i);
+            String nombreCompleto = prof.getNombreCompleto();
 
-        // Horarios para Nicolás Pérez Ruiz
-        Map<String, List<String>> horariosNicolas = new HashMap<>();
-        horariosNicolas.put("2024-11-11", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosNicolas.put("2024-11-14", Arrays.asList("09:00", "10:30", "11:00", "14:00", "14:30"));
-        horariosNicolas.put("2024-11-18", Arrays.asList("09:30", "11:00", "11:30", "14:00", "15:00"));
-        horariosNicolas.put("2024-11-21", Arrays.asList("08:00", "09:30", "10:00", "12:00", "12:30", "13:30"));
-        horariosNicolas.put("2024-11-25", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosNicolas.put("2024-11-28", Arrays.asList("08:00", "09:30", "10:00", "12:00", "12:30", "13:30"));
-        horariosNicolas.put("2024-12-02", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosNicolas.put("2024-12-05", Arrays.asList("09:00", "19:30", "11:00", "11:30", "12:30", "13:00", "13:30"));
-        horariosNicolas.put("2024-12-09", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosNicolas.put("2024-12-12", Arrays.asList("11:00", "11:30", "12:00", "12:30", "15:00"));
-        horariosPorEspecialistaYFecha.put("Nicolás Pérez Ruiz", horariosNicolas);
+            List<Integer> diasAsignados;
+            List<String> horariosAsignados;
 
-        // Horarios para Claudia Allende
-        Map<String, List<String>> horariosClaudia = new HashMap<>();
-        horariosClaudia.put("2024-11-08", Arrays.asList("09:30", "11:30", "12:00","14:00", "14:30"));
-        horariosClaudia.put("2024-11-13", Arrays.asList("11:00", "11:30", "12:00", "12:30", "15:00"));
-        horariosClaudia.put("2024-11-15", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosClaudia.put("2024-11-20", Arrays.asList("09:00", "10:30", "11:00", "11:30", "12:30", "13:00", "13:30"));
-        horariosClaudia.put("2024-11-22", Arrays.asList("09:00", "10:30", "11:00", "14:00", "14:30"));
-        horariosClaudia.put("2024-11-27", Arrays.asList("11:30", "12:00", "13:00", "15:30", "16:30"));
-        horariosClaudia.put("2024-11-29", Arrays.asList("08:30", "10:00", "11:00", "12:30", "13:30"));
-        horariosClaudia.put("2024-12-04", Arrays.asList("09:00", "09:30", "11:00", "11:30", "12:30"));
-        horariosClaudia.put("2024-12-06", Arrays.asList("08:30", "09:00", "11:00", "11:30", "13:00"));
-        horariosClaudia.put("2024-12-11", Arrays.asList("10:30", "11:00", "13:30", "15:00", "15:30"));
-        horariosClaudia.put("2024-12-13", Arrays.asList("10:00", "11:00", "12:30", "13:00", "13:30"));
-        horariosPorEspecialistaYFecha.put("Claudia Allende", horariosClaudia);
+            // Dividir profesionales en dos grupos y asignar días y horarios
+            if (i < mitad) {
+                diasAsignados = diasLeandro;
+                horariosAsignados = horariosLeandro;
+            } else {
+                diasAsignados = diasCamila;
+                horariosAsignados = horariosCamila;
+            }
 
-        // Horarios para Martin Gomez
-        Map<String, List<String>> horariosMartin = new HashMap<>();
-        horariosMartin.put("2024-11-12", Arrays.asList("13:30", "14:00", "15:30","16:30", "17:00"));
-        horariosMartin.put("2024-11-14", Arrays.asList("13:00", "13:30", "15:00", "16:30", "17:00"));
-        horariosMartin.put("2024-11-15", Arrays.asList("12:30", "13:00", "14:00", "14:30","15:30", "16:00"));
-        horariosMartin.put("2024-11-19", Arrays.asList("13:00", "14:00", "15:00", "15:30", "16:30","17:00"));
-        horariosMartin.put("2024-11-21", Arrays.asList("12:00", "13:00", "13:30", "14:30","15:00", "16:00"));
-        horariosMartin.put("2024-11-28", Arrays.asList("13:00", "13:30", "15:00", "16:30", "17:00"));
-        horariosMartin.put("2024-12-03", Arrays.asList("12:30", "13:00", "14:30","15:00", "15:30"));
-        horariosMartin.put("2024-12-05", Arrays.asList("09:00", "10:30", "12:00"));
-        horariosMartin.put("2024-12-06", Arrays.asList("13:30", "14:30", "16:30","17:00"));
-        horariosPorEspecialistaYFecha.put("Martin Gomez", horariosMartin);
+            // Generar fechas para los días asignados (por ej. hasta fin de año)
+            List<String> fechas = generarFechasParaDiasFijosProfesional(diasAsignados);
 
-// Horarios para Raul Casas
-        Map<String, List<String>> horariosRaul = new HashMap<>();
-        horariosRaul.put("2024-11-13", Arrays.asList("08:00", "09:30", "11:00", "12:30", "14:00"));
-        horariosRaul.put("2024-11-15", Arrays.asList("10:00", "11:30", "14:00", "15:30", "17:00"));
-        horariosRaul.put("2024-11-19", Arrays.asList("09:00", "11:00", "13:00", "15:30", "17:00"));
-        horariosRaul.put("2024-11-22", Arrays.asList("08:30", "10:00", "12:00", "14:30", "16:00"));
-        horariosRaul.put("2024-11-27", Arrays.asList("09:00", "11:30", "14:00", "16:30", "18:00"));
-        horariosRaul.put("2024-11-29", Arrays.asList("08:30", "10:00", "12:00", "14:30", "16:00"));
-        horariosRaul.put("2024-12-03", Arrays.asList("09:00", "11:00", "13:00", "15:00", "16:30"));
-        horariosPorEspecialistaYFecha.put("Raul Casas", horariosRaul);
+            // Asociar horarios a cada fecha
+            Map<String, List<String>> horariosPorFecha = new HashMap<>();
+            for (String fecha : fechas) {
+                horariosPorFecha.put(fecha, new ArrayList<>(horariosAsignados));
+            }
 
-// Horarios para Rodrigo Cordoba
-        Map<String, List<String>> horariosRodrigo = new HashMap<>();
-        horariosRodrigo.put("2024-11-12", Arrays.asList("09:00", "10:30", "12:00", "13:30", "15:00"));
-        horariosRodrigo.put("2024-11-14", Arrays.asList("11:00", "12:30", "14:00", "16:00", "17:30"));
-        horariosRodrigo.put("2024-11-19", Arrays.asList("09:30", "11:00", "13:00", "15:30", "17:00"));
-        horariosRodrigo.put("2024-11-21", Arrays.asList("08:30", "10:00", "12:00", "14:30", "16:00"));
-        horariosRodrigo.put("2024-11-28", Arrays.asList("10:30", "12:00", "14:00", "16:00", "17:30"));
-        horariosRodrigo.put("2024-12-03", Arrays.asList("09:00", "11:30", "13:00", "15:30", "17:00"));
-        horariosRodrigo.put("2024-12-05", Arrays.asList("08:30", "10:00", "11:30", "13:00", "14:30"));
-        horariosPorEspecialistaYFecha.put("Rodrigo Cordoba", horariosRodrigo);
+            // Guardar la info en el mapa general
+            horariosPorEspecialistaYFecha.put(nombreCompleto, horariosPorFecha);
+        }
+    }
 
-// Horarios para Mateo Lujan
-        Map<String, List<String>> horariosMateo = new HashMap<>();
-        horariosMateo.put("2024-11-11", Arrays.asList("14:00", "15:30", "17:00", "18:30", "19:00"));
-        horariosMateo.put("2024-11-13", Arrays.asList("10:00", "11:30", "13:00", "15:30", "17:00"));
-        horariosMateo.put("2024-11-18", Arrays.asList("08:00", "09:30", "11:00", "13:00", "14:30"));
-        horariosMateo.put("2024-11-21", Arrays.asList("09:30", "11:00", "12:30", "14:30", "16:00"));
-        horariosMateo.put("2024-11-25", Arrays.asList("10:30", "12:00", "13:30", "15:00", "16:30"));
-        horariosMateo.put("2024-11-29", Arrays.asList("08:30", "10:00", "11:30", "13:00", "14:30"));
-        horariosMateo.put("2024-12-02", Arrays.asList("09:00", "10:30", "12:00", "14:30", "13:00"));
-        horariosPorEspecialistaYFecha.put("Mateo Lujan", horariosMateo);
+    // 2) Función para generar las fechas (ya la tenés)
+    private List<String> generarFechasParaDiasFijosProfesional(List<Integer> diasAtencion) {
+        List<String> fechas = new ArrayList<>();
+        Calendar calendario = Calendar.getInstance(); // hoy
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
+        // Fecha límite: 31 de diciembre del año actual
+        Calendar finDeAno = Calendar.getInstance();
+        finDeAno.set(Calendar.MONTH, Calendar.DECEMBER);
+        finDeAno.set(Calendar.DAY_OF_MONTH, 31);
 
-// Horarios para Marina Medrano
-        Map<String, List<String>> horariosMarina = new HashMap<>();
-        horariosMarina.put("2024-11-11", Arrays.asList("09:00", "11:00", "12:30", "14:00", "15:30"));
-        horariosMarina.put("2024-11-14", Arrays.asList("10:00", "11:30", "14:00", "16:00", "17:30"));
-        horariosMarina.put("2024-11-19", Arrays.asList("08:30", "10:30", "12:00", "13:30", "15:00"));
-        horariosMarina.put("2024-11-21", Arrays.asList("09:00", "11:00", "12:30", "14:00", "16:00"));
-        horariosMarina.put("2024-11-26", Arrays.asList("10:00", "12:00", "14:00", "15:30", "17:00"));
-        horariosMarina.put("2024-11-28", Arrays.asList("09:00", "11:30", "13:00", "14:30", "16:00"));
-        horariosMarina.put("2024-12-05", Arrays.asList("10:00", "11:30", "14:00", "15:30", "17:00"));
-        horariosPorEspecialistaYFecha.put("Marina Medrano", horariosMarina);
+        while (!calendario.after(finDeAno)) {
+            int diaSemana = calendario.get(Calendar.DAY_OF_WEEK);
+            if (diasAtencion.contains(diaSemana)) {
+                fechas.add(formato.format(calendario.getTime()));
+            }
+            calendario.add(Calendar.DAY_OF_MONTH, 1);
+        }
 
-// Horarios para Valentina Suarez
-        Map<String, List<String>> horariosValentina = new HashMap<>();
-        horariosValentina.put("2024-11-12", Arrays.asList("09:00", "10:30", "13:00", "13:30", "15:00"));
-        horariosValentina.put("2024-11-15", Arrays.asList("10:00", "12:00", "14:00", "16:00", "17:30"));
-        horariosValentina.put("2024-11-18", Arrays.asList("09:30", "11:00", "12:30", "14:00", "15:30"));
-        horariosValentina.put("2024-11-22", Arrays.asList("08:30", "10:00", "11:30", "13:00", "14:30"));
-        horariosValentina.put("2024-11-26", Arrays.asList("10:30", "12:00", "13:30", "15:00", "16:30"));
-        horariosValentina.put("2024-11-28", Arrays.asList("09:00", "10:30", "12:00", "14:00", "15:30"));
-        horariosValentina.put("2024-12-02", Arrays.asList("09:30", "11:00", "13:00", "14:30", "16:00"));
-        horariosPorEspecialistaYFecha.put("Valentina Suarez", horariosValentina);
-
-        // Horarios para Carolina Cortez
-        Map<String, List<String>> horariosCarolina= new HashMap<>();
-        horariosCarolina.put("2024-11-08", Arrays.asList("09:30", "11:30", "12:00","14:00", "14:30"));
-        horariosCarolina.put("2024-11-13", Arrays.asList("11:00", "11:30", "12:00", "12:30", "15:00"));
-        horariosCarolina.put("2024-11-15", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosCarolina.put("2024-11-20", Arrays.asList("09:00", "10:30", "11:00", "11:30", "12:30", "13:00", "13:30"));
-        horariosCarolina.put("2024-11-22", Arrays.asList("09:00", "10:30", "11:00", "14:00", "14:30"));
-        horariosCarolina.put("2024-11-27", Arrays.asList("11:30", "12:00", "13:00", "15:30", "16:30"));
-        horariosCarolina.put("2024-11-29", Arrays.asList("08:30", "10:00", "11:00", "12:30", "13:30"));
-        horariosCarolina.put("2024-12-04", Arrays.asList("09:00", "09:30", "11:00", "11:30", "12:30"));
-        horariosCarolina.put("2024-12-06", Arrays.asList("08:30", "09:00", "11:00", "11:30", "13:00"));
-        horariosCarolina.put("2024-12-11", Arrays.asList("10:30", "11:00", "13:30", "15:00", "15:30"));
-        horariosCarolina.put("2024-12-13", Arrays.asList("10:00", "11:00", "12:30", "13:00", "13:30"));
-        horariosPorEspecialistaYFecha.put("Carolina Cortez", horariosCarolina);
-
-        // Horarios para Andrea Guiñazu
-        Map<String, List<String>> horariosAndrea = new HashMap<>();
-        horariosAndrea.put("2024-11-12", Arrays.asList("08:00", "08:30", "10:00", "10:30", "12:00"));
-        horariosAndrea.put("2024-11-15", Arrays.asList("08:30", "11:30", "12:00","12:30", "14:00"));
-        horariosAndrea.put("2024-11-19", Arrays.asList("09:00", "10:30", "11:00", "14:00", "14:30"));
-        horariosAndrea.put("2024-11-22", Arrays.asList("11:00", "11:30", "13:00", "14:00", "13:30"));
-        horariosAndrea.put("2024-11-26", Arrays.asList("11:00", "11:30", "12:00", "12:30", "15:00"));
-        horariosAndrea.put("2024-11-29", Arrays.asList("08:30", "10:30", "11:00","12:30", "13:00", "14:00"));
-        horariosAndrea.put("2024-12-03", Arrays.asList("08:00", "09:30", "10:00", "12:00", "12:30", "13:30"));
-        horariosAndrea.put("2024-12-06", Arrays.asList("09:00", "19:30", "11:00", "11:30", "12:30", "13:00", "13:30"));
-        horariosPorEspecialistaYFecha.put("Andrea Guiñazu", horariosAndrea);
-
-
-        // Horarios para Gerardo Robles
-        Map<String, List<String>> horariosGerardo = new HashMap<>();
-        horariosGerardo.put("2024-11-11", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosGerardo.put("2024-11-14", Arrays.asList("09:00", "10:30", "11:00", "14:00", "14:30"));
-        horariosGerardo.put("2024-11-18", Arrays.asList("09:30", "11:00", "11:30", "14:00", "15:00"));
-        horariosGerardo.put("2024-11-21", Arrays.asList("08:00", "09:30", "10:00", "12:00", "12:30", "13:30"));
-        horariosGerardo.put("2024-11-25", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosGerardo.put("2024-11-28", Arrays.asList("08:00", "09:30", "10:00", "12:00", "12:30", "13:30"));
-        horariosGerardo.put("2024-12-02", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosGerardo.put("2024-12-05", Arrays.asList("09:00", "19:30", "11:00", "11:30", "12:30", "13:00", "13:30"));
-        horariosGerardo.put("2024-12-09", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosGerardo.put("2024-12-12", Arrays.asList("11:00", "11:30", "12:00", "12:30", "15:00"));
-        horariosPorEspecialistaYFecha.put("Gerardo Robles" , horariosGerardo);
-
-// Horarios para Emanuel Romero
-        Map<String, List<String>> horariosEmanuel = new HashMap<>();
-        horariosEmanuel.put("2024-11-11", Arrays.asList("08:30", "10:00", "12:00", "13:30", "15:00"));
-        horariosEmanuel.put("2024-11-15", Arrays.asList("09:00", "11:00", "13:00", "14:30", "16:00"));
-        horariosEmanuel.put("2024-11-18", Arrays.asList("08:00", "09:30", "11:30", "13:00", "14:30"));
-        horariosEmanuel.put("2024-11-21", Arrays.asList("09:00", "10:30", "12:00", "14:00", "15:30"));
-        horariosEmanuel.put("2024-11-27", Arrays.asList("08:30", "10:00", "11:30", "13:30", "15:00"));
-        horariosEmanuel.put("2024-12-03", Arrays.asList("09:00", "10:30", "12:00", "13:30", "15:00"));
-        horariosEmanuel.put("2024-12-05", Arrays.asList("08:30", "10:00", "11:30", "13:00", "14:30"));
-        horariosEmanuel.put("2024-12-09", Arrays.asList("11:30", "12:00", "13:30", "15:00", "15:30"));
-        horariosEmanuel.put("2024-12-12", Arrays.asList("11:00", "11:30", "12:00", "12:30", "15:00"));
-        horariosPorEspecialistaYFecha.put("Emanuel Romero", horariosEmanuel);
-
+        return fechas;
     }
 
     private void mostrarFechasDisponibles() {
@@ -798,82 +669,82 @@ public class turnos extends AppCompatActivity {
 
 
 
-        //Almaceno los turnos reservados (SharedPreferences)
-        Set<String> turnosReservados = new HashSet<>();
+    //Almaceno los turnos reservados (SharedPreferences)
+    Set<String> turnosReservados = new HashSet<>();
 
-       private void cargarTurnosReservados() {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            // Recuperamos los turnos reservados guardados como un conjunto de cadenas (Set<String>)
-            Set<String> turnos = sharedPreferences.getStringSet("turnos_reservados", new HashSet<>());
-            turnosReservados.addAll(turnos);
+    private void cargarTurnosReservados() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        // Recuperamos los turnos reservados guardados como un conjunto de cadenas (Set<String>)
+        Set<String> turnos = sharedPreferences.getStringSet("turnos_reservados", new HashSet<>());
+        turnosReservados.addAll(turnos);
+    }
+
+    private void guardarTurnosReservados() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        // Guardamos el conjunto de turnos reservados en SharedPreferences
+        editor.putStringSet("turnos_reservados", turnosReservados);
+        editor.apply(); // Guardamos los cambios de manera asíncrona
+    }
+
+    private void mostrarHorariosDisponibles() {
+        String especialistaSeleccionado = professionalSpinner.getSelectedItem().toString();
+        if (!horariosPorEspecialistaYFecha.containsKey(especialistaSeleccionado)) {
+            Toast.makeText(this, "Selecciona un profesional válido", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        private void guardarTurnosReservados() {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            // Guardamos el conjunto de turnos reservados en SharedPreferences
-            editor.putStringSet("turnos_reservados", turnosReservados);
-            editor.apply(); // Guardamos los cambios de manera asíncrona
+        if (fechaSeleccionada.isEmpty()) {
+            Toast.makeText(this, "Selecciona una fecha primero", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        private void mostrarHorariosDisponibles() {
-            String especialistaSeleccionado = professionalSpinner.getSelectedItem().toString();
-            if (!horariosPorEspecialistaYFecha.containsKey(especialistaSeleccionado)) {
-                Toast.makeText(this, "Selecciona un profesional válido", Toast.LENGTH_SHORT).show();
-                return;
-            }
+        Map<String, List<String>> fechasHorarios = horariosPorEspecialistaYFecha.get(especialistaSeleccionado);
+        List<String> horariosDisponibles = fechasHorarios.get(fechaSeleccionada);
 
-            if (fechaSeleccionada.isEmpty()) {
-                Toast.makeText(this, "Selecciona una fecha primero", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            Map<String, List<String>> fechasHorarios = horariosPorEspecialistaYFecha.get(especialistaSeleccionado);
-            List<String> horariosDisponibles = fechasHorarios.get(fechaSeleccionada);
-
-            if (horariosDisponibles == null || horariosDisponibles.isEmpty()) {
-                Toast.makeText(this, "No hay horarios disponibles para la fecha seleccionada", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Filtrar los horarios reservados y crear una lista de horarios disponibles
-            List<String> horariosDisponiblesActualizados = new ArrayList<>();
-            for (String hora : horariosDisponibles) {
-                // Verificar si el turno ya está reservado
-                if (!turnosReservados.contains(fechaSeleccionada + " " + hora)) {
-                    horariosDisponiblesActualizados.add(hora);
-                }
-            }
-
-            // Mostrar los horarios disponibles (sin los reservados)
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            ListView listView = new ListView(this);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, horariosDisponiblesActualizados);
-            listView.setAdapter(adapter);
-            listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            builder.setView(listView);
-
-            listView.setOnItemClickListener((parent, view, position, id) -> {
-                horaSeleccionada = horariosDisponiblesActualizados.get(position);
-                openTimePickerButton.setText("Horario: " + horaSeleccionada);
-            });
-
-            builder.setNegativeButton("Cancelar", null);
-
-            // Guardar el turno reservado al confirmar la selección
-            builder.setPositiveButton("Seleccionar", (dialog, which) -> {
-                if (!horaSeleccionada.isEmpty()) {
-                    // Agregar el turno seleccionado al conjunto de turnos reservados
-                    turnosReservados.add(fechaSeleccionada + " " + horaSeleccionada);
-                    // Guardar los turnos reservados en SharedPreferences
-                    guardarTurnosReservados();
-                    Toast.makeText(this, "Hora seleccionada: " + horaSeleccionada, Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
+        if (horariosDisponibles == null || horariosDisponibles.isEmpty()) {
+            Toast.makeText(this, "No hay horarios disponibles para la fecha seleccionada", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        // Filtrar los horarios reservados y crear una lista de horarios disponibles
+        List<String> horariosDisponiblesActualizados = new ArrayList<>();
+        for (String hora : horariosDisponibles) {
+            // Verificar si el turno ya está reservado
+            if (!turnosReservados.contains(fechaSeleccionada + " " + hora)) {
+                horariosDisponiblesActualizados.add(hora);
+            }
+        }
+
+        // Mostrar los horarios disponibles (sin los reservados)
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        ListView listView = new ListView(this);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, horariosDisponiblesActualizados);
+        listView.setAdapter(adapter);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        builder.setView(listView);
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            horaSeleccionada = horariosDisponiblesActualizados.get(position);
+            openTimePickerButton.setText("Horario: " + horaSeleccionada);
+        });
+
+        builder.setNegativeButton("Cancelar", null);
+
+        // Guardar el turno reservado al confirmar la selección
+        builder.setPositiveButton("Seleccionar", (dialog, which) -> {
+            if (!horaSeleccionada.isEmpty()) {
+                // Agregar el turno seleccionado al conjunto de turnos reservados
+                turnosReservados.add(fechaSeleccionada + " " + horaSeleccionada);
+                // Guardar los turnos reservados en SharedPreferences
+                guardarTurnosReservados();
+                Toast.makeText(this, "Hora seleccionada: " + horaSeleccionada, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 
 
