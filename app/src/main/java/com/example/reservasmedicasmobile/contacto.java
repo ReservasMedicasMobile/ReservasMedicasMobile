@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -36,6 +37,11 @@ public class contacto extends AppCompatActivity {
     private EditText etFirstName, etLastName, etEmail, etPhoneNumber, etMessage;
     private Button btnSubmit;
     private String apiUrl = "https://reservasmedicas.ddns.net/api/v1/contacto/";
+    private CheckBox checkRecibirRespuesta;
+    private boolean containsSQLInjection(String input) {
+        String pattern = "('|--|;|\\b(SELECT|INSERT|DELETE|UPDATE|DROP|ALTER|EXEC|UNION|OR|AND)\\b)";
+        return input.toUpperCase().matches(".*" + pattern + ".*");
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -53,6 +59,8 @@ public class contacto extends AppCompatActivity {
         spinnerOpcion = findViewById(R.id.spinner);
         etMessage = findViewById(R.id.etMessage);
         btnSubmit = findViewById(R.id.btnSubmit);
+        checkRecibirRespuesta = findViewById(R.id.checkRecibirRespuesta);
+
 
         // Configuración de las opciones del Spinner
         String[] opciones = {"Tipo de consulta", "Sugerencia", "Reclamo"};
@@ -128,10 +136,15 @@ public class contacto extends AppCompatActivity {
         }
 
         // Validación para el número de teléfono (mínimo 10 dígitos)
-        if (TextUtils.isEmpty(phoneNumber) || !phoneNumber.matches("[0-9]+") || phoneNumber.length() < 10) {
-            etPhoneNumber.setError("Número de teléfono inválido (mínimo 10 dígitos)");
+        if (TextUtils.isEmpty(phoneNumber) ||
+                !phoneNumber.matches("[0-9]+") ||
+                phoneNumber.length() < 10 ||
+                phoneNumber.length() > 15) {
+
+            etPhoneNumber.setError("Número de teléfono inválido (mínimo 10 dígitos, máximo 15)");
             return false;
         }
+
 
         // Validación para el campo Mensaje (mínimo 10 caracteres, máximo 200) y no permitir URLs
         if (TextUtils.isEmpty(message)) {
@@ -143,16 +156,28 @@ public class contacto extends AppCompatActivity {
         } else if (message.length() > 400) {
             etMessage.setError("El mensaje no debe exceder 400 caracteres");
             return false;
-        } else if (Patterns.WEB_URL.matcher(message).find()) { // Nueva validación para URLs
+        } else if (Patterns.WEB_URL.matcher(message).find()) {
             etMessage.setError("El mensaje no debe contener URLs");
             return false;
+        } else if (containsSQLInjection(message)) {
+            etMessage.setError("El mensaje contiene caracteres no permitidos");
+            return false;
         }
+
+
 
         // Validación para el Spinner
         if (spinnerOpcion.getSelectedItem().toString().equals("Seleccionar")) {
             Toast.makeText(this, "Por favor, selecciona un tipo de consulta", Toast.LENGTH_LONG).show();
             return false;
         }
+
+        // Validación para el checkbox aviso
+        if (!checkRecibirRespuesta.isChecked()) {
+            Toast.makeText(this, "Debes aceptar recibir respuesta", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
 
         return true;
     }
@@ -191,7 +216,9 @@ public class contacto extends AppCompatActivity {
             }
 
             postData.put("mensaje", etMessage.getText().toString().trim());
-            postData.put("aviso", false);
+            //postData.put("aviso", false);
+            postData.put("aviso", checkRecibirRespuesta.isChecked());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

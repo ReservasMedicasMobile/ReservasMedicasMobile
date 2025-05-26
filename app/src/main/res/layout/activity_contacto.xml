@@ -82,12 +82,13 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_margin="20dp"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/etPhoneNumber"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
     <EditText
         android:id="@+id/etMessage"
@@ -103,6 +104,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <CheckBox
+        android:id="@+id/checkRecibirRespuesta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:padding="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:text="Acepto recibir respuesta"
+        android:textSize="16sp"
+        android:checked="false"
+        app:layout_constraintTop_toBottomOf="@+id/etMessage"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="290dp"
@@ -114,9 +130,10 @@
         android:textStyle="bold"
         android:contentDescription="Enviar formulario"
         android:text="Enviar"
+        app:layout_constraintTop_toBottomOf="@+id/checkRecibirRespuesta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMessage" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <TextView
         android:id="@+id/tvConfirmationMessage"
