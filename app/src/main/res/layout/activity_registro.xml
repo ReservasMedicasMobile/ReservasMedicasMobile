@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".registro">
 
-
     <TextView
         android:id="@+id/titulo"
         android:layout_width="match_parent"
@@ -33,12 +32,9 @@
         android:padding="20dp"
         app:layout_constraintTop_toBottomOf="@id/titulo">
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:autofillHints=""
             android:text="@string/dni"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -59,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:autofillHints=""
             android:text="@string/nombre"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -80,7 +75,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:autofillHints=""
             android:text="@string/apellido"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -101,7 +95,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:autofillHints=""
             android:text="@string/correo_electr_nico"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -122,22 +115,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:autofillHints=""
             android:text="@string/contrase_a"
             android:textColor="@color/black"
             android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/password_input"
+        
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:hint="@string/ingrese_su_contrase_a"
-            android:inputType="textPassword"
-            android:minHeight="33dp"
-            android:textColor="@color/black"
-            android:textColorHint="#757575"
-            android:textSize="20sp" />
+            app:endIconMode="password_toggle"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/ingrese_su_contrase_a"
+                android:inputType="textPassword"
+                android:minHeight="33dp"
+                android:textColor="@color/black"
+                android:textColorHint="#757575"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/password_requirements"
@@ -145,6 +144,36 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@string/la_contrase_a_debe_tener_una_may_scula_una_min_scula_un_numero_y_un_simbolo"
+            android:textColor="#FF0000"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <!-- Campo repetir contraseña con ojito, hint dentro de EditText y sin hint flotante -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:endIconMode="password_toggle"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirm_password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Repita su Contraseña"
+                android:inputType="textPassword"
+                android:minHeight="33dp"
+                android:textColor="@color/black"
+                android:textColorHint="#757575"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/password_mismatch_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Las contraseñas no coinciden"
             android:textColor="#FF0000"
             android:textSize="15sp"
             android:visibility="gone" />
