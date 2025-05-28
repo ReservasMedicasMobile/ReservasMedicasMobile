@@ -124,6 +124,12 @@ public class MisturnosDashboard extends AppCompatActivity {
 
 
     public void mostrarDatos(JSONArray DataModelTurnos) {
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        JSONArray turnosFuturos = new JSONArray();
+        linerT.removeAllViews();
+
         for (int i = 0; i < DataModelTurnos.length(); i++) {
             try {
                 JSONObject MisTurnos = DataModelTurnos.getJSONObject(i);
@@ -133,34 +139,31 @@ public class MisturnosDashboard extends AppCompatActivity {
                 int especialidad = MisTurnos.getInt("especialidad");
                 int id = MisTurnos.getInt("id");
 
+                // Construcción de texto
+                String textoTurno = "* En: " + convertirEspecialidad(especialidad) + "\n"
+                        + "* Hora: " + hora + "\n"
+                        + "* Fecha: " + fecha + "\n";
+
+                // Layout visual
                 LinearLayout layout = new LinearLayout(this);
                 layout.setOrientation(LinearLayout.VERTICAL);
 
                 TextView textView = new TextView(this);
+                textView.setTextSize(20);
+                textView.setPadding(16, 16, 16, 16);
+                textView.setText(textoTurno);
+
                 Button deleteButton = new Button(this);
                 deleteButton.setTag(id);
                 deleteButton.setText("Eliminar Turno");
                 deleteButton.setBackgroundColor(Color.parseColor("#007bff"));
                 deleteButton.setTextColor(Color.WHITE);
                 deleteButton.setTextSize(16);
-                deleteButton.setPadding(16, 16, 16, 16); // Padding
-
-                textView.setTextSize(20);
-                textView.setPadding(16, 16, 16, 16);
-                textView.append("TIENE UN TURNO \n");
-                textView.append("\n");
-                textView.append("En: "+ convertirEspecialidad(especialidad) +"\n");
-                textView.append("Hora: " + hora + "\n");
-                textView.append("Fecha: " + fecha + "\n");
-                textView.append("\n");
-
-
-
-
-
+                deleteButton.setPadding(16, 16, 16, 16);
 
                 layout.addView(textView);
                 layout.addView(deleteButton);
+                linerT.addView(layout);
 
                 deleteButton.setOnClickListener(v -> {
                     int idT = (int) v.getTag();
@@ -170,13 +173,14 @@ public class MisturnosDashboard extends AppCompatActivity {
                             .setPositiveButton("Sí", (dialog, which) -> eliminarTurno(idT))
                             .setNegativeButton("No", null)
                             .show();
-
                 });
 
-                linerT.addView(layout);
-
-
-
+                // Guardar datos reducidos para el dashboard
+                JSONObject turnoReducido = new JSONObject();
+                turnoReducido.put("fecha", fecha);
+                turnoReducido.put("hora", hora);
+                turnoReducido.put("especialidad", convertirEspecialidad(especialidad));
+                turnosFuturos.put(turnoReducido);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -184,8 +188,11 @@ public class MisturnosDashboard extends AppCompatActivity {
             }
         }
 
-
+        // Guardar turnos futuros
+        editor.putString("turnos_usuario", turnosFuturos.toString());
+        editor.apply();
     }
+
 
     private String convertirEspecialidad(int especialidad) {
         switch (especialidad) {
