@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.volley)
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.github.hCaptcha.hcaptcha-android-sdk:sdk:4.0.2")
     implementation(libs.play.services.safetynet)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

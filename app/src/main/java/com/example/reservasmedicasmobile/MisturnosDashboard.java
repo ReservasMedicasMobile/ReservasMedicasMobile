@@ -155,7 +155,7 @@ public class MisturnosDashboard extends AppCompatActivity {
 
                 Button deleteButton = new Button(this);
                 deleteButton.setTag(id);
-                deleteButton.setText("Eliminar Turno");
+                deleteButton.setText("Cancelar Turno");
                 deleteButton.setBackgroundColor(Color.parseColor("#007bff"));
                 deleteButton.setTextColor(Color.WHITE);
                 deleteButton.setTextSize(16);
@@ -168,8 +168,8 @@ public class MisturnosDashboard extends AppCompatActivity {
                 deleteButton.setOnClickListener(v -> {
                     int idT = (int) v.getTag();
                     new AlertDialog.Builder(this)
-                            .setTitle("Confirmar Eliminación")
-                            .setMessage("¿Estás seguro de que deseas eliminar este turno?")
+                            .setTitle("Confirmar Cancelación")
+                            .setMessage("¿Estás seguro de que deseas cancelar este turno?")
                             .setPositiveButton("Sí", (dialog, which) -> eliminarTurno(idT))
                             .setNegativeButton("No", null)
                             .show();

@@ -2,53 +2,43 @@ package com.example.reservasmedicasmobile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.VolleyError;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.safetynet.SafetyNet;
-import com.google.android.gms.safetynet.SafetyNetApi;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.android.volley.VolleyError;
+import com.hcaptcha.sdk.HCaptcha;
+import com.hcaptcha.sdk.HCaptchaConfig;
+import com.hcaptcha.sdk.HCaptchaException;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class login extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks {
+public class login extends AppCompatActivity {
 
+    private static final String SITE_KEY = "d1389988-f526-42c6-8786-7670d548dfa0";
 
     private EditText username;
     private EditText password;
     private ApiRequest apiRequest;
-    CheckBox checkbox;
-    GoogleApiClient googleApiClient;
-    String SiteKey = "6LeUmWkqAAAAAGxptu-eDbZ2Xq7_ZwKSbqrBjok1";
+    private SharedPreferences sharedPreferences;
     private int loginAttempts = 0; // Contador de intentos de inicio de sesión
     private static final int MAX_LOGIN_ATTEMPTS = 3; // Máximo de intentos
+    private static final long BLOCK_DURATION = 60 * 1000; //BLOQUEO POR 1 minuto en milisegundos (SOLO PARA LA DEMOSTRACION, DESPUES SE PUEDE CAMBIAR POR 15 MINUTOS O LO QUE UNO QUIERA)
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +46,21 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.GONE);
+        sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        loginAttempts = sharedPreferences.getInt("login_attempts", 0); // Recuperar intentos fallidos
 
+        // Verificar si la cuenta está bloqueada
+        long blockTimestamp = sharedPreferences.getLong("block_timestamp", 0);
+        if (blockTimestamp != 0 && System.currentTimeMillis() - blockTimestamp < BLOCK_DURATION) {
+            Toast.makeText(this, "Tu cuenta está bloqueada temporalmente. Intenta más tarde.", Toast.LENGTH_SHORT).show();
+        } else if (blockTimestamp != 0 && System.currentTimeMillis() - blockTimestamp >= BLOCK_DURATION) {
+            // Bloqueo expirado, resetear
+            sharedPreferences.edit().remove("block_timestamp").apply();
+            loginAttempts = 0;
+            sharedPreferences.edit().putInt("login_attempts", loginAttempts).apply();
+        }
+
+        //Mostrar contraseña
         ImageView imageViewTogglePassword = findViewById(R.id.imageViewTogglePassword);
         boolean[] isPasswordVisible = {false};
 
@@ -76,41 +78,8 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             // Colocar el cursor al final del texto
             password.setSelection(password.getText().length());
         });
-        checkbox = findViewById(R.id.check_box);
 
-
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(SafetyNet.API)
-                .addConnectionCallbacks(login.this)
-                .build();
-        googleApiClient.connect();
-
-        checkbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (checkbox.isChecked()){
-                    SafetyNet.SafetyNetApi.verifyWithRecaptcha(googleApiClient, SiteKey)
-                            .setResultCallback(new ResultCallback<SafetyNetApi.RecaptchaTokenResult>() {
-                                @Override
-                                public void onResult(@NonNull SafetyNetApi.RecaptchaTokenResult recaptchaTokenResult) {
-
-                                    Status status = recaptchaTokenResult.getStatus();
-
-                                    if ((status != null && status.isSuccess())){
-                                        Toast.makeText(login.this, "Verificado Exitosamente",
-                                                Toast.LENGTH_SHORT).show();
-                                        checkbox.setTextColor(Color.BLUE);
-                                    }
-                                }
-                            });
-
-                }else{
-                    checkbox.setTextColor(Color.RED);
-                    Toast.makeText(login.this, "No ha sido verificado", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
+    //Barra navegacion inferior
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
@@ -141,7 +110,9 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         apiRequest = new ApiRequest(this);
 
         // Listener botón iniciar sesión
-        login_button.setOnClickListener(v -> validarFormulario());
+        login_button.setOnClickListener(v -> {
+            validarFormulario(); // Verificar campos antes de iniciar hCaptcha
+        });
 
         // Link a registro
         TextView registro = findViewById(R.id.registro);
@@ -152,9 +123,22 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
     }
 
     private void validarFormulario() {
+        // Verificar si la cuenta está bloqueada
+        long blockTimestamp = sharedPreferences.getLong("block_timestamp", 0);
+        if (blockTimestamp != 0 && System.currentTimeMillis() - blockTimestamp < BLOCK_DURATION) {
+            Toast.makeText(this, "Tu cuenta está bloqueada temporalmente. Intenta más tarde.", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (blockTimestamp != 0 && System.currentTimeMillis() - blockTimestamp >= BLOCK_DURATION) {
+            // Bloqueo expirado, resetear
+            sharedPreferences.edit().remove("block_timestamp").apply();
+            loginAttempts = 0;
+            sharedPreferences.edit().putInt("login_attempts", loginAttempts).apply();
+        }
+
         // Verifica si los intentos han superado el máximo permitido
         if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
-            Toast.makeText(this, "Tu cuenta está bloqueada temporalmente. Intenta más tarde.", Toast.LENGTH_SHORT).show();
+            sharedPreferences.edit().putLong("block_timestamp", System.currentTimeMillis()).apply();
+            Toast.makeText(this, "Demasiados intentos fallidos. Tu cuenta está bloqueada por 1 minuto.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -173,43 +157,64 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             if (TextUtils.isEmpty(contrasenia)) {
                 password.setError("La contraseña no puede estar vacía");
             }
-            if(dni.equals("406823198")){
-                Intent intents = new Intent(login.this, especialidades.class);
-                startActivity(intents);
-            }
-
             return;
         }
 
-        // Si los campos no están vacíos, iniciar sesión
-        iniciarSesion(dni, contrasenia);
+        // Verifica si el DNI tiene 8 dígitos
+        if (!dni.matches("\\d{8}")) {
+            username.setError("El DNI debe tener exactamente 8 dígitos.");
+            return;
+        }
 
+        // Verifica si la contraseña tiene entre 8 y 16 caracteres
+        if (contrasenia.length() < 8 || contrasenia.length() > 16) {
+            password.setError("La contraseña debe tener entre 8 y 16 caracteres.");
+            return;
+        }
+
+        // Si los campos están correctos, inicializa hCaptcha
+        HCaptchaConfig hCaptchaConfig = HCaptchaConfig.builder()
+                .siteKey(SITE_KEY)
+                .locale("es")
+                .build();
+
+        HCaptcha.getClient(this).verifyWithHCaptcha(hCaptchaConfig)
+                .addOnSuccessListener(hCaptchaTokenResponse -> {
+                    // Verificación exitosa
+                    String hCaptchaToken = hCaptchaTokenResponse.getTokenResult(); // Obtener el token del response
+                    Log.d("hCaptcha", "Verificación exitosa. Token: " + hCaptchaToken);
+                    iniciarSesion(dni, contrasenia, hCaptchaToken);
+                })
+                .addOnFailureListener(e -> {
+                    // Error en la verificación
+                    if (e instanceof HCaptchaException) {
+                        Log.e("hCaptcha", "Verificación fallida. Error: " + e.getMessage());
+                    }
+                });
     }
 
-    private void iniciarSesion(String dni, String contrasenia) {
+
+    private void iniciarSesion(String dni, String contrasenia, String hCaptchaToken) {
+        // Log para confirmar la llamada a iniciar sesión
+        Log.d("hCaptcha", "Llamando a iniciar sesión con token hCaptcha");
+
         // Llamar a la API para iniciar sesión
-        apiRequest.login(dni, contrasenia, new ApiRequest.ApiCallback() {
+        apiRequest.login(dni, contrasenia,hCaptchaToken, new ApiRequest.ApiCallback() {
             @Override
             public void onSuccess(JSONObject response) {
-                Log.d("Login", "Respuesta de la API: " + response.toString()); // Imprime la respuesta completa
-
+                loginAttempts = 0; // Resetear intentos al iniciar sesión correctamente
+                sharedPreferences.edit().putInt("login_attempts", loginAttempts).remove("block_timestamp").apply(); // Guardar intentos y eliminar bloqueo
+                // Procesar la respuesta y continuar el flujo exitoso
                 try {
-                    loginAttempts = 0; // Resetear intentos al iniciar sesión correctamente
-
-                    // Acceder al objeto 'user' y luego al 'first_name'
                     JSONObject user = response.getJSONObject("user");
                     String first_name = user.getString("first_name");
                     String token = response.getString("token");
                     int id = user.getInt("id");
-                    System.out.println(id);
-
                     // Guardar el nombre y el token
                     saveUserData(id, first_name, token);
-
                     Intent volverInicio = new Intent(login.this, MainActivity.class);
                     startActivity(volverInicio);
                     Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-
                 } catch (JSONException e) {
                     Log.e("Login", "Error al procesar la respuesta JSON", e);
                     Toast.makeText(login.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
@@ -219,14 +224,17 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             @Override
             public void onError(VolleyError error) {
                 loginAttempts++; // Incrementar contador al fallar
+                sharedPreferences.edit().putInt("login_attempts", loginAttempts).apply(); // Guardar intentos
                 Toast.makeText(login.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
                 if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
-                    Toast.makeText(login.this, "Demasiados intentos fallidos. Tu cuenta está bloqueada temporalmente.", Toast.LENGTH_SHORT).show();
+                    sharedPreferences.edit().putLong("block_timestamp", System.currentTimeMillis()).apply();
+                    Toast.makeText(login.this, "Demasiados intentos fallidos. Tu cuenta está bloqueada por 1 minuto.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         Toast.makeText(this, "Procesando datos...", Toast.LENGTH_SHORT).show();
     }
+
 
 
     private void saveUserData(int id, String firstName, String token) {
@@ -239,35 +247,5 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         editor.apply();
     }
 
-    private void verifyReCaptcha() {
-        String siteKey = "6Ldt6WkqAAAAAKek7SApEh_m8_knHFmssFJv4hoK";
-
-        SafetyNet.getClient(this).verifyWithRecaptcha(siteKey)
-                .addOnCompleteListener(new OnCompleteListener<SafetyNetApi.RecaptchaTokenResponse>() {
-                    @Override
-                    public void onComplete(Task<SafetyNetApi.RecaptchaTokenResponse> task) {
-                        if (task.isSuccessful()) {
-                            SafetyNetApi.RecaptchaTokenResponse response = task.getResult();
-                            if (!response.getTokenResult().isEmpty()) {
-
-                                Toast.makeText(login.this, "Formulario enviado", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(login.this, "Verificación fallida", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Log.e("reCAPTCHA", "Error: " + task.getException().getMessage());
-                        }
-                    }
-                });
-    }
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
 }
 

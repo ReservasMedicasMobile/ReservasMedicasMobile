@@ -12,6 +12,6 @@
         android:id="@+id/navigation_servicios"
         android:icon="@drawable/ic_servicio"
         android:background="#151635"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:title="Servicios" />
 </menu>

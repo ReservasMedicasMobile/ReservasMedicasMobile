@@ -7,16 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#151635"
-        app:titleTextAppearance="@style/ToolbarTitleTextStyle"
-        app:titleTextColor="#FFFFFF"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <!-- TextView de bienvenida -->
     <TextView
@@ -26,7 +17,7 @@
         android:textSize="24sp"
         android:textColor="@color/azul"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/titulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"/> <!-- Inicialmente oculto -->
@@ -51,10 +42,11 @@
         android:textColor="#FFFFFF"
         android:textSize="28sp"
         android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+         />
 
     <TextView
         android:id="@+id/mensaje_saludo"
@@ -185,6 +177,18 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/rounded_button_home"
             android:text="Ayuda"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:id="@+id/btn_web"
+            android:layout_width="200dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_button_home"
+            android:text="Visita nuestra Web"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"

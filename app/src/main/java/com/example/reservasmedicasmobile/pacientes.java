@@ -4,10 +4,12 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -15,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -40,7 +43,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-
 public class pacientes extends AppCompatActivity {
 
     private Spinner spinner_obraSocial;
@@ -50,12 +52,7 @@ public class pacientes extends AppCompatActivity {
     private CalendarView calendarView;
     private String selectedDate;
 
-
-
     private RequestQueue requestQueue;
-    private String fechaSeleccionada = "";
-    private Map<String, Map<String, List<String>>> horariosPorEspecialistaYFecha;
-    private String fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,27 +60,16 @@ public class pacientes extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pacientes);
 
-
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-
         boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
-        int id =  sharedPreferences.getInt("id", -1);
-
-
-
+        int id = sharedPreferences.getInt("id", -1);
 
         if (!isLoggedIn) {
-
             Intent intent = new Intent(pacientes.this, login.class);
             startActivity(intent);
             finish();
-        } else {
-
-            setContentView(R.layout.activity_pacientes);
-
         }
 
-        calendarView = findViewById(R.id.calendar_view);
         spinner_obraSocial = findViewById(R.id.spinner_obraSocial);
         etNombreCompleto = findViewById(R.id.etNombreCompleto);
         etApellido = findViewById(R.id.etApellido);
@@ -97,34 +83,28 @@ public class pacientes extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         cargarObraSocial();
-        calendarView.setVisibility(View.GONE);
-        buttonOpenDatePickers.setOnClickListener(v -> {
-            if (calendarView.getVisibility() == View.GONE) {
-                calendarView.setVisibility(View.VISIBLE);
-            } else {
-                calendarView.setVisibility(View.GONE);
-            }
 
+        // Configurar el botón para abrir el DatePicker
+        buttonOpenDatePickers.setOnClickListener(v -> showDatePickerDialog());
 
-        });
-        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth; // Formato: YYYY-MM-DD
-            Log.d("TAG", "Fecha seleccionada: " + selectedDate);
-
-        });
-
-
-
-
-
-
+        // Configura el listener para enviar datos
         btnSubmits.setOnClickListener(v -> {
-
-            agregarDatosPacientes(getUserId());
+            // Validar el DNI antes de enviar el formulario
+            String dni = etDni.getText().toString().trim();
+            if (dni.length() != 11) {
+                etDni.setError("El CUIL debe tener 11 caracteres.");
+                return; // Detener el envío si el DNI es inválido
+            } else {
+                etDni.setError(null); // Limpiar el error si el DNI es válido
+                if (selectedDate == null || selectedDate.isEmpty()) {
+                    Toast.makeText(pacientes.this, "Por favor, seleccione una fecha.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                agregarDatosPacientes(getUserId());
+            }
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
@@ -147,16 +127,40 @@ public class pacientes extends AppCompatActivity {
         });
     }
 
+    private void showDatePickerDialog() {
+        // Obtén la fecha actual
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+        // Crear el DatePickerDialog para permitir la selección de la fecha
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                pacientes.this,
+                (view, selectedYear, selectedMonth, selectedDayOfMonth) -> {
+                    // Formatear la fecha seleccionada
+                    selectedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDayOfMonth);
+                    Log.d("TAG", "Fecha seleccionada: " + selectedDate);
+
+                    // Muestra la fecha seleccionada en el botón
+                    buttonOpenDatePickers.setText("Fecha seleccionada: " + selectedDate);
+                },
+                year, month, day
+        );
+
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+        calendar.set(Calendar.YEAR, year - 120);
+        datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+
+        // Mostrar el DatePickerDialog
+        datePickerDialog.show();
+    }
 
     //---------------Datos Paciente---------------
     private void agregarDatosPacientes(int id) {
-
-
         JSONObject datosPaciente = new JSONObject();
         try {
-
-
             String nombre = etNombreCompleto.getText().toString().trim();
             String apellido = etApellido.getText().toString().trim();
             String dni = etDni.getText().toString().trim();
@@ -170,6 +174,7 @@ public class pacientes extends AppCompatActivity {
                 Toast.makeText(pacientes.this, "Error: Selecione una Obra Social.", Toast.LENGTH_SHORT).show();
                 return;
             }
+
             datosPaciente.put("username_id", id);
             datosPaciente.put("nombre", nombre);
             datosPaciente.put("apellido", apellido);
@@ -178,7 +183,6 @@ public class pacientes extends AppCompatActivity {
             datosPaciente.put("correo", correo);
             datosPaciente.put("telefono", telefono);
             datosPaciente.put("obra_social", obraSocialId);
-
 
         } catch (JSONException e) {
             Log.e("CrearPacientes", "Error al crear el JSON: ", e);
@@ -197,16 +201,18 @@ public class pacientes extends AppCompatActivity {
                     if (error.networkResponse != null && error.networkResponse.data != null) {
                         errorMessage = new String(error.networkResponse.data);
                     }
-                    Toast.makeText(pacientes.this, "Error al crear el turno: " + errorMessage, Toast.LENGTH_SHORT).show();
+                    if (error.networkResponse != null) {
+                        int statusCode = error.networkResponse.statusCode;
+                        // Puedes agregar un mensaje específico según el código de estado
+                        Log.e("Error HTTP", "Código de error: " + statusCode);
+                    }
+                    Toast.makeText(pacientes.this, "Error al crear el paciente: " + errorMessage, Toast.LENGTH_SHORT).show();
                 });
-
-
         requestQueue.add(jsonObjectRequest);
 
         Intent intent = new Intent(pacientes.this, dashboard.class);
         startActivity(intent);
     }
-
 
     //-------------- Obra Social----------------
     public class ObraSocial {
@@ -233,7 +239,6 @@ public class pacientes extends AppCompatActivity {
     }
 
     private void cargarObraSocial() {
-
         String urlObraSocial = "https://reservasmedicas.ddns.net/api/v1/obra_social/";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -254,23 +259,35 @@ public class pacientes extends AppCompatActivity {
                         }
                     }
 
-                    ArrayAdapter<ObraSocial> adapter = new ArrayAdapter<>(pacientes.this, R.layout.spinner_item_obrasocial, obraSocialsList);
-                    adapter.setDropDownViewResource(R.layout.spinner_item_obrasocial);
-                    spinner_obraSocial.setAdapter(adapter);
+                    ArrayAdapter<ObraSocial> adapter = new ArrayAdapter<ObraSocial>(pacientes.this,
+                            android.R.layout.simple_spinner_item, obraSocialsList) {
+                        @Override
+                        public View getView(int position, View convertView, ViewGroup parent) {
+                            View view = super.getView(position, convertView, parent);
+                            TextView textView = (TextView) view;
+                            textView.setTextColor(Color.WHITE); // Establecer texto blanco
+                            return view;
+                        }
 
-                }, error -> {
-            Toast.makeText(pacientes.this, "Error al cargar obra social", Toast.LENGTH_SHORT).show();
-            Log.e("Obra Social", "Error: " + error.getMessage());
-        }
-        );
+                        @Override
+                        public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                            View view = super.getDropDownView(position, convertView, parent);
+                            TextView textView = (TextView) view;
+                            textView.setTextColor(Color.WHITE); // Establecer texto blanco en el desplegable
+                            return view;
+                        }
+                    };
+
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_obraSocial.setAdapter(adapter);
+                },
+                error -> Toast.makeText(pacientes.this, "Error al cargar las obras sociales", Toast.LENGTH_SHORT).show());
         requestQueue.add(jsonArrayRequest);
     }
 
-
-    public int getUserId() {
+    private int getUserId() {
+        // Devuelve el ID del usuario almacenado en SharedPreferences o el valor de sesión
         SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        return sharedPreferences.getInt("id", -1); //
+        return sharedPreferences.getInt("id", -1);  // -1 o el ID real según sea necesario
     }
-
-
 }

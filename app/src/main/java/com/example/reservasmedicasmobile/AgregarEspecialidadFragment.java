@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,26 @@ public class AgregarEspecialidadFragment extends Fragment {
             return;
         }
         final String especialidad = editTextEspcialidad.getText().toString();
+        final String descripcion = editTextDescripcion.getText().toString();
+
+        if (especialidad.length() < 4 || especialidad.length() > 25) {
+            Toast.makeText(getActivity(), "La especialidad debe tener al menos 4 y un maximo de 25 caracteres.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (descripcion.length() < 4 || descripcion.length() > 100) {
+            Toast.makeText(getActivity(), "La descripción debe tener al menos 4 y un maximo de 100 caracteres.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (contieneCaracteresEspeciales(especialidad) || contieneCaracteresEspeciales(descripcion)) {
+            Toast.makeText(getActivity(), "El texto no debe contener caracteres especiales.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (contieneURL(especialidad) || contieneURL(descripcion)) {
+            Toast.makeText(getActivity(), "El texto no debe contener URLs.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         new android.app.AlertDialog.Builder(getActivity())
                 .setTitle("Confirmación")
@@ -72,6 +93,19 @@ public class AgregarEspecialidadFragment extends Fragment {
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+
+
+    private boolean contieneCaracteresEspeciales(String texto) {
+        // Expresión regular para detectar caracteres especiales
+        String regex = "[^a-zA-Z0-9\\s]";
+        return texto.matches(".*" + regex + ".*");
+    }
+
+    private boolean contieneURL(String texto) {
+        // Usar la clase Patterns para detectar URLs
+        return Patterns.WEB_URL.matcher(texto).find();
     }
 
     private void verificarExistenciaEspecialidad(final String especialidad) {

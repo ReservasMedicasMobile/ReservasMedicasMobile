@@ -50,8 +50,6 @@ public class registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.GONE);
 
         // Inicializar vistas
         usernameInput = findViewById(R.id.username_input);
@@ -162,6 +160,12 @@ public class registro extends AppCompatActivity {
         } else if (username.length() != 8) { // Verifica que tenga exactamente 8 dígitos
             usernameInput.setError("El DNI debe tener exactamente 8 dígitos");
             return;
+        } else if (username.startsWith("0")) {  // El dni no puede empezar con 0
+            usernameInput.setError("El DNI no puede empezar con '0'");
+            return;
+        } else if (username.matches("(\\d)\\1{7}")) { // El dni no podra tener 8 números repetidos (ej. "11111111")
+            usernameInput.setError("El DNI no puede contener 8 números repetidos");
+            return;
         }
 
         // Validar nombre
@@ -169,7 +173,10 @@ public class registro extends AppCompatActivity {
             first_nameInput.setError("El nombre es obligatorio");
             return;
         } else if (!first_name.matches("[A-Za-z ]+")) {  // Permitimos espacios
-            first_nameInput.setError("El nombre solo puede contener letras y espacios");
+            first_nameInput.setError("El nombre no puede contener caracteres especiales");
+            return;
+        }  else if (first_name.length() < 3 || first_name.length() > 20) {  // el nombre debe tener un minimo de 3 caracteres y un maximo de 20
+            first_nameInput.setError("El nombre es demasiado corto");
             return;
         }
 
@@ -178,7 +185,10 @@ public class registro extends AppCompatActivity {
             last_nameInput.setError("El apellido es obligatorio");
             return;
         } else if (!last_name.matches("[A-Za-z ]+")) {  // Permitimos espacios
-            last_nameInput.setError("El apellido solo puede contener letras y espacios");
+            last_nameInput.setError("El apellido no puede contener caracteres especiales");
+            return;
+        } else if (last_name.length() < 2 || last_name.length() > 20) {  // Validación de longitud
+            last_nameInput.setError("El apellido es demasiado corto");
             return;
         }
 

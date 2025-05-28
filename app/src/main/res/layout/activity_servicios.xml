@@ -7,16 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".servicios">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#151635"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:id="@+id/titulo"
@@ -28,23 +18,23 @@
             android:textColor="#FFFFFF"
             android:textSize="28sp"
             android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
-    </androidx.appcompat.widget.Toolbar>
+            />
 
     <!-- Contenedor para las imágenes y textos -->
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="408dp"
+        android:layout_width="match_parent"
         android:layout_height="643dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titulo">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,8 +49,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:importantForAccessibility="no"
                 android:scaleType="centerCrop"
-                android:src="@drawable/carrusel1" />
+                android:src="@drawable/carrusel1"
+                tools:ignore="ImageContrastCheck" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -81,8 +73,8 @@
                     android:id="@+id/description1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:text="Ofrecemos atención médica integral con un equipo especializado para consultas generales y seguimiento de condiciones crónicas. Tu salud es nuestra prioridad." />
+                    android:text="Ofrecemos atención médica integral con un equipo especializado para consultas generales y seguimiento de condiciones crónicas. Tu salud es nuestra prioridad."
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -100,8 +92,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:importantForAccessibility="no"
                 android:scaleType="centerCrop"
-                android:src="@drawable/carrusel2" />
+                android:src="@drawable/carrusel2"
+                tools:ignore="ImageContrastCheck" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -122,8 +116,8 @@
                     android:id="@+id/description2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:text="Servicios de salud laboral con exámenes periódicos, evaluaciones de riesgos y programas de prevención. Aseguramos el bienestar de los trabajadores." />
+                    android:text="Servicios de salud laboral con exámenes periódicos, evaluaciones de riesgos y programas de prevención. Aseguramos el bienestar de los trabajadores."
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -140,6 +134,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:importantForAccessibility="no"
                 android:scaleType="centerCrop"
                 android:src="@drawable/carrusel3" />
 
@@ -162,8 +157,8 @@
                     android:id="@+id/description3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:text="Realizamos una amplia gama de análisis clínicos en nuestros laboratorios equipados con tecnología de punta y personal especializado." />
+                    android:text="Realizamos una amplia gama de análisis clínicos en nuestros laboratorios equipados con tecnología de punta y personal especializado."
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -208,7 +203,7 @@
         android:layout_height="60dp"
         app:backgroundTint="@color/azul"
         app:itemIconTint="@color/white"
-        app:itemTextColor="@color/colorGray"
+        app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
