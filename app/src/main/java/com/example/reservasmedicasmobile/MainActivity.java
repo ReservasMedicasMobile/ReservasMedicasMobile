@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         btnEpecialidades.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, especialidades.class)));
 
         btnWeb.setOnClickListener(v -> {
-            String url = "http://192.168.0.106:4200";
+            String url = "http://10.0.2.2:4200/inicio";
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
             startActivity(intent);
