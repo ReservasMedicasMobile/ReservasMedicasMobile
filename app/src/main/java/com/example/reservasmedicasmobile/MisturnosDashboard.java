@@ -2,8 +2,10 @@ package com.example.reservasmedicasmobile;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -22,6 +24,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.reservasmedicasmobile.modelo.DataModel;
@@ -136,11 +139,12 @@ public class MisturnosDashboard extends AppCompatActivity {
 
                 String hora = MisTurnos.getString("hora_turno");
                 String fecha = MisTurnos.getString("fecha_turno");
-                int especialidad = MisTurnos.getInt("especialidad");
+                String especialidad = MisTurnos.getString("nombre_especialidad");
+                String profesional = MisTurnos.getString("nombre_profesional");
                 int id = MisTurnos.getInt("id");
 
                 // Construcción de texto
-                String textoTurno = "* En: " + convertirEspecialidad(especialidad) + "\n"
+                String textoTurno = "* En: " + especialidad + "\n"
                         + "* Hora: " + hora + "\n"
                         + "* Fecha: " + fecha + "\n";
 
@@ -161,8 +165,18 @@ public class MisturnosDashboard extends AppCompatActivity {
                 deleteButton.setTextSize(16);
                 deleteButton.setPadding(16, 16, 16, 16);
 
+                Button PagarButton = new Button(this);
+
+                PagarButton.setTag(id);
+                PagarButton.setText("Pagar Turno");
+                PagarButton.setBackgroundColor(Color.parseColor("#151635"));
+                PagarButton.setTextColor(Color.WHITE);
+                PagarButton.setTextSize(16);
+                PagarButton.setPadding(16, 16, 16, 16);
+
                 layout.addView(textView);
                 layout.addView(deleteButton);
+                layout.addView(PagarButton);
                 linerT.addView(layout);
 
                 deleteButton.setOnClickListener(v -> {
@@ -175,11 +189,54 @@ public class MisturnosDashboard extends AppCompatActivity {
                             .show();
                 });
 
+                PagarButton.setOnClickListener(v -> {
+                    int idTurno = (int) v.getTag();
+
+                    JSONArray items = new JSONArray();
+                    JSONObject item = new JSONObject();
+
+                    try {
+                        item.put("title", "Turno médico con " + profesional);
+                        item.put("image", "https://via.placeholder.com/150");
+                        item.put("price", 7500); 
+                        items.put(item);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    JSONObject payload = new JSONObject();
+                    try {
+                        payload.put("items", items);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    String url = "http://10.0.2.2:4242/checkout";
+
+                    JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, payload,
+                            response -> {
+                                try {
+                                    String stripeUrl = response.getString("url");
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(stripeUrl));
+                                    startActivity(browserIntent);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            },
+                            error -> {
+                                error.printStackTrace();
+                                Toast.makeText(getApplicationContext(), "Error iniciando pago", Toast.LENGTH_SHORT).show();
+                            });
+
+                    queue.add(request);
+                });
+
                 // Guardar datos reducidos para el dashboard
                 JSONObject turnoReducido = new JSONObject();
                 turnoReducido.put("fecha", fecha);
                 turnoReducido.put("hora", hora);
-                turnoReducido.put("especialidad", convertirEspecialidad(especialidad));
+                turnoReducido.put("especialidad", especialidad);
                 turnosFuturos.put(turnoReducido);
 
             } catch (JSONException e) {
