@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -67,64 +71,50 @@ public class dashboard extends AppCompatActivity {
 
     private void mostrarProximoTurno() {
         String turnosJson = prefs.getString("turnos_usuario", null);
-        if (turnosJson != null) {
-            try {
-                JSONArray turnos = new JSONArray(turnosJson);
-                SimpleDateFormat sdfFull = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                SimpleDateFormat sdfMostrar = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
-                Date ahora = new Date();
-                StringBuilder sb = new StringBuilder();
-                int cantidad = 0;
-
-                for (int i = 0; i < turnos.length(); i++) {
-                    JSONObject turno = turnos.getJSONObject(i);
-                    String fecha = turno.getString("fecha");
-                    String hora = turno.getString("hora");
-                    String especialidad = turno.getString("especialidad");
-
-                    Date fechaCompleta = sdfFull.parse(fecha + " " + hora);
-                    if (fechaCompleta != null && fechaCompleta.after(ahora)) {
-                        String fechaFormateada = sdfMostrar.format(fechaCompleta);
-                        sb.append("• ").append(fechaFormateada)
-                                .append(" a las ").append(hora)
-                                .append(" hs. - ").append(especialidad)
-                                .append("\n");
-                        cantidad++;
-                    }
-                }
-
-                if (cantidad > 0) {
-                    turnoTextView.setText("TUS PROXIMOS TURNOS:\n\n" + sb.toString().trim());
-                } else {
-                    prefs.edit().remove("turnos_usuario").apply();
-                    turnoTextView.setText("Actualmente no tenés turnos programados.");
-                }
-
-            } catch (Exception e) {
-                turnoTextView.setText("Error al cargar los turnos.");
-                e.printStackTrace();
-            }
-        } else {
+        if (turnosJson == null || turnosJson.isEmpty()) {
             turnoTextView.setText("Actualmente no tenés turnos programados.");
+            return;
         }
-    }
 
+        try {
+            JSONArray turnos = new JSONArray(turnosJson);
+            SimpleDateFormat sdfFull = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat sdfMostrar = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
+            Date ahora = new Date();
+            StringBuilder sb = new StringBuilder();
+            int cantidad = 0;
 
-    private String convertirEspecialidad(int id) {
-        switch (id) {
-            case 1: return "Cardiología";
-            case 3: return "Traumatología";
-            case 4: return "Dermatología";
-            case 6: return "Pediatría";
-            case 7: return "Psicología";
-            case 8: return "Oncología";
-            case 9: return "Psiquiatría";
-            case 15: return "Ginecología";
-            case 20: return "Oftalmología";
-            default: return "Desconocida";
+            for (int i = 0; i < turnos.length(); i++) {
+                JSONObject turno = turnos.getJSONObject(i);
+                String fecha = turno.optString("fecha", "");
+                String hora = turno.optString("hora", "");
+                String especialidad = turno.optString("especialidad", "Desconocida");
+
+                if (fecha.isEmpty() || hora.isEmpty()) continue;
+
+                Date fechaCompleta = sdfFull.parse(fecha + " " + hora);
+                if (fechaCompleta != null && fechaCompleta.after(ahora)) {
+                    String fechaFormateada = sdfMostrar.format(fechaCompleta);
+                    sb.append("• ").append(fechaFormateada)
+                            .append(" a las ").append(hora)
+                            .append(" hs. - ").append(especialidad)
+                            .append("\n");
+                    cantidad++;
+                }
+            }
+
+            if (cantidad > 0) {
+                turnoTextView.setText("TUS PRÓXIMOS TURNOS:\n\n" + sb.toString().trim());
+            } else {
+                prefs.edit().remove("turnos_usuario").apply();
+                turnoTextView.setText("Actualmente no tenés turnos programados.");
+            }
+
+        } catch (Exception e) {
+            turnoTextView.setText("Ocurrió un error al cargar los turnos.");
+            e.printStackTrace();
         }
     }
 }
-
