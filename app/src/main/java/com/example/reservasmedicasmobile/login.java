@@ -151,11 +151,11 @@ public class login extends AppCompatActivity {
             Toast.makeText(login.this, "Por favor completa todos los campos.", Toast.LENGTH_SHORT).show();
 
             if (TextUtils.isEmpty(dni)) {
-                username.setError("El DNI no puede estar vacío. Escribir solo números.");
+                username.setError("El Usuario es requerido.");
             }
 
             if (TextUtils.isEmpty(contrasenia)) {
-                password.setError("La contraseña no puede estar vacía");
+                password.setError("La contraseña es requerida");
             }
             return;
         }
