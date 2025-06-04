@@ -76,7 +76,7 @@ public class contacto extends AppCompatActivity {
             bottomNavigationView.getMenu().clear();
             bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu_no_logueado);
         }
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+        bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
             if (itemId == R.id.navigation_home) {
@@ -91,6 +91,13 @@ public class contacto extends AppCompatActivity {
                 Intent intent = new Intent(contacto.this, servicios.class);
                 startActivity(intent);
                 return true;
+            }  else if (itemId == R.id.navigation_turnos) {      // <-- para menú logueado
+                    startActivity(new Intent(contacto.this, turnos.class));
+                    return true;
+                } else if (itemId == R.id.navigation_perfil) {      // <-- para menú logueado
+                    startActivity(new Intent(contacto.this, dashboard.class));
+                    return true;
+
             } else {
                 return false;
             }
