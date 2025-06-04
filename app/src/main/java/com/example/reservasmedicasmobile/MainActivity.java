@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnEpecialidades, btnContacto, btnServicios, btnTurnos, btnRegistro, btnPerfil, btnLogin, btnLogout, btnAyuda;
+    private Button btnEpecialidades,btnWeb, btnContacto, btnServicios, btnTurnos, btnRegistro, btnPerfil, btnLogin, btnLogout, btnAyuda;
     private ScreenOffReceiver screenOffReceiver;
 
     @Override
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogout = findViewById(R.id.btn_logout);
         btnAyuda = findViewById(R.id.btn_ayuda);
         btnEpecialidades = findViewById(R.id.btn_especialidad);
+        btnWeb = findViewById(R.id.btn_web);
 
         // Inicializar el TextView para el mensaje de saludo
         TextView mensajeSaludo = findViewById(R.id.mensaje_saludo);
@@ -86,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
         btnAyuda.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, VideoActivity.class)));
         btnLogin.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, login.class)));
         btnEpecialidades.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, especialidades.class)));
+
+        btnWeb.setOnClickListener(v -> {
+            String url = "http://10.0.2.2:4200/inicio";
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
+        });
+
 
         btnLogout.setOnClickListener(v -> logoutAndRedirect());
 
