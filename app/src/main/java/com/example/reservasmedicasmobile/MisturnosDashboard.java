@@ -145,6 +145,7 @@ public class MisturnosDashboard extends AppCompatActivity {
 
                 // Construcción de texto
                 String textoTurno = "* En: " + especialidad + "\n"
+                        + "* Con Profesional: " + profesional + "\n" 
                         + "* Hora: " + hora + "\n"
                         + "* Fecha: " + fecha + "\n";
 
@@ -198,7 +199,7 @@ public class MisturnosDashboard extends AppCompatActivity {
                     try {
                         item.put("title", "Turno médico con " + profesional);
                         item.put("image", "https://via.placeholder.com/150");
-                        item.put("price", 7500); 
+                        item.put("price", 7500);
                         items.put(item);
                     } catch (JSONException e) {
                         e.printStackTrace();
