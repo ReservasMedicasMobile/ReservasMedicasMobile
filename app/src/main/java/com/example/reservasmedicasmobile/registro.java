@@ -125,7 +125,7 @@ public class registro extends AppCompatActivity {
 
         // Validaciones
         if (TextUtils.isEmpty(username)) {
-            usernameInput.setError("El DNI es obligatorio");
+            usernameInput.setError("El DNI es requerido.");
             return;
         } else if (!username.matches("\\d+")) {
             usernameInput.setError("El DNI debe ser numérico");
@@ -142,7 +142,7 @@ public class registro extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(first_name)) {
-            first_nameInput.setError("El nombre es obligatorio");
+            first_nameInput.setError("El nombre es requerido");
             return;
         } else if (!first_name.matches("[A-Za-z ]+")) {
             first_nameInput.setError("El nombre no puede contener caracteres especiales");
@@ -153,7 +153,7 @@ public class registro extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(last_name)) {
-            last_nameInput.setError("El apellido es obligatorio");
+            last_nameInput.setError("El apellido es requerido");
             return;
         } else if (!last_name.matches("[A-Za-z ]+")) {
             last_nameInput.setError("El apellido no puede contener caracteres especiales");
@@ -164,7 +164,7 @@ public class registro extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(email)) {
-            emailInput.setError("El correo electrónico es obligatorio");
+            emailInput.setError("El Correo electronico es requerido");
             return;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailInput.setError("Correo electrónico inválido, debe seguir el formato de un correo válido ej: nombre22@gmail.com");
@@ -172,7 +172,7 @@ public class registro extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(password)) {
-            passwordRequirements.setText("La contraseña es obligatoria");
+            passwordRequirements.setText("La contraseña es requerida");
             passwordRequirements.setVisibility(View.VISIBLE);
             passwordMismatchError.setVisibility(View.GONE);
             return;
