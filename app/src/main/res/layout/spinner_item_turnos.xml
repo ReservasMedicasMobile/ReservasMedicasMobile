@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
     android:background="@color/azul"
     android:textColor="@color/white"
     android:textAlignment="viewStart"
     android:textSize="16sp"
-    android:padding="15sp"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:paddingStart="16dp"
+    android:paddingEnd="36dp"
+    android:gravity="center_vertical"
+    android:drawableEnd="@drawable/ic_arrow_drop_down"
+    android:drawablePadding="8dp"/>

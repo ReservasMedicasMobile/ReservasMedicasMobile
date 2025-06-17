@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/azul" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Fondo azul con bordes redondeados -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/azul" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <!-- Flecha desplegable a la derecha -->
+    <item
+        android:right="12dp"
+        android:gravity="end|center_vertical">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/azul" />
+            <corners android:radius="0dp" />
+            <padding android:left="10dp" android:right="10dp" />
+        </shape>
+    </item>
+</layer-list>
